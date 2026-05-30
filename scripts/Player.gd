@@ -34,7 +34,6 @@ func update_animation(dir: float):
 		anim.flip_h = dir < 0
 	else:
 		anim.play("idle")
-		anim.stop()
 
 func collect_star(type: String):
 	if type == "gray":
