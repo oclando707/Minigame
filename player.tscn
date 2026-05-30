@@ -94,7 +94,7 @@
 [ext_resource type="Texture2D" uid="uid://dc0ix0pumu72y" path="res://minigame_assets/Global/chara_walk/chara_walk_0021.png" id="92_ngst3"]
 [ext_resource type="Texture2D" uid="uid://kdry4ukl8jsn" path="res://minigame_assets/Global/chara_walk/chara_walk_0022.png" id="93_f4mmf"]
 [ext_resource type="Texture2D" uid="uid://be25t7a231yux" path="res://minigame_assets/Global/chara_walk/chara_walk_0023.png" id="94_vl6wn"]
-[ext_resource type="Script" path="res://scripts/Player.gd" id="95_qp3rb"]
+[ext_resource type="Script" uid="uid://c6w4wrns0s5je" path="res://scripts/Player.gd" id="95_qp3rb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1ww5g"]
 animations = [{
@@ -410,7 +410,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyz12"]
-extents = Vector2(18, 32)
+size = Vector2(48, 128)
 
 [node name="Player" type="CharacterBody2D" unique_id=916301139]
 script = ExtResource("95_qp3rb")
