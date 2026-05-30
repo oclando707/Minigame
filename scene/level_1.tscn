@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://d3jcujjmloeic"]
+
+[ext_resource type="PackedScene" uid="uid://de1dlom2xp3ou" path="res://scene/lv_1_background.tscn" id="1_rpurj"]
+[ext_resource type="PackedScene" uid="uid://b4467pwswqb80" path="res://scene/player.tscn" id="2_3flxk"]
+
+[node name="level1" type="Node2D" unique_id=32838100]
+
+[node name="LV1-background" parent="." unique_id=748662892 instance=ExtResource("1_rpurj")]
+
+[node name="Player" parent="." unique_id=916301139 instance=ExtResource("2_3flxk")]
+position = Vector2(360, 696)

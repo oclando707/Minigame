@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c8llgc0wl3qe2"]
 
-[ext_resource type="Script" uid="uid://d0w2q76st0kld" path="res://时空奇遇记.gd" id="1_wcrpf"]
+[ext_resource type="Script" uid="uid://d0w2q76st0kld" path="res://scripts/时空奇遇记.gd" id="1_wcrpf"]
 [ext_resource type="Texture2D" uid="uid://bss3ejnorkdev" path="res://minigame_assets/main_menu/background/IMG_3056.PNG" id="2_gs0ff"]
 [ext_resource type="Texture2D" uid="uid://dnvpswwachr7v" path="res://minigame_assets/main_menu/标题.png" id="3_geg3o"]
 [ext_resource type="Texture2D" uid="uid://bsldlpnfkslyr" path="res://minigame_assets/main_menu/开始游戏_idle.png" id="3_j4adf"]

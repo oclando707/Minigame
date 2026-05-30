@@ -1,49 +1,45 @@
 extends CharacterBody2D
 
-@export var speed := 150
-@export var jump_velocity := -350.0
+# 跳跃 250px：v₀y = √(2×800×250) ≈ 632
+# 跳跃 300px：v_x = 300 ÷ (2×632÷800) ≈ 190
+const GRAVITY: float = 800.0
+const JUMP_VELOCITY: float = -632.0
+const MOVE_SPEED: float = 400.0
 
-var gravity := ProjectSettings.get_setting("physics/2d/default_gravity")
-var gray_stars := 0
-var yellow_stars := 0
-var is_hiding := false
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
-@onready var anim := $AnimatedSprite2D
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
+	# 重力（空中下落）
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += GRAVITY * delta
 
-	var dir := Input.get_axis("move_left", "move_right")
-	velocity.x = dir * speed
+	# 水平移动：A=左, D=右（Input Map 中为 "left" / "right"）
+	var dir: float = Input.get_axis("left", "right")
+	velocity.x = dir * MOVE_SPEED
 
+	# 跳跃（只有在地面时才可起跳，抛物线轨迹固定）
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump_velocity
+		velocity.y = JUMP_VELOCITY
 
 	move_and_slide()
 	update_animation(dir)
 
-func update_animation(dir: float):
+
+func update_animation(dir: float) -> void:
 	if not is_on_floor():
-		if velocity.y < 0:
-			anim.play("Chara_jump")
+		# 空中：上升 → jump，下降 → fall
+		if velocity.y < 0.0:
+			$AnimationPlayer.current_animation = "jump" 
 		else:
-			anim.play("Chara_fall")
-	elif dir != 0:
-		anim.play("Chara_walk")
-		anim.flip_h = dir < 0
+			$AnimationPlayer.current_animation = "fall" 
+	elif dir != 0.0:
+		# 地面 + 移动 → walk
+		$AnimationPlayer.current_animation = "walk" 
 	else:
-		anim.play("idle")
-		anim.stop()
+		# 地面 + 无输入 → idle
+		$AnimationPlayer.current_animation = "idle" 
 
-func collect_star(type: String):
-	if type == "gray":
-		gray_stars += 1
-	elif type == "yellow":
-		yellow_stars += 1
-
-func enter_grass():
-	is_hiding = true
-
-func exit_grass():
-	is_hiding = false
+	# 水平翻转：A 键翻转、D 键不翻转（空中同样生效）
+	if dir != 0.0:
+		$cha.flip_h = dir < 0.0
