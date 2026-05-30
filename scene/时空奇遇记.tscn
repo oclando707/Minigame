@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://c8llgc0wl3qe2"]
 
-[ext_resource type="Script" uid="uid://d0w2q76st0kld" path="res://时空奇遇记.gd" id="1_y52cs"]
-[ext_resource type="Texture2D" uid="uid://3xkjfibivomi" path="res://menu background.PNG" id="2_om7uh"]
+[ext_resource type="Script" uid="uid://d0w2q76st0kld" path="res://时空奇遇记.gd" id="1_wcrpf"]
+[ext_resource type="Texture2D" uid="uid://3xkjfibivomi" path="res://menu background.PNG" id="2_gs0ff"]
+[ext_resource type="Texture2D" uid="uid://dnvpswwachr7v" path="res://minigame_assets/main_menu/标题.png" id="3_geg3o"]
 
 [node name="Node2D" type="Control" unique_id=1109261172]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_y52cs")
+script = ExtResource("1_wcrpf")
 
 [node name="MainMenu" type="Control" parent="." unique_id=1131467238]
 layout_mode = 1
@@ -20,23 +21,23 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-texture = ExtResource("2_om7uh")
+texture = ExtResource("2_gs0ff")
 
-[node name="Game Theme" type="Label" parent="MainMenu" unique_id=2011549731]
+[node name="title" type="TextureRect" parent="MainMenu" unique_id=972832528]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 721.0123
-offset_top = 60.160976
-offset_right = 1196.0123
-offset_bottom = 192.00005
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 627.0
+offset_top = 83.0
+offset_right = 1347.0
+offset_bottom = 437.0
 grow_horizontal = 2
 grow_vertical = 2
-rotation = 0.0067224503
-theme_override_colors/font_color = Color(0.7777952, 0.45467925, 0.59614223, 1)
-theme_override_font_sizes/font_size = 95
-text = "时空奇遇记"
+texture = ExtResource("3_geg3o")
+stretch_mode = 4
 
 [node name="UI(VBox)" type="VBoxContainer" parent="MainMenu" unique_id=887360272]
 layout_mode = 1

@@ -2,16 +2,27 @@
 
 [ext_resource type="Texture2D" uid="uid://dvymnvilyj5ta" path="res://minigame_assets/PauseMenu/标题.png" id="1_me6vf"]
 [ext_resource type="Texture2D" uid="uid://6ca64ih3rkqr" path="res://minigame_assets/PauseMenu/黑色遮罩.png" id="2_cq4tv"]
+[ext_resource type="Texture2D" uid="uid://bp0ad5c4bl28a" path="res://minigame_assets/PauseMenu/继续游戏_idle.png" id="3_ug2vv"]
+[ext_resource type="Texture2D" uid="uid://xlyj0ww8iqsr" path="res://minigame_assets/PauseMenu/继续游戏_hover.png" id="4_qbwph"]
+[ext_resource type="Texture2D" uid="uid://cgsokdiomawbe" path="res://minigame_assets/PauseMenu/设置_idle.png" id="5_r1gbo"]
+[ext_resource type="Texture2D" uid="uid://bfc1jp1y8xjem" path="res://minigame_assets/PauseMenu/设置_hover.png" id="6_71u2q"]
+[ext_resource type="Texture2D" uid="uid://bcqypdryi5w7u" path="res://minigame_assets/PauseMenu/返回界面_idle.png" id="7_xugnn"]
+[ext_resource type="Texture2D" uid="uid://yuusn8litjx4" path="res://minigame_assets/PauseMenu/返回界面_hover.png" id="8_03dpp"]
 
 [node name="PauseMenu" type="Control" unique_id=1016799949]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 768.0
-offset_bottom = 432.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="background" type="TextureRect" parent="." unique_id=1613475591]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_cq4tv")
+metadata/_edit_lock_ = true
 
 [node name="title" type="TextureRect" parent="." unique_id=712436060]
 layout_mode = 1
@@ -20,19 +31,77 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -412.5
+offset_left = -424.0
 offset_top = -440.0
-offset_right = 412.5
-offset_bottom = 24.0
+offset_right = 476.0
+offset_bottom = 53.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_me6vf")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="background" type="TextureRect" parent="." unique_id=1613475591]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("2_cq4tv")
-metadata/_edit_lock_ = true
+[node name="Button" type="Button" parent="." unique_id=899518392]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="continue" type="TextureButton" parent="Button" unique_id=2038580066]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -242.0
+offset_top = -29.0
+offset_right = 242.0
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_ug2vv")
+texture_pressed = ExtResource("4_qbwph")
+texture_hover = ExtResource("4_qbwph")
+
+[node name="set" type="TextureButton" parent="Button" unique_id=723254500]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = 146.0
+offset_right = 244.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5_r1gbo")
+texture_pressed = ExtResource("6_71u2q")
+texture_hover = ExtResource("6_71u2q")
+
+[node name="TextureButton" type="TextureButton" parent="Button" unique_id=1175893120]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -243.0
+offset_top = 321.0
+offset_right = 243.0
+offset_bottom = 466.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_xugnn")
+texture_pressed = ExtResource("8_03dpp")
+texture_hover = ExtResource("8_03dpp")
