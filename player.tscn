@@ -94,6 +94,7 @@
 [ext_resource type="Texture2D" uid="uid://dc0ix0pumu72y" path="res://minigame_assets/Global/chara_walk/chara_walk_0021.png" id="92_ngst3"]
 [ext_resource type="Texture2D" uid="uid://kdry4ukl8jsn" path="res://minigame_assets/Global/chara_walk/chara_walk_0022.png" id="93_f4mmf"]
 [ext_resource type="Texture2D" uid="uid://be25t7a231yux" path="res://minigame_assets/Global/chara_walk/chara_walk_0023.png" id="94_vl6wn"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="95_qp3rb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1ww5g"]
 animations = [{
@@ -398,13 +399,26 @@ animations = [{
 "loop": true,
 "name": &"Chara_walk",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("72_l6n6j")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xyz12"]
+extents = Vector2(18, 32)
+
 [node name="Player" type="CharacterBody2D" unique_id=916301139]
+script = ExtResource("95_qp3rb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=249257311]
 sprite_frames = SubResource("SpriteFrames_1ww5g")
-animation = &"Chara_walk"
-autoplay = "Chara_walk"
+animation = &"idle"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1354087051]
+shape = SubResource("RectangleShape2D_xyz12")
