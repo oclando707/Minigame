@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://cmop5x2gc5c1a"]
+
+[ext_resource type="Texture2D" uid="uid://b35sa7ggbxkaf" path="res://minigame_assets/textbox/对话框2.png" id="1_0lrlq"]
+[ext_resource type="Texture2D" uid="uid://6ca64ih3rkqr" path="res://minigame_assets/PauseMenu/黑色遮罩.png" id="1_h73uh"]
+[ext_resource type="FontFile" uid="uid://bey0ia4a71iyx" path="res://font/simsun.ttc" id="3_kuvky"]
+[ext_resource type="Texture2D" uid="uid://gcdqvhyp1t3m" path="res://minigame_assets/textbox/选项_idle.png" id="4_y0ch4"]
+[ext_resource type="Texture2D" uid="uid://c2cxp33fyawpn" path="res://minigame_assets/textbox/选项_hover.png" id="5_sboj3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_25272"]
+font = ExtResource("3_kuvky")
+font_size = 50
+font_color = Color(0, 0.40134662, 0.76820713, 1)
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+stacked_outline_count = 1
+stacked_shadow_count = 1
+stacked_outline_0/size = -1
+stacked_shadow_0/offset = Vector2(1, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_76v5y"]
+load_path = "res://.godot/imported/选项_hover.png-26bf962fe9093e5830ff04f148f4d669.ctex"
+
+[node name="textboxA" type="Control" unique_id=2049291116]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="TextureRect" parent="." unique_id=1914999702]
+layout_mode = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_h73uh")
+
+[node name="textbox" type="TextureRect" parent="." unique_id=1699726996]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -866.0
+offset_top = -600.0
+offset_right = 866.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_0lrlq")
+
+[node name="text" type="Label" parent="." unique_id=1730935063]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -344.0
+offset_top = -280.0
+offset_right = -88.0
+offset_bottom = -192.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "对话文本"
+label_settings = SubResource("LabelSettings_25272")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=662493499]
+layout_mode = 0
+offset_left = 1384.0
+offset_top = 432.0
+offset_right = 1814.0
+offset_bottom = 670.0
+
+[node name="button1" type="TextureButton" parent="VBoxContainer" unique_id=373481377]
+layout_mode = 2
+texture_normal = ExtResource("4_y0ch4")
+texture_pressed = ExtResource("5_sboj3")
+texture_hover = ExtResource("5_sboj3")
+
+[node name="button2" type="TextureButton" parent="VBoxContainer" unique_id=532505322]
+layout_mode = 2
+texture_normal = ExtResource("4_y0ch4")
+texture_pressed = SubResource("CompressedTexture2D_76v5y")
+texture_hover = ExtResource("5_sboj3")

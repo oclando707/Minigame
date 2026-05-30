@@ -1,174 +1,174 @@
 [gd_scene format=3 uid="uid://b4467pwswqb80"]
 
-[ext_resource type="Texture2D" uid="uid://b74q7omj7cb78" path="res://minigame_assets/Global/chara_fall/chara_fall_0000.png" id="1_gpvxe"]
-[ext_resource type="Texture2D" uid="uid://dlja8gep1g8fv" path="res://minigame_assets/Global/chara_fall/chara_fall_0001.png" id="2_qicb8"]
-[ext_resource type="Texture2D" uid="uid://b1eg3wtwvga5e" path="res://minigame_assets/Global/chara_fall/chara_fall_0002.png" id="3_6o2m3"]
-[ext_resource type="Texture2D" uid="uid://c4pwguu34s51y" path="res://minigame_assets/Global/chara_fall/chara_fall_0003.png" id="4_2hmo1"]
-[ext_resource type="Texture2D" uid="uid://bbgk2f4v8shli" path="res://minigame_assets/Global/chara_fall/chara_fall_0004.png" id="5_uygay"]
-[ext_resource type="Texture2D" uid="uid://cgo0mbyx5hwvi" path="res://minigame_assets/Global/chara_fall/chara_fall_0005.png" id="6_rpay4"]
-[ext_resource type="Texture2D" uid="uid://dl80v5nt884w4" path="res://minigame_assets/Global/chara_fall/chara_fall_0006.png" id="7_xfa3h"]
-[ext_resource type="Texture2D" uid="uid://be8me1txvkp1f" path="res://minigame_assets/Global/chara_fall/chara_fall_0007.png" id="8_04g4e"]
-[ext_resource type="Texture2D" uid="uid://gl4kk28uvu6f" path="res://minigame_assets/Global/chara_fall/chara_fall_0008.png" id="9_lx1qc"]
-[ext_resource type="Texture2D" uid="uid://ch616q82f8xof" path="res://minigame_assets/Global/chara_fall/chara_fall_0009.png" id="10_elm0x"]
-[ext_resource type="Texture2D" uid="uid://7vcbxqu4bn7x" path="res://minigame_assets/Global/chara_fall/chara_fall_0010.png" id="11_k7vj2"]
-[ext_resource type="Texture2D" uid="uid://o4f55ynnlkbh" path="res://minigame_assets/Global/chara_fall/chara_fall_0011.png" id="12_dtw5u"]
-[ext_resource type="Texture2D" uid="uid://dwhf8sea32voa" path="res://minigame_assets/Global/chara_fall/chara_fall_0012.png" id="13_f37gn"]
-[ext_resource type="Texture2D" uid="uid://8h5kb5s8w216" path="res://minigame_assets/Global/chara_fall/chara_fall_0013.png" id="14_jccjf"]
-[ext_resource type="Texture2D" uid="uid://b7fcgfu3qhuy5" path="res://minigame_assets/Global/chara_fall/chara_fall_0014.png" id="15_qhi2v"]
-[ext_resource type="Texture2D" uid="uid://bo0iv8766l8g2" path="res://minigame_assets/Global/chara_fall/chara_fall_0015.png" id="16_ipvpa"]
-[ext_resource type="Texture2D" uid="uid://bpyv6uwjcn4kq" path="res://minigame_assets/Global/chara_fall/chara_fall_0016.png" id="17_nevyh"]
-[ext_resource type="Texture2D" uid="uid://dkou2g23wflby" path="res://minigame_assets/Global/chara_fall/chara_fall_0017.png" id="18_hhr50"]
-[ext_resource type="Texture2D" uid="uid://crrdbs8k28c5h" path="res://minigame_assets/Global/chara_fall/chara_fall_0018.png" id="19_8u4el"]
-[ext_resource type="Texture2D" uid="uid://b0bgyc6t1nico" path="res://minigame_assets/Global/chara_fall/chara_fall_0019.png" id="20_a5i73"]
-[ext_resource type="Texture2D" uid="uid://yo8x2ie6kyko" path="res://minigame_assets/Global/chara_fall/chara_fall_0020.png" id="21_j7swm"]
-[ext_resource type="Texture2D" uid="uid://bvkbc6r2slqd8" path="res://minigame_assets/Global/chara_fall/chara_fall_0021.png" id="22_bobas"]
-[ext_resource type="Texture2D" uid="uid://cjehhovaih8qe" path="res://minigame_assets/Global/chara_fall/chara_fall_0022.png" id="23_vmuuc"]
-[ext_resource type="Texture2D" uid="uid://pgblcp6676a3" path="res://minigame_assets/Global/chara_fall/chara_fall_0023.png" id="24_j6q74"]
-[ext_resource type="Texture2D" uid="uid://c6atg2acjvbo8" path="res://minigame_assets/Global/chara_jump/chara_jump_0000.png" id="25_hhe1y"]
-[ext_resource type="Texture2D" uid="uid://btqh5m6np14i8" path="res://minigame_assets/Global/chara_jump/chara_jump_0001.png" id="26_6jk4c"]
-[ext_resource type="Texture2D" uid="uid://b12ub6o6y855r" path="res://minigame_assets/Global/chara_jump/chara_jump_0002.png" id="27_8hr8l"]
-[ext_resource type="Texture2D" uid="uid://cjql3a5aicd5j" path="res://minigame_assets/Global/chara_jump/chara_jump_0003.png" id="28_c2etn"]
-[ext_resource type="Texture2D" uid="uid://cwcs40osirmre" path="res://minigame_assets/Global/chara_jump/chara_jump_0004.png" id="29_cgqxi"]
-[ext_resource type="Texture2D" uid="uid://bqekgj4pmkiqe" path="res://minigame_assets/Global/chara_jump/chara_jump_0005.png" id="30_api4a"]
-[ext_resource type="Texture2D" uid="uid://cn3refnr0f54b" path="res://minigame_assets/Global/chara_jump/chara_jump_0006.png" id="31_o67lt"]
-[ext_resource type="Texture2D" uid="uid://ck4xxr4h7dt6p" path="res://minigame_assets/Global/chara_jump/chara_jump_0007.png" id="32_8xvhe"]
-[ext_resource type="Texture2D" uid="uid://dvkuswf05s5i4" path="res://minigame_assets/Global/chara_jump/chara_jump_0008.png" id="33_yelk6"]
-[ext_resource type="Texture2D" uid="uid://diti7cg3lq2ik" path="res://minigame_assets/Global/chara_jump/chara_jump_0009.png" id="34_v3rbc"]
-[ext_resource type="Texture2D" uid="uid://v3pw3xg457o2" path="res://minigame_assets/Global/chara_jump/chara_jump_0010.png" id="35_0wr1b"]
-[ext_resource type="Texture2D" uid="uid://dglti6ym84ax4" path="res://minigame_assets/Global/chara_jump/chara_jump_0011.png" id="36_cye81"]
-[ext_resource type="Texture2D" uid="uid://b4a84ri7s45rr" path="res://minigame_assets/Global/chara_jump/chara_jump_0012.png" id="37_mftst"]
-[ext_resource type="Texture2D" uid="uid://5l3f4auc0bhk" path="res://minigame_assets/Global/chara_jump/chara_jump_0013.png" id="38_sd4eq"]
-[ext_resource type="Texture2D" uid="uid://c66u1edyd37hg" path="res://minigame_assets/Global/chara_jump/chara_jump_0014.png" id="39_f1ot5"]
-[ext_resource type="Texture2D" uid="uid://dnqcfn31vl1t5" path="res://minigame_assets/Global/chara_jump/chara_jump_0015.png" id="40_pskma"]
-[ext_resource type="Texture2D" uid="uid://cw1hts2lrlfgp" path="res://minigame_assets/Global/chara_jump/chara_jump_0016.png" id="41_3sdik"]
-[ext_resource type="Texture2D" uid="uid://dwosxxh17vcan" path="res://minigame_assets/Global/chara_jump/chara_jump_0017.png" id="42_dkvgp"]
-[ext_resource type="Texture2D" uid="uid://d3iaamirft0x" path="res://minigame_assets/Global/chara_jump/chara_jump_0018.png" id="43_siwmy"]
-[ext_resource type="Texture2D" uid="uid://8b3n336wl847" path="res://minigame_assets/Global/chara_jump/chara_jump_0019.png" id="44_djlqh"]
-[ext_resource type="Texture2D" uid="uid://cql1mg8aa71s8" path="res://minigame_assets/Global/chara_jump/chara_jump_0021.png" id="45_nure8"]
-[ext_resource type="Texture2D" uid="uid://duvnf3oay0c2s" path="res://minigame_assets/Global/chara_jump/chara_jump_0022.png" id="46_doy3c"]
-[ext_resource type="Texture2D" uid="uid://ca5q4vl7d006s" path="res://minigame_assets/Global/chara_jump/chara_jump_0023.png" id="47_o4jhu"]
-[ext_resource type="Texture2D" uid="uid://d08ul5imrh55a" path="res://minigame_assets/Global/chara_push/chara_push_0000.png" id="48_o5ler"]
-[ext_resource type="Texture2D" uid="uid://cnwhxw7hqhpo2" path="res://minigame_assets/Global/chara_push/chara_push_0001.png" id="49_rk5q0"]
-[ext_resource type="Texture2D" uid="uid://ekvpjl3aw2xc" path="res://minigame_assets/Global/chara_push/chara_push_0002.png" id="50_0xmk7"]
-[ext_resource type="Texture2D" uid="uid://c364dubhjrfge" path="res://minigame_assets/Global/chara_push/chara_push_0003.png" id="51_cmmdq"]
-[ext_resource type="Texture2D" uid="uid://chuul5cj6tu6m" path="res://minigame_assets/Global/chara_push/chara_push_0004.png" id="52_lhxi5"]
-[ext_resource type="Texture2D" uid="uid://dklcxbldrfut8" path="res://minigame_assets/Global/chara_push/chara_push_0005.png" id="53_4itt3"]
-[ext_resource type="Texture2D" uid="uid://bsrf1dulibprd" path="res://minigame_assets/Global/chara_push/chara_push_0006.png" id="54_w3a0q"]
-[ext_resource type="Texture2D" uid="uid://2gt71axbdupv" path="res://minigame_assets/Global/chara_push/chara_push_0007.png" id="55_yskhe"]
-[ext_resource type="Texture2D" uid="uid://df5m676l024g1" path="res://minigame_assets/Global/chara_push/chara_push_0008.png" id="56_lxrty"]
-[ext_resource type="Texture2D" uid="uid://ch8h6vypcipcx" path="res://minigame_assets/Global/chara_push/chara_push_0009.png" id="57_66i60"]
-[ext_resource type="Texture2D" uid="uid://c38u4w6bdbh2v" path="res://minigame_assets/Global/chara_push/chara_push_0010.png" id="58_mqy1v"]
-[ext_resource type="Texture2D" uid="uid://ybpxkud1y6aj" path="res://minigame_assets/Global/chara_push/chara_push_0011.png" id="59_7hkci"]
-[ext_resource type="Texture2D" uid="uid://dsujnyhaka7h6" path="res://minigame_assets/Global/chara_push/chara_push_0012.png" id="60_kgchn"]
-[ext_resource type="Texture2D" uid="uid://b0wvtucitvlei" path="res://minigame_assets/Global/chara_push/chara_push_0013.png" id="61_3ecvt"]
-[ext_resource type="Texture2D" uid="uid://ddhilb0epevld" path="res://minigame_assets/Global/chara_push/chara_push_0014.png" id="62_b8pin"]
-[ext_resource type="Texture2D" uid="uid://rpy3idi8vydj" path="res://minigame_assets/Global/chara_push/chara_push_0015.png" id="63_qv0bp"]
-[ext_resource type="Texture2D" uid="uid://c6dokwvwiqs8" path="res://minigame_assets/Global/chara_push/chara_push_0016.png" id="64_8cee5"]
-[ext_resource type="Texture2D" uid="uid://b7n1jjl8wfi3t" path="res://minigame_assets/Global/chara_push/chara_push_0017.png" id="65_vybhp"]
-[ext_resource type="Texture2D" uid="uid://e2y2vnr0pnq4" path="res://minigame_assets/Global/chara_push/chara_push_0018.png" id="66_ul1xb"]
-[ext_resource type="Texture2D" uid="uid://ccdh2gmd8mhj5" path="res://minigame_assets/Global/chara_push/chara_push_0019.png" id="67_a23vb"]
-[ext_resource type="Texture2D" uid="uid://by4615x1msvsw" path="res://minigame_assets/Global/chara_push/chara_push_0020.png" id="68_s1202"]
-[ext_resource type="Texture2D" uid="uid://3ol5l7dp86sw" path="res://minigame_assets/Global/chara_push/chara_push_0021.png" id="69_hrkui"]
-[ext_resource type="Texture2D" uid="uid://ctc0gnssp6ulq" path="res://minigame_assets/Global/chara_push/chara_push_0022.png" id="70_phduw"]
-[ext_resource type="Texture2D" uid="uid://tat8nin5o3jg" path="res://minigame_assets/Global/chara_push/chara_push_0023.png" id="71_7gga0"]
-[ext_resource type="Texture2D" uid="uid://d0k8lu4bebn28" path="res://minigame_assets/Global/chara_walk/chara_walk_0000.png" id="72_l6n6j"]
-[ext_resource type="Texture2D" uid="uid://baiygaf20gcv4" path="res://minigame_assets/Global/chara_walk/chara_walk_0001.png" id="73_s4gbm"]
-[ext_resource type="Texture2D" uid="uid://8amxdkrbhy5t" path="res://minigame_assets/Global/chara_walk/chara_walk_0002.png" id="74_hk8or"]
-[ext_resource type="Texture2D" uid="uid://c41tntrstijid" path="res://minigame_assets/Global/chara_walk/chara_walk_0003.png" id="75_856xa"]
-[ext_resource type="Texture2D" uid="uid://cd6383qhsfy00" path="res://minigame_assets/Global/chara_walk/chara_walk_0004.png" id="76_g1n34"]
-[ext_resource type="Texture2D" uid="uid://dsdfdixg0okpr" path="res://minigame_assets/Global/chara_walk/chara_walk_0005.png" id="77_rvp8t"]
-[ext_resource type="Texture2D" uid="uid://dxytuwft0ki1l" path="res://minigame_assets/Global/chara_walk/chara_walk_0006.png" id="78_0tqd8"]
-[ext_resource type="Texture2D" uid="uid://dnphei0n151oq" path="res://minigame_assets/Global/chara_walk/chara_walk_0007.png" id="79_vxixj"]
-[ext_resource type="Texture2D" uid="uid://nu80d1ul0h0j" path="res://minigame_assets/Global/chara_walk/chara_walk_0008.png" id="80_35mbo"]
-[ext_resource type="Texture2D" uid="uid://dqt1aip4pgpbx" path="res://minigame_assets/Global/chara_walk/chara_walk_0009.png" id="81_6ihcq"]
-[ext_resource type="Texture2D" uid="uid://dmbrsu2jgj77n" path="res://minigame_assets/Global/chara_walk/chara_walk_0010.png" id="82_qwp3d"]
-[ext_resource type="Texture2D" uid="uid://cw3sxosnxt3g" path="res://minigame_assets/Global/chara_walk/chara_walk_0011.png" id="83_gs2fc"]
-[ext_resource type="Texture2D" uid="uid://bcdgf1ky3e8xi" path="res://minigame_assets/Global/chara_walk/chara_walk_0012.png" id="84_0icml"]
-[ext_resource type="Texture2D" uid="uid://cc2k5134rk0fc" path="res://minigame_assets/Global/chara_walk/chara_walk_0013.png" id="85_tkgbj"]
-[ext_resource type="Texture2D" uid="uid://byanyv2om3fif" path="res://minigame_assets/Global/chara_walk/chara_walk_0014.png" id="86_pedxo"]
-[ext_resource type="Texture2D" uid="uid://lha6853nct10" path="res://minigame_assets/Global/chara_walk/chara_walk_0015.png" id="87_kpsmw"]
-[ext_resource type="Texture2D" uid="uid://bw3qwi0g5hev3" path="res://minigame_assets/Global/chara_walk/chara_walk_0016.png" id="88_2xhuv"]
-[ext_resource type="Texture2D" uid="uid://bfo423401sqvg" path="res://minigame_assets/Global/chara_walk/chara_walk_0017.png" id="89_kcugb"]
-[ext_resource type="Texture2D" uid="uid://2jm1eg1yhyxv" path="res://minigame_assets/Global/chara_walk/chara_walk_0019.png" id="90_l6bnu"]
-[ext_resource type="Texture2D" uid="uid://cvk2y7fr6u3yf" path="res://minigame_assets/Global/chara_walk/chara_walk_0020.png" id="91_0ftu2"]
-[ext_resource type="Texture2D" uid="uid://dc0ix0pumu72y" path="res://minigame_assets/Global/chara_walk/chara_walk_0021.png" id="92_ngst3"]
-[ext_resource type="Texture2D" uid="uid://kdry4ukl8jsn" path="res://minigame_assets/Global/chara_walk/chara_walk_0022.png" id="93_f4mmf"]
-[ext_resource type="Texture2D" uid="uid://be25t7a231yux" path="res://minigame_assets/Global/chara_walk/chara_walk_0023.png" id="94_vl6wn"]
+[ext_resource type="Texture2D" uid="uid://b74q7omj7cb78" path="res://minigame_assets/Global/chara_fall/chara_fall_0000.png" id="1_rgwum"]
+[ext_resource type="Texture2D" uid="uid://dlja8gep1g8fv" path="res://minigame_assets/Global/chara_fall/chara_fall_0001.png" id="2_ntktn"]
+[ext_resource type="Texture2D" uid="uid://b1eg3wtwvga5e" path="res://minigame_assets/Global/chara_fall/chara_fall_0002.png" id="3_cmg3n"]
+[ext_resource type="Texture2D" uid="uid://c4pwguu34s51y" path="res://minigame_assets/Global/chara_fall/chara_fall_0003.png" id="4_d1347"]
+[ext_resource type="Texture2D" uid="uid://bbgk2f4v8shli" path="res://minigame_assets/Global/chara_fall/chara_fall_0004.png" id="5_h4gvw"]
+[ext_resource type="Texture2D" uid="uid://cgo0mbyx5hwvi" path="res://minigame_assets/Global/chara_fall/chara_fall_0005.png" id="6_enbx7"]
+[ext_resource type="Texture2D" uid="uid://dl80v5nt884w4" path="res://minigame_assets/Global/chara_fall/chara_fall_0006.png" id="7_85lx7"]
+[ext_resource type="Texture2D" uid="uid://be8me1txvkp1f" path="res://minigame_assets/Global/chara_fall/chara_fall_0007.png" id="8_3y6ar"]
+[ext_resource type="Texture2D" uid="uid://gl4kk28uvu6f" path="res://minigame_assets/Global/chara_fall/chara_fall_0008.png" id="9_et5mr"]
+[ext_resource type="Texture2D" uid="uid://ch616q82f8xof" path="res://minigame_assets/Global/chara_fall/chara_fall_0009.png" id="10_qv1i2"]
+[ext_resource type="Texture2D" uid="uid://7vcbxqu4bn7x" path="res://minigame_assets/Global/chara_fall/chara_fall_0010.png" id="11_ranti"]
+[ext_resource type="Texture2D" uid="uid://o4f55ynnlkbh" path="res://minigame_assets/Global/chara_fall/chara_fall_0011.png" id="12_jymme"]
+[ext_resource type="Texture2D" uid="uid://dwhf8sea32voa" path="res://minigame_assets/Global/chara_fall/chara_fall_0012.png" id="13_88uyc"]
+[ext_resource type="Texture2D" uid="uid://8h5kb5s8w216" path="res://minigame_assets/Global/chara_fall/chara_fall_0013.png" id="14_wuu0t"]
+[ext_resource type="Texture2D" uid="uid://b7fcgfu3qhuy5" path="res://minigame_assets/Global/chara_fall/chara_fall_0014.png" id="15_n7cfl"]
+[ext_resource type="Texture2D" uid="uid://bo0iv8766l8g2" path="res://minigame_assets/Global/chara_fall/chara_fall_0015.png" id="16_8h342"]
+[ext_resource type="Texture2D" uid="uid://bpyv6uwjcn4kq" path="res://minigame_assets/Global/chara_fall/chara_fall_0016.png" id="17_nv3o8"]
+[ext_resource type="Texture2D" uid="uid://dkou2g23wflby" path="res://minigame_assets/Global/chara_fall/chara_fall_0017.png" id="18_fjrdf"]
+[ext_resource type="Texture2D" uid="uid://crrdbs8k28c5h" path="res://minigame_assets/Global/chara_fall/chara_fall_0018.png" id="19_nnw3o"]
+[ext_resource type="Texture2D" uid="uid://b0bgyc6t1nico" path="res://minigame_assets/Global/chara_fall/chara_fall_0019.png" id="20_x2dav"]
+[ext_resource type="Texture2D" uid="uid://yo8x2ie6kyko" path="res://minigame_assets/Global/chara_fall/chara_fall_0020.png" id="21_5jqwt"]
+[ext_resource type="Texture2D" uid="uid://bvkbc6r2slqd8" path="res://minigame_assets/Global/chara_fall/chara_fall_0021.png" id="22_21crx"]
+[ext_resource type="Texture2D" uid="uid://cjehhovaih8qe" path="res://minigame_assets/Global/chara_fall/chara_fall_0022.png" id="23_to47r"]
+[ext_resource type="Texture2D" uid="uid://pgblcp6676a3" path="res://minigame_assets/Global/chara_fall/chara_fall_0023.png" id="24_qe2px"]
+[ext_resource type="Texture2D" uid="uid://c6atg2acjvbo8" path="res://minigame_assets/Global/chara_jump/chara_jump_0000.png" id="25_i4m4b"]
+[ext_resource type="Texture2D" uid="uid://btqh5m6np14i8" path="res://minigame_assets/Global/chara_jump/chara_jump_0001.png" id="26_wqho7"]
+[ext_resource type="Texture2D" uid="uid://b12ub6o6y855r" path="res://minigame_assets/Global/chara_jump/chara_jump_0002.png" id="27_swyrm"]
+[ext_resource type="Texture2D" uid="uid://cjql3a5aicd5j" path="res://minigame_assets/Global/chara_jump/chara_jump_0003.png" id="28_e34nm"]
+[ext_resource type="Texture2D" uid="uid://cwcs40osirmre" path="res://minigame_assets/Global/chara_jump/chara_jump_0004.png" id="29_gcs2b"]
+[ext_resource type="Texture2D" uid="uid://bqekgj4pmkiqe" path="res://minigame_assets/Global/chara_jump/chara_jump_0005.png" id="30_brill"]
+[ext_resource type="Texture2D" uid="uid://cn3refnr0f54b" path="res://minigame_assets/Global/chara_jump/chara_jump_0006.png" id="31_urp7k"]
+[ext_resource type="Texture2D" uid="uid://ck4xxr4h7dt6p" path="res://minigame_assets/Global/chara_jump/chara_jump_0007.png" id="32_fy2xn"]
+[ext_resource type="Texture2D" uid="uid://dvkuswf05s5i4" path="res://minigame_assets/Global/chara_jump/chara_jump_0008.png" id="33_ifikf"]
+[ext_resource type="Texture2D" uid="uid://diti7cg3lq2ik" path="res://minigame_assets/Global/chara_jump/chara_jump_0009.png" id="34_mi8e6"]
+[ext_resource type="Texture2D" uid="uid://v3pw3xg457o2" path="res://minigame_assets/Global/chara_jump/chara_jump_0010.png" id="35_scabq"]
+[ext_resource type="Texture2D" uid="uid://dglti6ym84ax4" path="res://minigame_assets/Global/chara_jump/chara_jump_0011.png" id="36_05okc"]
+[ext_resource type="Texture2D" uid="uid://b4a84ri7s45rr" path="res://minigame_assets/Global/chara_jump/chara_jump_0012.png" id="37_jx3i2"]
+[ext_resource type="Texture2D" uid="uid://5l3f4auc0bhk" path="res://minigame_assets/Global/chara_jump/chara_jump_0013.png" id="38_03cwq"]
+[ext_resource type="Texture2D" uid="uid://c66u1edyd37hg" path="res://minigame_assets/Global/chara_jump/chara_jump_0014.png" id="39_jqoul"]
+[ext_resource type="Texture2D" uid="uid://dnqcfn31vl1t5" path="res://minigame_assets/Global/chara_jump/chara_jump_0015.png" id="40_6h4f1"]
+[ext_resource type="Texture2D" uid="uid://cw1hts2lrlfgp" path="res://minigame_assets/Global/chara_jump/chara_jump_0016.png" id="41_govaw"]
+[ext_resource type="Texture2D" uid="uid://dwosxxh17vcan" path="res://minigame_assets/Global/chara_jump/chara_jump_0017.png" id="42_xcifi"]
+[ext_resource type="Texture2D" uid="uid://d3iaamirft0x" path="res://minigame_assets/Global/chara_jump/chara_jump_0018.png" id="43_1rkj5"]
+[ext_resource type="Texture2D" uid="uid://8b3n336wl847" path="res://minigame_assets/Global/chara_jump/chara_jump_0019.png" id="44_7rey3"]
+[ext_resource type="Texture2D" uid="uid://cql1mg8aa71s8" path="res://minigame_assets/Global/chara_jump/chara_jump_0021.png" id="45_7ld47"]
+[ext_resource type="Texture2D" uid="uid://duvnf3oay0c2s" path="res://minigame_assets/Global/chara_jump/chara_jump_0022.png" id="46_3svjg"]
+[ext_resource type="Texture2D" uid="uid://ca5q4vl7d006s" path="res://minigame_assets/Global/chara_jump/chara_jump_0023.png" id="47_fd7ym"]
+[ext_resource type="Texture2D" uid="uid://d08ul5imrh55a" path="res://minigame_assets/Global/chara_push/chara_push_0000.png" id="48_dgxyh"]
+[ext_resource type="Texture2D" uid="uid://cnwhxw7hqhpo2" path="res://minigame_assets/Global/chara_push/chara_push_0001.png" id="49_goftb"]
+[ext_resource type="Texture2D" uid="uid://ekvpjl3aw2xc" path="res://minigame_assets/Global/chara_push/chara_push_0002.png" id="50_eu5ff"]
+[ext_resource type="Texture2D" uid="uid://c364dubhjrfge" path="res://minigame_assets/Global/chara_push/chara_push_0003.png" id="51_tl7nr"]
+[ext_resource type="Texture2D" uid="uid://chuul5cj6tu6m" path="res://minigame_assets/Global/chara_push/chara_push_0004.png" id="52_1w74e"]
+[ext_resource type="Texture2D" uid="uid://dklcxbldrfut8" path="res://minigame_assets/Global/chara_push/chara_push_0005.png" id="53_gof7p"]
+[ext_resource type="Texture2D" uid="uid://bsrf1dulibprd" path="res://minigame_assets/Global/chara_push/chara_push_0006.png" id="54_rsasc"]
+[ext_resource type="Texture2D" uid="uid://2gt71axbdupv" path="res://minigame_assets/Global/chara_push/chara_push_0007.png" id="55_yol0n"]
+[ext_resource type="Texture2D" uid="uid://df5m676l024g1" path="res://minigame_assets/Global/chara_push/chara_push_0008.png" id="56_bcvbw"]
+[ext_resource type="Texture2D" uid="uid://ch8h6vypcipcx" path="res://minigame_assets/Global/chara_push/chara_push_0009.png" id="57_1enqo"]
+[ext_resource type="Texture2D" uid="uid://c38u4w6bdbh2v" path="res://minigame_assets/Global/chara_push/chara_push_0010.png" id="58_51k87"]
+[ext_resource type="Texture2D" uid="uid://ybpxkud1y6aj" path="res://minigame_assets/Global/chara_push/chara_push_0011.png" id="59_rvay5"]
+[ext_resource type="Texture2D" uid="uid://dsujnyhaka7h6" path="res://minigame_assets/Global/chara_push/chara_push_0012.png" id="60_jgwnx"]
+[ext_resource type="Texture2D" uid="uid://b0wvtucitvlei" path="res://minigame_assets/Global/chara_push/chara_push_0013.png" id="61_72por"]
+[ext_resource type="Texture2D" uid="uid://ddhilb0epevld" path="res://minigame_assets/Global/chara_push/chara_push_0014.png" id="62_6ev46"]
+[ext_resource type="Texture2D" uid="uid://rpy3idi8vydj" path="res://minigame_assets/Global/chara_push/chara_push_0015.png" id="63_awymg"]
+[ext_resource type="Texture2D" uid="uid://c6dokwvwiqs8" path="res://minigame_assets/Global/chara_push/chara_push_0016.png" id="64_rgk07"]
+[ext_resource type="Texture2D" uid="uid://b7n1jjl8wfi3t" path="res://minigame_assets/Global/chara_push/chara_push_0017.png" id="65_ulrlf"]
+[ext_resource type="Texture2D" uid="uid://e2y2vnr0pnq4" path="res://minigame_assets/Global/chara_push/chara_push_0018.png" id="66_50ccd"]
+[ext_resource type="Texture2D" uid="uid://ccdh2gmd8mhj5" path="res://minigame_assets/Global/chara_push/chara_push_0019.png" id="67_def67"]
+[ext_resource type="Texture2D" uid="uid://by4615x1msvsw" path="res://minigame_assets/Global/chara_push/chara_push_0020.png" id="68_drc4i"]
+[ext_resource type="Texture2D" uid="uid://3ol5l7dp86sw" path="res://minigame_assets/Global/chara_push/chara_push_0021.png" id="69_o1jmc"]
+[ext_resource type="Texture2D" uid="uid://ctc0gnssp6ulq" path="res://minigame_assets/Global/chara_push/chara_push_0022.png" id="70_fqn14"]
+[ext_resource type="Texture2D" uid="uid://tat8nin5o3jg" path="res://minigame_assets/Global/chara_push/chara_push_0023.png" id="71_ghwgs"]
+[ext_resource type="Texture2D" uid="uid://d0k8lu4bebn28" path="res://minigame_assets/Global/chara_walk/chara_walk_0000.png" id="72_224qp"]
+[ext_resource type="Texture2D" uid="uid://baiygaf20gcv4" path="res://minigame_assets/Global/chara_walk/chara_walk_0001.png" id="73_0i0st"]
+[ext_resource type="Texture2D" uid="uid://8amxdkrbhy5t" path="res://minigame_assets/Global/chara_walk/chara_walk_0002.png" id="74_er534"]
+[ext_resource type="Texture2D" uid="uid://c41tntrstijid" path="res://minigame_assets/Global/chara_walk/chara_walk_0003.png" id="75_13f2e"]
+[ext_resource type="Texture2D" uid="uid://cd6383qhsfy00" path="res://minigame_assets/Global/chara_walk/chara_walk_0004.png" id="76_lu4l6"]
+[ext_resource type="Texture2D" uid="uid://dsdfdixg0okpr" path="res://minigame_assets/Global/chara_walk/chara_walk_0005.png" id="77_akcgn"]
+[ext_resource type="Texture2D" uid="uid://dxytuwft0ki1l" path="res://minigame_assets/Global/chara_walk/chara_walk_0006.png" id="78_gacun"]
+[ext_resource type="Texture2D" uid="uid://dnphei0n151oq" path="res://minigame_assets/Global/chara_walk/chara_walk_0007.png" id="79_548w7"]
+[ext_resource type="Texture2D" uid="uid://nu80d1ul0h0j" path="res://minigame_assets/Global/chara_walk/chara_walk_0008.png" id="80_ydl42"]
+[ext_resource type="Texture2D" uid="uid://dqt1aip4pgpbx" path="res://minigame_assets/Global/chara_walk/chara_walk_0009.png" id="81_1t2fh"]
+[ext_resource type="Texture2D" uid="uid://dmbrsu2jgj77n" path="res://minigame_assets/Global/chara_walk/chara_walk_0010.png" id="82_b7x36"]
+[ext_resource type="Texture2D" uid="uid://cw3sxosnxt3g" path="res://minigame_assets/Global/chara_walk/chara_walk_0011.png" id="83_0414l"]
+[ext_resource type="Texture2D" uid="uid://bcdgf1ky3e8xi" path="res://minigame_assets/Global/chara_walk/chara_walk_0012.png" id="84_4nkfr"]
+[ext_resource type="Texture2D" uid="uid://cc2k5134rk0fc" path="res://minigame_assets/Global/chara_walk/chara_walk_0013.png" id="85_21i2s"]
+[ext_resource type="Texture2D" uid="uid://byanyv2om3fif" path="res://minigame_assets/Global/chara_walk/chara_walk_0014.png" id="86_kemaj"]
+[ext_resource type="Texture2D" uid="uid://lha6853nct10" path="res://minigame_assets/Global/chara_walk/chara_walk_0015.png" id="87_vqgcl"]
+[ext_resource type="Texture2D" uid="uid://bw3qwi0g5hev3" path="res://minigame_assets/Global/chara_walk/chara_walk_0016.png" id="88_j8eeu"]
+[ext_resource type="Texture2D" uid="uid://bfo423401sqvg" path="res://minigame_assets/Global/chara_walk/chara_walk_0017.png" id="89_7yond"]
+[ext_resource type="Texture2D" uid="uid://2jm1eg1yhyxv" path="res://minigame_assets/Global/chara_walk/chara_walk_0019.png" id="90_r4ono"]
+[ext_resource type="Texture2D" uid="uid://cvk2y7fr6u3yf" path="res://minigame_assets/Global/chara_walk/chara_walk_0020.png" id="91_er4b4"]
+[ext_resource type="Texture2D" uid="uid://dc0ix0pumu72y" path="res://minigame_assets/Global/chara_walk/chara_walk_0021.png" id="92_7prha"]
+[ext_resource type="Texture2D" uid="uid://kdry4ukl8jsn" path="res://minigame_assets/Global/chara_walk/chara_walk_0022.png" id="93_wggym"]
+[ext_resource type="Texture2D" uid="uid://be25t7a231yux" path="res://minigame_assets/Global/chara_walk/chara_walk_0023.png" id="94_1ssyl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1ww5g"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_gpvxe")
+"texture": ExtResource("1_rgwum")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_qicb8")
+"texture": ExtResource("2_ntktn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_6o2m3")
+"texture": ExtResource("3_cmg3n")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_2hmo1")
+"texture": ExtResource("4_d1347")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_uygay")
+"texture": ExtResource("5_h4gvw")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_rpay4")
+"texture": ExtResource("6_enbx7")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_xfa3h")
+"texture": ExtResource("7_85lx7")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_04g4e")
+"texture": ExtResource("8_3y6ar")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_lx1qc")
+"texture": ExtResource("9_et5mr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_elm0x")
+"texture": ExtResource("10_qv1i2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_k7vj2")
+"texture": ExtResource("11_ranti")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_dtw5u")
+"texture": ExtResource("12_jymme")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_f37gn")
+"texture": ExtResource("13_88uyc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_jccjf")
+"texture": ExtResource("14_wuu0t")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_qhi2v")
+"texture": ExtResource("15_n7cfl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_ipvpa")
+"texture": ExtResource("16_8h342")
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_nevyh")
+"texture": ExtResource("17_nv3o8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("18_hhr50")
+"texture": ExtResource("18_fjrdf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("19_8u4el")
+"texture": ExtResource("19_nnw3o")
 }, {
 "duration": 1.0,
-"texture": ExtResource("20_a5i73")
+"texture": ExtResource("20_x2dav")
 }, {
 "duration": 1.0,
-"texture": ExtResource("21_j7swm")
+"texture": ExtResource("21_5jqwt")
 }, {
 "duration": 1.0,
-"texture": ExtResource("22_bobas")
+"texture": ExtResource("22_21crx")
 }, {
 "duration": 1.0,
-"texture": ExtResource("23_vmuuc")
+"texture": ExtResource("23_to47r")
 }, {
 "duration": 1.0,
-"texture": ExtResource("24_j6q74")
+"texture": ExtResource("24_qe2px")
 }],
 "loop": true,
 "name": &"Chara_fall",
@@ -176,73 +176,73 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("25_hhe1y")
+"texture": ExtResource("25_i4m4b")
 }, {
 "duration": 1.0,
-"texture": ExtResource("26_6jk4c")
+"texture": ExtResource("26_wqho7")
 }, {
 "duration": 1.0,
-"texture": ExtResource("27_8hr8l")
+"texture": ExtResource("27_swyrm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("28_c2etn")
+"texture": ExtResource("28_e34nm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("29_cgqxi")
+"texture": ExtResource("29_gcs2b")
 }, {
 "duration": 1.0,
-"texture": ExtResource("30_api4a")
+"texture": ExtResource("30_brill")
 }, {
 "duration": 1.0,
-"texture": ExtResource("31_o67lt")
+"texture": ExtResource("31_urp7k")
 }, {
 "duration": 1.0,
-"texture": ExtResource("32_8xvhe")
+"texture": ExtResource("32_fy2xn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("33_yelk6")
+"texture": ExtResource("33_ifikf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("34_v3rbc")
+"texture": ExtResource("34_mi8e6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("35_0wr1b")
+"texture": ExtResource("35_scabq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("36_cye81")
+"texture": ExtResource("36_05okc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("37_mftst")
+"texture": ExtResource("37_jx3i2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("38_sd4eq")
+"texture": ExtResource("38_03cwq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("39_f1ot5")
+"texture": ExtResource("39_jqoul")
 }, {
 "duration": 1.0,
-"texture": ExtResource("40_pskma")
+"texture": ExtResource("40_6h4f1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("41_3sdik")
+"texture": ExtResource("41_govaw")
 }, {
 "duration": 1.0,
-"texture": ExtResource("42_dkvgp")
+"texture": ExtResource("42_xcifi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("43_siwmy")
+"texture": ExtResource("43_1rkj5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("44_djlqh")
+"texture": ExtResource("44_7rey3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("45_nure8")
+"texture": ExtResource("45_7ld47")
 }, {
 "duration": 1.0,
-"texture": ExtResource("46_doy3c")
+"texture": ExtResource("46_3svjg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("47_o4jhu")
+"texture": ExtResource("47_fd7ym")
 }],
 "loop": true,
 "name": &"Chara_jump",
@@ -250,76 +250,76 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("48_o5ler")
+"texture": ExtResource("48_dgxyh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("49_rk5q0")
+"texture": ExtResource("49_goftb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("50_0xmk7")
+"texture": ExtResource("50_eu5ff")
 }, {
 "duration": 1.0,
-"texture": ExtResource("51_cmmdq")
+"texture": ExtResource("51_tl7nr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("52_lhxi5")
+"texture": ExtResource("52_1w74e")
 }, {
 "duration": 1.0,
-"texture": ExtResource("53_4itt3")
+"texture": ExtResource("53_gof7p")
 }, {
 "duration": 1.0,
-"texture": ExtResource("54_w3a0q")
+"texture": ExtResource("54_rsasc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("55_yskhe")
+"texture": ExtResource("55_yol0n")
 }, {
 "duration": 1.0,
-"texture": ExtResource("56_lxrty")
+"texture": ExtResource("56_bcvbw")
 }, {
 "duration": 1.0,
-"texture": ExtResource("57_66i60")
+"texture": ExtResource("57_1enqo")
 }, {
 "duration": 1.0,
-"texture": ExtResource("58_mqy1v")
+"texture": ExtResource("58_51k87")
 }, {
 "duration": 1.0,
-"texture": ExtResource("59_7hkci")
+"texture": ExtResource("59_rvay5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("60_kgchn")
+"texture": ExtResource("60_jgwnx")
 }, {
 "duration": 1.0,
-"texture": ExtResource("61_3ecvt")
+"texture": ExtResource("61_72por")
 }, {
 "duration": 1.0,
-"texture": ExtResource("62_b8pin")
+"texture": ExtResource("62_6ev46")
 }, {
 "duration": 1.0,
-"texture": ExtResource("63_qv0bp")
+"texture": ExtResource("63_awymg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("64_8cee5")
+"texture": ExtResource("64_rgk07")
 }, {
 "duration": 1.0,
-"texture": ExtResource("65_vybhp")
+"texture": ExtResource("65_ulrlf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("66_ul1xb")
+"texture": ExtResource("66_50ccd")
 }, {
 "duration": 1.0,
-"texture": ExtResource("67_a23vb")
+"texture": ExtResource("67_def67")
 }, {
 "duration": 1.0,
-"texture": ExtResource("68_s1202")
+"texture": ExtResource("68_drc4i")
 }, {
 "duration": 1.0,
-"texture": ExtResource("69_hrkui")
+"texture": ExtResource("69_o1jmc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("70_phduw")
+"texture": ExtResource("70_fqn14")
 }, {
 "duration": 1.0,
-"texture": ExtResource("71_7gga0")
+"texture": ExtResource("71_ghwgs")
 }],
 "loop": true,
 "name": &"Chara_push",
@@ -327,73 +327,73 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("72_l6n6j")
+"texture": ExtResource("72_224qp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("73_s4gbm")
+"texture": ExtResource("73_0i0st")
 }, {
 "duration": 1.0,
-"texture": ExtResource("74_hk8or")
+"texture": ExtResource("74_er534")
 }, {
 "duration": 1.0,
-"texture": ExtResource("75_856xa")
+"texture": ExtResource("75_13f2e")
 }, {
 "duration": 1.0,
-"texture": ExtResource("76_g1n34")
+"texture": ExtResource("76_lu4l6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("77_rvp8t")
+"texture": ExtResource("77_akcgn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("78_0tqd8")
+"texture": ExtResource("78_gacun")
 }, {
 "duration": 1.0,
-"texture": ExtResource("79_vxixj")
+"texture": ExtResource("79_548w7")
 }, {
 "duration": 1.0,
-"texture": ExtResource("80_35mbo")
+"texture": ExtResource("80_ydl42")
 }, {
 "duration": 1.0,
-"texture": ExtResource("81_6ihcq")
+"texture": ExtResource("81_1t2fh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("82_qwp3d")
+"texture": ExtResource("82_b7x36")
 }, {
 "duration": 1.0,
-"texture": ExtResource("83_gs2fc")
+"texture": ExtResource("83_0414l")
 }, {
 "duration": 1.0,
-"texture": ExtResource("84_0icml")
+"texture": ExtResource("84_4nkfr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("85_tkgbj")
+"texture": ExtResource("85_21i2s")
 }, {
 "duration": 1.0,
-"texture": ExtResource("86_pedxo")
+"texture": ExtResource("86_kemaj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("87_kpsmw")
+"texture": ExtResource("87_vqgcl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("88_2xhuv")
+"texture": ExtResource("88_j8eeu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("89_kcugb")
+"texture": ExtResource("89_7yond")
 }, {
 "duration": 1.0,
-"texture": ExtResource("90_l6bnu")
+"texture": ExtResource("90_r4ono")
 }, {
 "duration": 1.0,
-"texture": ExtResource("91_0ftu2")
+"texture": ExtResource("91_er4b4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("92_ngst3")
+"texture": ExtResource("92_7prha")
 }, {
 "duration": 1.0,
-"texture": ExtResource("93_f4mmf")
+"texture": ExtResource("93_wggym")
 }, {
 "duration": 1.0,
-"texture": ExtResource("94_vl6wn")
+"texture": ExtResource("94_1ssyl")
 }],
 "loop": true,
 "name": &"Chara_walk",
@@ -410,10 +410,8 @@ height = 478.0
 sprite_frames = SubResource("SpriteFrames_1ww5g")
 animation = &"Chara_walk"
 autoplay = "Chara_walk"
-frame_progress = 0.083957136
+frame_progress = 0.56557846
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1354087051]
 position = Vector2(-2, 28)
 shape = SubResource("CapsuleShape2D_gpvxe")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=285480999]

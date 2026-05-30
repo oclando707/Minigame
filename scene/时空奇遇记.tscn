@@ -1,8 +1,17 @@
 [gd_scene format=3 uid="uid://c8llgc0wl3qe2"]
 
 [ext_resource type="Script" uid="uid://d0w2q76st0kld" path="res://时空奇遇记.gd" id="1_wcrpf"]
-[ext_resource type="Texture2D" uid="uid://3xkjfibivomi" path="res://menu background.PNG" id="2_gs0ff"]
+[ext_resource type="Texture2D" uid="uid://bss3ejnorkdev" path="res://minigame_assets/main_menu/background/IMG_3056.PNG" id="2_gs0ff"]
 [ext_resource type="Texture2D" uid="uid://dnvpswwachr7v" path="res://minigame_assets/main_menu/标题.png" id="3_geg3o"]
+[ext_resource type="Texture2D" uid="uid://bsldlpnfkslyr" path="res://minigame_assets/main_menu/开始游戏_idle.png" id="3_j4adf"]
+[ext_resource type="Texture2D" uid="uid://cgdlkm6tawyk3" path="res://minigame_assets/main_menu/background/IMG_3057.PNG" id="3_nq8uv"]
+[ext_resource type="Texture2D" uid="uid://b05t6aokovqyr" path="res://minigame_assets/main_menu/开始游戏_hover.png" id="4_1gjgx"]
+[ext_resource type="Texture2D" uid="uid://cbk7cjnmjbhbt" path="res://minigame_assets/main_menu/存档界面_idle.png" id="5_ceeik"]
+[ext_resource type="Texture2D" uid="uid://cmdhj5vvc2s0r" path="res://minigame_assets/main_menu/存档界面_hover.png" id="6_diqgp"]
+[ext_resource type="Texture2D" uid="uid://bjke6ilerwgdb" path="res://minigame_assets/main_menu/设置_idle.png" id="7_o674h"]
+[ext_resource type="Texture2D" uid="uid://b8kapg5ju25ey" path="res://minigame_assets/main_menu/设置_hover.png" id="8_t7ay1"]
+[ext_resource type="Texture2D" uid="uid://b7ajax5k0smro" path="res://minigame_assets/main_menu/退出游戏_idle.png" id="9_i56us"]
+[ext_resource type="Texture2D" uid="uid://bsdiohf40aex7" path="res://minigame_assets/main_menu/退出游戏_hover.png" id="10_1fa48"]
 
 [node name="Node2D" type="Control" unique_id=1109261172]
 layout_mode = 3
@@ -17,11 +26,51 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="MainMenu" unique_id=451343503]
+[node name="background" type="TextureRect" parent="MainMenu" unique_id=451343503]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("2_gs0ff")
+
+[node name="UI(VBox)" type="VBoxContainer" parent="MainMenu" unique_id=887360272]
+layout_mode = 1
+offset_left = 750.0
+offset_top = 401.0
+offset_right = 1165.0
+offset_bottom = 1121.0
+theme_override_constants/separation = -10
+
+[node name="start" type="TextureButton" parent="MainMenu/UI(VBox)" unique_id=263886094]
+layout_mode = 2
+texture_normal = ExtResource("3_j4adf")
+texture_pressed = ExtResource("4_1gjgx")
+texture_hover = ExtResource("4_1gjgx")
+stretch_mode = 0
+
+[node name="save" type="TextureButton" parent="MainMenu/UI(VBox)" unique_id=1294914286]
+layout_mode = 2
+texture_normal = ExtResource("5_ceeik")
+texture_pressed = ExtResource("6_diqgp")
+texture_hover = ExtResource("6_diqgp")
+
+[node name="setting" type="TextureButton" parent="MainMenu/UI(VBox)" unique_id=1338579217]
+layout_mode = 2
+texture_normal = ExtResource("7_o674h")
+texture_pressed = ExtResource("8_t7ay1")
+texture_hover = ExtResource("8_t7ay1")
+
+[node name="quit" type="TextureButton" parent="MainMenu/UI(VBox)" unique_id=328699584]
+layout_mode = 2
+texture_normal = ExtResource("9_i56us")
+texture_pressed = ExtResource("10_1fa48")
+texture_hover = ExtResource("10_1fa48")
+
+[node name="cha" type="TextureRect" parent="MainMenu" unique_id=1423714637]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource("3_nq8uv")
 
 [node name="title" type="TextureRect" parent="MainMenu" unique_id=972832528]
 layout_mode = 1
@@ -30,48 +79,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 627.0
+offset_left = 642.0
 offset_top = 83.0
-offset_right = 1347.0
-offset_bottom = 437.0
+offset_right = 1305.0
+offset_bottom = 436.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_geg3o")
 stretch_mode = 4
-
-[node name="UI(VBox)" type="VBoxContainer" parent="MainMenu" unique_id=887360272]
-layout_mode = 1
-offset_left = 798.0
-offset_top = 382.0
-offset_right = 1089.0
-offset_bottom = 884.0
-theme_override_constants/separation = 20
-
-[node name="StartButton" type="Button" parent="MainMenu/UI(VBox)" unique_id=1610211820]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.30588236, 0.81960785, 0.9607843, 1)
-theme_override_font_sizes/font_size = 60
-text = "开始游戏"
-
-[node name="SaveButton" type="Button" parent="MainMenu/UI(VBox)" unique_id=1301906466]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.41568628, 0.8745098, 0.8745098, 1)
-theme_override_font_sizes/font_size = 62
-text = "存档界面"
-
-[node name="SettingButton" type="Button" parent="MainMenu/UI(VBox)" unique_id=1982431334]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.4911524, 0.9706655, 0.92208654, 1)
-theme_override_font_sizes/font_size = 60
-text = "设置"
-
-[node name="QuitButton" type="Button" parent="MainMenu/UI(VBox)" unique_id=2132094835]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.5692934, 0.9566695, 0.91942585, 1)
-theme_override_font_sizes/font_size = 63
-text = "退出游戏"
-
-[connection signal="pressed" from="MainMenu/UI(VBox)/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MainMenu/UI(VBox)/SaveButton" to="." method="_on_save_button_pressed"]
-[connection signal="pressed" from="MainMenu/UI(VBox)/SettingButton" to="." method="_on_setting_button_pressed"]
-[connection signal="pressed" from="MainMenu/UI(VBox)/QuitButton" to="." method="_on_quit_button_pressed"]
