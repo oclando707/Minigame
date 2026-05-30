@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://fikxgdij04ax"]
+
+[ext_resource type="Texture2D" uid="uid://dvymnvilyj5ta" path="res://minigame_assets/PauseMenu/标题.png" id="1_me6vf"]
+[ext_resource type="Texture2D" uid="uid://6ca64ih3rkqr" path="res://minigame_assets/PauseMenu/黑色遮罩.png" id="2_cq4tv"]
+
+[node name="PauseMenu" type="Control" unique_id=1016799949]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 768.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="TextureRect" parent="." unique_id=712436060]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -412.5
+offset_top = -440.0
+offset_right = 412.5
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_me6vf")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="background" type="TextureRect" parent="." unique_id=1613475591]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_cq4tv")
+metadata/_edit_lock_ = true

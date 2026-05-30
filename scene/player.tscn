@@ -400,11 +400,20 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gpvxe"]
+radius = 107.0
+height = 478.0
+
 [node name="Player" type="CharacterBody2D" unique_id=916301139]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=249257311]
 sprite_frames = SubResource("SpriteFrames_1ww5g")
 animation = &"Chara_walk"
 autoplay = "Chara_walk"
+frame_progress = 0.083957136
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1354087051]
+position = Vector2(-2, 28)
+shape = SubResource("CapsuleShape2D_gpvxe")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=285480999]
