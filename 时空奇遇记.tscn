@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://c8llgc0wl3qe2"]
+
+[ext_resource type="Script" uid="uid://d0w2q76st0kld" path="res://时空奇遇记.gd" id="1_y52cs"]
+[ext_resource type="Texture2D" uid="uid://3xkjfibivomi" path="res://menu background.PNG" id="2_om7uh"]
+
+[node name="Node2D" type="Control" unique_id=1109261172]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_y52cs")
+
+[node name="MainMenu" type="Control" parent="." unique_id=1131467238]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu" unique_id=451343503]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_om7uh")
+
+[node name="Game Theme" type="Label" parent="MainMenu" unique_id=2011549731]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 721.0123
+offset_top = 60.160976
+offset_right = 1196.0123
+offset_bottom = 192.00005
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.0067224503
+theme_override_colors/font_color = Color(0.7777952, 0.45467925, 0.59614223, 1)
+theme_override_font_sizes/font_size = 95
+text = "时空奇遇记"
+
+[node name="UI(VBox)" type="VBoxContainer" parent="MainMenu" unique_id=887360272]
+layout_mode = 1
+offset_left = 798.0
+offset_top = 382.0
+offset_right = 1089.0
+offset_bottom = 884.0
+theme_override_constants/separation = 20
+
+[node name="StartButton" type="Button" parent="MainMenu/UI(VBox)" unique_id=1610211820]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.30588236, 0.81960785, 0.9607843, 1)
+theme_override_font_sizes/font_size = 60
+text = "开始游戏"
+
+[node name="SaveButton" type="Button" parent="MainMenu/UI(VBox)" unique_id=1301906466]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.41568628, 0.8745098, 0.8745098, 1)
+theme_override_font_sizes/font_size = 62
+text = "存档界面"
+
+[node name="SettingButton" type="Button" parent="MainMenu/UI(VBox)" unique_id=1982431334]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4911524, 0.9706655, 0.92208654, 1)
+theme_override_font_sizes/font_size = 60
+text = "设置"
+
+[node name="QuitButton" type="Button" parent="MainMenu/UI(VBox)" unique_id=2132094835]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5692934, 0.9566695, 0.91942585, 1)
+theme_override_font_sizes/font_size = 63
+text = "退出游戏"
+
+[connection signal="pressed" from="MainMenu/UI(VBox)/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MainMenu/UI(VBox)/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="MainMenu/UI(VBox)/SettingButton" to="." method="_on_setting_button_pressed"]
+[connection signal="pressed" from="MainMenu/UI(VBox)/QuitButton" to="." method="_on_quit_button_pressed"]
