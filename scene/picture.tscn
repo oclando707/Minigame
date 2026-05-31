@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bh3m3kkalmvm8"]
+
+[ext_resource type="Texture2D" uid="uid://cf18o0rwtyeoy" path="res://level1asset/儿童简笔画.png" id="1_hf0kx"]
+[ext_resource type="Script" uid="uid://cqnm3qb07vuw" path="res://scripts/picture.gd" id="1_u80yu"]
+[ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="2_u80yu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vcqrl"]
+radius = 430.5276
+
+[node name="picture" type="Area2D" unique_id=264983725]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_u80yu")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=362463281]
+texture = ExtResource("1_hf0kx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1139033218]
+position = Vector2(-36, -169)
+shape = SubResource("CircleShape2D_vcqrl")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=205810861]
+visible = false
+offset_left = -885.0
+offset_top = -1130.0
+offset_right = -786.0
+offset_bottom = -1035.0
+scale = Vector2(5, 5)
+texture = ExtResource("2_u80yu")

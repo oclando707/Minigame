@@ -51,18 +51,15 @@ texture = ExtResource("2_5ytet")
 
 [node name="text" type="Label" parent="." unique_id=92081845]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -720.0
+offset_left = 184.0
 offset_top = -280.0
-offset_right = -464.0
-offset_bottom = -192.0
-grow_horizontal = 2
+offset_right = 400.0
+offset_bottom = -216.0
 grow_vertical = 0
-text = "对话文本"
+text = "11"
 label_settings = SubResource("LabelSettings_d7pxd")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2032132985]

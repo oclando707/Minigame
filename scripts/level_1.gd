@@ -15,6 +15,7 @@ var _dialog: Control = null
 var _current_line: int = 0
 
 
+
 func _on_jack_interacted() -> void:
 	if _dialog:
 		return
@@ -34,8 +35,8 @@ func _on_jack_interacted() -> void:
 	# 隐藏选项按钮和全屏黑色背景，只显示对话框底图和文字
 	if _dialog.has_node("VBoxContainer"):
 		_dialog.get_node("VBoxContainer").visible = false
-	if _dialog.has_node("background"):
-		_dialog.get_node("background").visible = false
+	#if _dialog.has_node("background"):
+	#	_dialog.get_node("background").visible = false
 
 	_current_line = 0
 	_show_current_line()
