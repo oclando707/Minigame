@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bfaidvn5f7x5y"]
 
-[ext_resource type="Texture2D" uid="uid://6ca64ih3rkqr" path="res://minigame_assets/PauseMenu/黑色遮罩.png" id="1_overlay"]
+[ext_resource type="Texture2D" uid="uid://b3qif6oowl3t" path="res://minigame_assets/SetMenu/百分之75.png" id="1_reocx"]
 [ext_resource type="Texture2D" uid="uid://deg28yag8dke0" path="res://minigame_assets/SetMenu/背景图+嵌字.png" id="2_panel"]
 [ext_resource type="Texture2D" uid="uid://c8sj5xpw0by5n" path="res://minigame_assets/SetMenu/空条.png" id="3_bar_empty"]
 [ext_resource type="Texture2D" uid="uid://irqjflfw15hp" path="res://minigame_assets/SetMenu/滑块.png" id="4_thumb"]
@@ -36,7 +36,7 @@ offset_right = 960.0
 offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_overlay")
+texture = ExtResource("1_reocx")
 expand_mode = 1
 stretch_mode = 5
 

@@ -6,10 +6,18 @@ const GRAVITY: float = 800.0
 const JUMP_VELOCITY: float = -632.0
 const MOVE_SPEED: float = 400.0
 
-@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+var can_move: bool = true
+
+
+func set_movement_enabled(enabled: bool) -> void:
+	can_move = enabled
+	if not enabled:
+		$AnimationPlayer.current_animation = "idle"
 
 
 func _physics_process(delta: float) -> void:
+	if not can_move:
+		return
 	# 重力（空中下落）
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta

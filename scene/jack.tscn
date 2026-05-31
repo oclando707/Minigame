@@ -1,15 +1,41 @@
 [gd_scene format=3 uid="uid://c3vxqds2ch1fe"]
 
 [ext_resource type="Texture2D" uid="uid://c57uy6bfl1dso" path="res://minigame_assets/Level_01/Level_01_A1/jack&dog/jack and dog.png" id="1_4yfdg"]
+[ext_resource type="Script" uid="uid://muin8voupjuq" path="res://scripts/jack.gd" id="1_c7sxc"]
+[ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="3_r5gk4"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_c7sxc"]
-radius = 552.5215
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r5gk4"]
+radius = 296.0
+height = 848.0
 
-[node name="Area2D" type="Area2D" unique_id=1083977912]
+[node name="jack" type="Area2D" unique_id=1083977912]
+script = ExtResource("1_c7sxc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1004051735]
 texture = ExtResource("1_4yfdg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1996089424]
-position = Vector2(104, -24)
-shape = SubResource("CircleShape2D_c7sxc")
+position = Vector2(-152, -40)
+shape = SubResource("CapsuleShape2D_r5gk4")
+
+[node name="FHint" type="Label" parent="." unique_id=727272896]
+visible = false
+offset_left = -60.0
+offset_top = -280.0
+offset_right = 60.0
+offset_bottom = -230.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "F"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1841907847]
+visible = false
+offset_left = -464.0
+offset_top = -304.0
+offset_right = -365.0
+offset_bottom = -209.0
+texture = ExtResource("3_r5gk4")
