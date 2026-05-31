@@ -36,18 +36,18 @@ func _physics_process(delta: float) -> void:
 
 func update_animation(dir: float) -> void:
 	if not is_on_floor():
-		# 空中：上升 → jump，下降 → fall
+		# 空中：上升 jump，下降 fall
 		if velocity.y < 0.0:
-			$AnimationPlayer.current_animation = "jump" 
+			$AnimationPlayer.current_animation = "jump"
 		else:
-			$AnimationPlayer.current_animation = "fall" 
+			$AnimationPlayer.current_animation = "fall"
 	elif dir != 0.0:
-		# 地面 + 移动 → walk
-		$AnimationPlayer.current_animation = "walk" 
+		# 地面 + 移动 walk
+		$AnimationPlayer.current_animation = "walk"
 	else:
-		# 地面 + 无输入 → idle
-		$AnimationPlayer.current_animation = "idle" 
+		# 地面 + 无输入 idle
+		$AnimationPlayer.current_animation = "idle"
 
-	# 水平翻转：A 键翻转、D 键不翻转（空中同样生效）
+	# 水平翻转：A键翻转、D键不翻转（空中同样生效）
 	if dir != 0.0:
 		$cha.flip_h = dir < 0.0
