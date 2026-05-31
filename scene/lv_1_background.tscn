@@ -10,6 +10,7 @@
 size = Vector2(1922, 112)
 
 [node name="LV1-background" type="Node2D" unique_id=748662892]
+visibility_layer = 15
 
 [node name="background" type="Sprite2D" parent="." unique_id=1766943746]
 
