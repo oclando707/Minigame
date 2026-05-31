@@ -39,6 +39,74 @@ texture = ExtResource("2_bg")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="BtnStart" type="TextureButton" parent="." unique_id=383541302]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -187.0
+offset_right = 205.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("4_start_idle")
+texture_pressed = ExtResource("6_start_hover")
+texture_hover = ExtResource("6_start_hover")
+
+[node name="BtnSave" type="TextureButton" parent="." unique_id=2143498248]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -22.0
+offset_right = 205.0
+offset_bottom = 143.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_save_idle")
+texture_pressed = ExtResource("8_save_hover")
+texture_hover = ExtResource("8_save_hover")
+
+[node name="BtnSetting" type="TextureButton" parent="." unique_id=1128313674]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = 143.0
+offset_right = 205.0
+offset_bottom = 308.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("9_setting_idle")
+texture_pressed = ExtResource("10_setting_hover")
+texture_hover = ExtResource("10_setting_hover")
+
+[node name="BtnQuit" type="TextureButton" parent="." unique_id=1760280849]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = 308.0
+offset_right = 205.0
+offset_bottom = 473.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("11_quit_idle")
+texture_pressed = ExtResource("12_quit_hover")
+texture_hover = ExtResource("12_quit_hover")
+
 [node name="Cha" type="TextureRect" parent="." unique_id=1101389885]
 layout_mode = 1
 anchors_preset = 8
@@ -64,83 +132,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -318.0
-offset_top = -457.0
-offset_right = 345.0
-offset_bottom = -104.0
+offset_left = -316.0
+offset_top = -444.0
+offset_right = 347.0
+offset_bottom = -91.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_title")
 stretch_mode = 4
 
-[node name="BtnStart" type="TextureButton" parent="." unique_id=383541302]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -210.0
-offset_top = -200.0
-offset_right = 205.0
-offset_bottom = -57.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("4_start_idle")
-texture_pressed = ExtResource("6_start_hover")
-texture_hover = ExtResource("6_start_hover")
-
-[node name="BtnSave" type="TextureButton" parent="." unique_id=2143498248]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -210.0
-offset_top = -40.0
-offset_right = 205.0
-offset_bottom = 103.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("7_save_idle")
-texture_pressed = ExtResource("8_save_hover")
-texture_hover = ExtResource("8_save_hover")
-
-[node name="BtnSetting" type="TextureButton" parent="." unique_id=1128313674]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -210.0
-offset_top = 120.0
-offset_right = 205.0
-offset_bottom = 263.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("9_setting_idle")
-texture_pressed = ExtResource("10_setting_hover")
-texture_hover = ExtResource("10_setting_hover")
-
-[node name="BtnQuit" type="TextureButton" parent="." unique_id=1760280849]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -210.0
-offset_top = 280.0
-offset_right = 205.0
-offset_bottom = 423.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("11_quit_idle")
-texture_pressed = ExtResource("12_quit_hover")
-texture_hover = ExtResource("12_quit_hover")
-
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="pressed" from="BtnStart" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="BtnSave" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="BtnSetting" to="." method="_on_setting_button_pressed"]

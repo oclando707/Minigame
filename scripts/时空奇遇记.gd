@@ -33,3 +33,4 @@ func _close_settings() -> void:
 	if _set_menu:
 		_set_menu.queue_free()
 		_set_menu = null
+		
