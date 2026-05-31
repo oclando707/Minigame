@@ -10,8 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://07may5kyht6c" path="res://scene/radio.tscn" id="8_8bheo"]
 [ext_resource type="Script" uid="uid://bw3gn8sjxyhxr" path="res://scripts/level_0_1.gd" id="9_sp3i7"]
 [ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="10_fkey"]
-[ext_resource type="Script" uid="uid://c5fb41c0wucb1" path="res://scripts/box_hint.gd" id="11_boxhint"]
+[ext_resource type="Script" uid="uid://c5fb41c0wucb1" path="res://scripts/radio_hint.gd" id="11_boxhint"]
 [ext_resource type="Texture2D" uid="uid://di8vfi0cs4cbl" path="res://minigame_assets/Level_01/Level_01_A1/Buildings/Lv0-1完好密码门/未命名作品(22).png" id="12_amu75"]
+[ext_resource type="Script" uid="uid://be8o7gs0ligio" path="res://scripts/code_door.gd" id="12_kiljn"]
+[ext_resource type="AudioStream" uid="uid://bx0urhbvvrdlk" path="res://minigame_assets/Level_01/Level_01_A1/验证通过.wav" id="14_rrsdc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kiljn"]
 size = Vector2(245, 142.5)
@@ -44,7 +46,10 @@ size = Vector2(98.5, 96.5625)
 load_path = "res://.godot/imported/可站立箱子.png-0b03cbf6b9558157e4dbdc599f0638a6.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hxftr"]
-size = Vector2(286, 944)
+size = Vector2(281.5, 944)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v70rh"]
+size = Vector2(358, 939)
 
 [node name="Level0-1" type="Node2D" unique_id=1644037248]
 script = ExtResource("9_sp3i7")
@@ -192,7 +197,8 @@ texture = ExtResource("10_fkey")
 [node name="Radio" parent="." unique_id=1110167217 instance=ExtResource("8_8bheo")]
 position = Vector2(690, 745)
 
-[node name="CodeDoor" type="Sprite2D" parent="." unique_id=1146561073]
+[node name="CodeDoor" type="StaticBody2D" parent="." unique_id=1065865963]
+script = ExtResource("12_kiljn")
 
 [node name="Sprite2D" type="Sprite2D" parent="CodeDoor" unique_id=664862971]
 position = Vector2(2461, 475.25)
@@ -202,13 +208,18 @@ region_enabled = true
 region_rect = Rect2(498.0398, 379.34485, 286.53784, 1593.8673)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CodeDoor" unique_id=1540204295]
-position = Vector2(2463, 471)
+position = Vector2(2458.25, 462)
 shape = SubResource("RectangleShape2D_hxftr")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CodeDoor" unique_id=486974362]
+stream = ExtResource("14_rrsdc")
 
-[node name="Area2D" type="Area2D" parent="CodeDoor" unique_id=700936765]
+[node name="InteractZone" type="Area2D" parent="CodeDoor" unique_id=700936765]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CodeDoor/Area2D" unique_id=1755002065]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CodeDoor/InteractZone" unique_id=1755002065]
+position = Vector2(2466, 469.5)
+shape = SubResource("RectangleShape2D_v70rh")
 
 [connection signal="interacted" from="Radio" to="." method="_on_radio_interacted"]
+[connection signal="body_entered" from="CodeDoor/InteractZone" to="CodeDoor" method="_on_interact_zone_body_entered"]
+[connection signal="body_exited" from="CodeDoor/InteractZone" to="CodeDoor" method="_on_interact_zone_body_exited"]

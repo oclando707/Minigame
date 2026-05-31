@@ -19,8 +19,8 @@ func _process(_delta):
 		var root = get_tree().current_scene
 		if root.has_method("start_dialog"):
 			root.start_dialog([
-				"这箱子有点重……",
-				"把它推到菜市场那边，应该能借它跳上房顶。"
+				"大清早的，放置它的人应该是去买菜了",
+				
 			])
 
 

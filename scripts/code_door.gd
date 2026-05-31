@@ -6,7 +6,7 @@ var player_in_range: bool = false
 var interaction_locked: bool = false
 var unlocked: bool = false
 
-@onready var hint := $FHint
+@onready var hint := $FHint if has_node("FHint") else null
 
 
 func _ready():
@@ -17,7 +17,8 @@ func _ready():
 func _process(_delta):
 	if player_in_range and not interaction_locked and Input.is_action_just_pressed("interact"):
 		interaction_locked = true
-		hint.visible = false
+		if hint:
+			hint.visible = false
 		interacted.emit()
 		_on_unlock()
 
@@ -46,10 +47,12 @@ func _on_unlock():
 func _on_body_entered(body):
 	if body is CharacterBody2D and not unlocked:
 		player_in_range = true
-		hint.visible = true
+		if hint:
+			hint.visible = true
 
 
 func _on_body_exited(body):
 	if body is CharacterBody2D:
 		player_in_range = false
-		hint.visible = false
+		if hint:
+			hint.visible = false

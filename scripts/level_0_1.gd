@@ -2,12 +2,12 @@ extends Node2D
 
 var _canvas: CanvasLayer = null
 var _dialog: Control = null
-var _current_lines: Array[String] = []
+var _current_lines: Array = []
 var _current_line: int = 0
 var _dialog_source: Node = null
 
 
-func start_dialog(lines: Array[String], source: Node = null) -> void:
+func start_dialog(lines: Array, source: Node = null) -> void:
 	if _dialog:
 		return
 	if lines.is_empty():
