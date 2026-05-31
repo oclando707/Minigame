@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://1w0yc7ysnm0v" path="res://scripts/level_1.gd" id="1_xesoj"]
 [ext_resource type="PackedScene" uid="uid://b4467pwswqb80" path="res://scene/player.tscn" id="2_3flxk"]
 [ext_resource type="PackedScene" uid="uid://c3vxqds2ch1fe" path="res://scene/jack.tscn" id="3_3flxk"]
+[ext_resource type="PackedScene" uid="uid://br6dmbnbtgtxy" path="res://scene/modou.tscn" id="5_53ndp"]
 
 [node name="level1" type="Node2D" unique_id=32838100]
 script = ExtResource("1_xesoj")
@@ -17,4 +18,8 @@ scale = Vector2(0.3, 0.3)
 [node name="Player" parent="." unique_id=916301139 instance=ExtResource("2_3flxk")]
 position = Vector2(108, 278)
 
+[node name="modou" parent="." unique_id=2117758540 instance=ExtResource("5_53ndp")]
+position = Vector2(622, 967)
+
 [connection signal="interacted" from="jack" to="." method="_on_jack_interacted"]
+[connection signal="interacted" from="modou" to="." method="_on_modou_interacted"]
