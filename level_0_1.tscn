@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://s4hv1e825dul"]
-
-[ext_resource type="Texture2D" uid="uid://b6yh7dtber856" path="res://minigame_assets/Level_01/Level_01_A1/Buildings/BG_BlueSky.PNG" id="1_p5uhv"]
-
-[node name="Level0-1" type="Node2D" unique_id=1484590194]
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1189552673]
-texture = ExtResource("1_p5uhv")
-centered = false
