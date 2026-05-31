@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cdgiamb6d7r2q"]
 
-[ext_resource type="Script" uid="uid://bhqp2el546ngq" path="res://scripts/yiwu.gd" id="1_ja8of"]
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="1_ja8of"]
 [ext_resource type="Texture2D" uid="uid://boypfdgopuo03" path="res://level1asset/数据处理单元.png" id="1_rgen0"]
 [ext_resource type="Texture2D" uid="uid://bqm1c6fx5oi1i" path="res://minigame_assets/Global/按键F/按键F.png" id="3_yniyw"]
 

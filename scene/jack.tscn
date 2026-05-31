@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c3vxqds2ch1fe"]
 
 [ext_resource type="Texture2D" uid="uid://c57uy6bfl1dso" path="res://minigame_assets/Level_01/Level_01_A1/jack&dog/jack and dog.png" id="1_4yfdg"]
-[ext_resource type="Script" uid="uid://muin8voupjuq" path="res://scripts/jack.gd" id="1_c7sxc"]
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="1_c7sxc"]
 [ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="3_r5gk4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r5gk4"]
