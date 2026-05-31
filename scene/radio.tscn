@@ -2,35 +2,42 @@
 
 [ext_resource type="Texture2D" uid="uid://bhr16rj4pyeir" path="res://minigame_assets/Level_01/Level_01_A1/播音机.png" id="1_6yaaa"]
 [ext_resource type="Script" uid="uid://dd3c7058a2sot" path="res://scripts/radio_main.gd" id="3_jddx7"]
+[ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="4_fkey"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3dfu"]
 size = Vector2(245.5, 181.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_osh7q"]
-size = Vector2(542.5, 349)
+size = Vector2(372, 284.5)
 
 [node name="Radio" type="Area2D" unique_id=1110167217]
+z_index = 4
 script = ExtResource("3_jddx7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=688728470]
-position = Vector2(743.5, 728)
+z_index = -1
 scale = Vector2(0.24873741, 0.26171243)
 texture = ExtResource("1_6yaaa")
 region_enabled = true
 region_rect = Rect2(479.81647, 335.12283, 792.27167, 619.35535)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1745589003]
-z_index = -1
-position = Vector2(743, 727)
 shape = SubResource("RectangleShape2D_a3dfu")
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1753036396]
 
 [node name="InteractZone" type="Area2D" parent="." unique_id=235233509]
+z_index = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractZone" unique_id=1070364584]
-position = Vector2(740, 741)
+position = Vector2(-2, -32.25)
 shape = SubResource("RectangleShape2D_osh7q")
 
-[connection signal="body_entered" from="InteractZone" to="." method="_on_interact_zone_body_entered"]
-[connection signal="body_exited" from="InteractZone" to="." method="_on_interact_zone_body_exited"]
+[node name="FHint" type="Sprite2D" parent="." unique_id=727272896]
+visible = false
+position = Vector2(0, -80)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_fkey")
+
+[connection signal="body_entered" from="InteractZone" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="InteractZone" to="." method="_on_body_exited"]

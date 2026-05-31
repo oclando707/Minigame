@@ -6,6 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://evd4ihmq3bu4" path="res://minigame_assets/Level_01/Level_01_A1/Buildings/远景.PNG" id="4_71r6h"]
 [ext_resource type="Texture2D" uid="uid://bslcg0jqfamke" path="res://minigame_assets/Level_01/Level_01_A1/Buildings/菜市场.PNG" id="5_6od21"]
 [ext_resource type="Texture2D" uid="uid://cxkpjr2kixj14" path="res://minigame_assets/Level_01/Level_01_A1/crowd.png" id="6_amu75"]
+[ext_resource type="Script" uid="uid://ckedxe3iimpo3" path="res://scripts/push_box.gd" id="7_8bheo"]
+[ext_resource type="PackedScene" uid="uid://07may5kyht6c" path="res://scene/radio.tscn" id="8_8bheo"]
+[ext_resource type="Script" uid="uid://bw3gn8sjxyhxr" path="res://scripts/level_0_1.gd" id="9_sp3i7"]
+[ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="10_fkey"]
+[ext_resource type="Script" uid="uid://c5fb41c0wucb1" path="res://scripts/box_hint.gd" id="11_boxhint"]
+[ext_resource type="Texture2D" uid="uid://di8vfi0cs4cbl" path="res://minigame_assets/Level_01/Level_01_A1/Buildings/Lv0-1完好密码门/未命名作品(22).png" id="12_amu75"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kiljn"]
 size = Vector2(245, 142.5)
@@ -14,30 +20,34 @@ size = Vector2(245, 142.5)
 size = Vector2(255.5, 46)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0r3if"]
-size = Vector2(1407, 138)
+size = Vector2(2541.5, 138)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8pgc2"]
-size = Vector2(334, 125.25)
+size = Vector2(274, 124.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xhcu3"]
-size = Vector2(276.66394, 584.889)
+size = Vector2(276.66394, 564.05585)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oocgx"]
-size = Vector2(213.66133, 496.05508)
+size = Vector2(213.66133, 486.4267)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8bheo"]
-size = Vector2(366.64624, 455.96173)
+size = Vector2(366.64624, 463.73743)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnnvp"]
-size = Vector2(428, 232.5)
+size = Vector2(444, 279.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkine"]
-size = Vector2(83.375, 75.6875)
+size = Vector2(98.5, 96.5625)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sp3i7"]
 load_path = "res://.godot/imported/可站立箱子.png-0b03cbf6b9558157e4dbdc599f0638a6.ctex"
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hxftr"]
+size = Vector2(286, 944)
+
 [node name="Level0-1" type="Node2D" unique_id=1644037248]
+script = ExtResource("9_sp3i7")
 
 [node name="Sky" type="Sprite2D" parent="." unique_id=605663601]
 z_index = -10
@@ -57,10 +67,11 @@ position = Vector2(380.25, 1063)
 shape = SubResource("RectangleShape2D_rrsdc")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground" unique_id=247280186]
-position = Vector2(1215.5, 1010)
+position = Vector2(1783.25, 1008)
 shape = SubResource("RectangleShape2D_0r3if")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1060650782]
+z_index = 1
 position = Vector2(121.5, 1007.5)
 scale = Vector2(1.1163793, 1.1615385)
 texture = ExtResource("2_8bheo")
@@ -68,31 +79,34 @@ region_enabled = true
 region_rect = Rect2(718.7361, 949.04675, 232.48132, 130.43799)
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1282671694]
-position = Vector2(381, 1061)
-scale = Vector2(1.6410257, 0.35384655)
+z_index = 1
+position = Vector2(380, 1061)
+scale = Vector2(1.653846, 0.35384655)
 texture = ExtResource("2_8bheo")
 region_enabled = true
 region_rect = Rect2(773.18933, 948.2421, 156.17065, 130.79303)
 
 [node name="Sprite2D3" type="Sprite2D" parent="." unique_id=549672988]
-position = Vector2(1777.9839, 1013.0001)
-scale = Vector2(4.621877, 1.1377953)
+z_index = 1
+position = Vector2(1780.492, 1009.00006)
+scale = Vector2(4.6309385, 1.1377953)
 texture = ExtResource("2_8bheo")
 region_enabled = true
 region_rect = Rect2(819.4668, 949.6001, 550.00024, 126.8667)
 
 [node name="Player" parent="." unique_id=916301139 instance=ExtResource("3_sp3i7")]
+z_index = 2
 position = Vector2(56, 821)
 
 [node name="platform" type="StaticBody2D" parent="." unique_id=1184445431]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platform" unique_id=488064792]
-position = Vector2(745, 878.375)
+position = Vector2(650, 878)
 shape = SubResource("RectangleShape2D_8pgc2")
 
 [node name="Sprite2D" type="Sprite2D" parent="platform" unique_id=259938669]
-position = Vector2(742.875, 879)
-scale = Vector2(1.2211195, 1)
+position = Vector2(647.5, 883)
+scale = Vector2(1.0144404, 1.0156249)
 texture = ExtResource("2_8bheo")
 region_enabled = true
 region_rect = Rect2(724.58606, 950.56445, 277.4934, 128.26013)
@@ -110,8 +124,9 @@ position = Vector2(2106, 710.75)
 scale = Vector2(0.67864585, 0.5634259)
 
 [node name="Market" type="Sprite2D" parent="." unique_id=1977216895]
-position = Vector2(1567, 743.25)
-scale = Vector2(0.73012763, 0.6360182)
+z_index = 4
+position = Vector2(1567, 698.75)
+scale = Vector2(0.73012763, 0.7712766)
 texture = ExtResource("5_6od21")
 region_enabled = true
 region_rect = Rect2(552.40063, 305.821, 870.8938, 658.23364)
@@ -119,40 +134,81 @@ region_rect = Rect2(552.40063, 305.821, 870.8938, 658.23364)
 [node name="CollisionShape2D" type="StaticBody2D" parent="Market" unique_id=1647446874]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Market/CollisionShape2D" unique_id=1207259808]
-position = Vector2(-27.392822, 29.480347)
+position = Vector2(-27.392822, 39.89691)
 shape = SubResource("RectangleShape2D_xhcu3")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Market/CollisionShape2D" unique_id=1821046673]
-position = Vector2(221.87866, 66.82202)
+position = Vector2(221.87866, 71.63611)
 shape = SubResource("RectangleShape2D_oocgx")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Market/CollisionShape2D" unique_id=332485416]
-position = Vector2(-193.32373, 87.654785)
+position = Vector2(-193.32397, 83.76697)
 shape = SubResource("RectangleShape2D_8bheo")
 
 [node name="Crowd" type="Area2D" parent="." unique_id=1767651250]
+z_index = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Crowd" unique_id=785545041]
-position = Vector2(1550, 825)
+position = Vector2(1787, 814)
 shape = SubResource("RectangleShape2D_dnnvp")
 
 [node name="Sprite2D" type="Sprite2D" parent="Crowd" unique_id=1047548953]
-z_index = 1
-position = Vector2(1574, 833.99994)
-scale = Vector2(0.5282556, 0.4111602)
+z_index = 3
+position = Vector2(1786.9999, 825)
+scale = Vector2(0.5282556, 0.44787073)
 texture = ExtResource("6_amu75")
 region_enabled = true
 region_rect = Rect2(383.40417, 291.58698, 814.093, 681.01874)
 
 [node name="Push_Box" type="CharacterBody2D" parent="." unique_id=1711854372]
+position = Vector2(1073, 888)
+script = ExtResource("7_8bheo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Push_Box" unique_id=1037184022]
-position = Vector2(1052, 905)
+position = Vector2(-0.25, 3.28125)
 shape = SubResource("RectangleShape2D_jkine")
 
-[node name="Sprite2D" type="Sprite2D" parent="Push_Box/CollisionShape2D" unique_id=1918794009]
-position = Vector2(2.2499375, -2.9999695)
-scale = Vector2(0.2430999, 0.32742202)
+[node name="Sprite2D" type="Sprite2D" parent="Push_Box" unique_id=1918794009]
+z_index = 4
+position = Vector2(0.50002074, 4.1190686)
+scale = Vector2(0.26114652, 0.33750218)
 texture = SubResource("CompressedTexture2D_sp3i7")
 region_enabled = true
 region_rect = Rect2(120.26404, 164.48605, 471.7511, 297.14185)
+
+[node name="InteractZone" type="Area2D" parent="Push_Box" unique_id=235233510]
+script = ExtResource("11_boxhint")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Push_Box/InteractZone" unique_id=1070364585]
+position = Vector2(3, 7)
+shape = SubResource("RectangleShape2D_jkine")
+
+[node name="FHint" type="Sprite2D" parent="Push_Box" unique_id=727272897]
+visible = false
+position = Vector2(0, -60)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("10_fkey")
+
+[node name="Radio" parent="." unique_id=1110167217 instance=ExtResource("8_8bheo")]
+position = Vector2(690, 745)
+
+[node name="CodeDoor" type="Sprite2D" parent="." unique_id=1146561073]
+
+[node name="Sprite2D" type="Sprite2D" parent="CodeDoor" unique_id=664862971]
+position = Vector2(2461, 475.25)
+scale = Vector2(1, 0.5991839)
+texture = ExtResource("12_amu75")
+region_enabled = true
+region_rect = Rect2(498.0398, 379.34485, 286.53784, 1593.8673)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CodeDoor" unique_id=1540204295]
+position = Vector2(2463, 471)
+shape = SubResource("RectangleShape2D_hxftr")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CodeDoor" unique_id=486974362]
+
+[node name="Area2D" type="Area2D" parent="CodeDoor" unique_id=700936765]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CodeDoor/Area2D" unique_id=1755002065]
+
+[connection signal="interacted" from="Radio" to="." method="_on_radio_interacted"]

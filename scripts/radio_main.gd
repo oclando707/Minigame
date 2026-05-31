@@ -1,17 +1,30 @@
 extends Area2D
 
-@onready var music := $MusicPlayer
+signal interacted
+
+var player_in_range: bool = false
+var interaction_locked: bool = false
 var is_playing := true
-var can_interact := false
 
-func _ready():
+@onready var music := $MusicPlayer
+@onready var f_hint := $FHint
+
+
+func _ready() -> void:
 	music.play()
+	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
 
-func _process(_delta):
-	if can_interact and Input.is_action_just_pressed("interact"):
+
+func _process(_delta: float) -> void:
+	if player_in_range and not interaction_locked and Input.is_action_just_pressed("interact"):
+		interaction_locked = true
+		f_hint.visible = false
+		interacted.emit()
 		show_dialogue()
 
-func show_dialogue():
+
+func show_dialogue() -> void:
 	var textbox = preload("res://scene/textboxB.tscn").instantiate()
 
 	if is_playing:
@@ -23,10 +36,20 @@ func show_dialogue():
 
 	get_tree().current_scene.add_child(textbox)
 
-func _on_interact_zone_body_entered(body):
-	if body.name == "Player":
-		can_interact = true
 
-func _on_interact_zone_body_exited(body):
-	if body.name == "Player":
-		can_interact = false
+func _on_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D and not interaction_locked:
+		player_in_range = true
+		f_hint.visible = true
+
+
+func _on_body_exited(body: Node2D) -> void:
+	if body is CharacterBody2D:
+		player_in_range = false
+		f_hint.visible = false
+
+
+func unlock_interaction() -> void:
+	interaction_locked = false
+	if player_in_range:
+		f_hint.visible = true
