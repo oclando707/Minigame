@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cwocn7km7m1xd"]
+
+[ext_resource type="Texture2D" uid="uid://did74pnfw8exj" path="res://minigame_assets/Global/Tile_land.PNG" id="1_wjqfs"]
+[ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="2_lxywf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gwsvq"]
+radius = 220.05453
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjqfs"]
+size = Vector2(192.5, 128.5)
+
+[node name="earth" type="Area2D" unique_id=688254752]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1132424379]
+position = Vector2(65, -135)
+texture = ExtResource("1_wjqfs")
+hframes = 5
+vframes = 4
+frame = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2100659324]
+position = Vector2(1, -210)
+shape = SubResource("CircleShape2D_gwsvq")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=253466425]
+offset_left = -135.0
+offset_top = -503.0
+offset_right = -36.0
+offset_bottom = -408.0
+texture = ExtResource("2_lxywf")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2080793607]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1943585360]
+light_mask = 8
+visibility_layer = 3
+position = Vector2(-4.25, -67.25)
+shape = SubResource("RectangleShape2D_wjqfs")

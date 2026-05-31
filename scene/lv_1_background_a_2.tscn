@@ -9,9 +9,22 @@
 [ext_resource type="PackedScene" uid="uid://bsbg08hy56evs" path="res://scene/tree.tscn" id="8_x8o5p"]
 [ext_resource type="PackedScene" uid="uid://cdgiamb6d7r2q" path="res://scene/yiwu.tscn" id="9_00iwe"]
 [ext_resource type="PackedScene" uid="uid://bh3m3kkalmvm8" path="res://scene/picture.tscn" id="9_x8o5p"]
+[ext_resource type="PackedScene" uid="uid://c0w21kotu2n3p" path="res://scene/paltfarm.tscn" id="11_vtxa7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00iwe"]
-size = Vector2(1930.25, 123)
+size = Vector2(770.125, 123)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtxa7"]
+size = Vector2(300, 176)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ibisq"]
+size = Vector2(849.5, 116)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewfiv"]
+size = Vector2(214, 1071.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_csci6"]
+size = Vector2(58, 1100)
 
 [node name="lv_1_backgroundA2" type="Node2D" unique_id=807754963]
 script = ExtResource("1_x8o5p")
@@ -38,8 +51,16 @@ texture = ExtResource("5_hdh8v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="earth/StaticBody2D" unique_id=1335252480]
 visibility_layer = 15
-position = Vector2(3, 473)
+position = Vector2(-574.0625, 486)
 shape = SubResource("RectangleShape2D_00iwe")
+
+[node name="kong" type="CollisionShape2D" parent="earth/StaticBody2D" unique_id=798235479]
+position = Vector2(-41, 510)
+shape = SubResource("RectangleShape2D_vtxa7")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="earth/StaticBody2D" unique_id=188184072]
+position = Vector2(534.25, 480)
+shape = SubResource("RectangleShape2D_ibisq")
 
 [node name="tree" parent="." unique_id=1163109383 instance=ExtResource("8_x8o5p")]
 position = Vector2(1651, 446)
@@ -51,6 +72,19 @@ position = Vector2(1808, 643)
 
 [node name="yiwu" parent="prop" unique_id=386279027 instance=ExtResource("9_00iwe")]
 position = Vector2(283, 808)
+
+[node name="paltfarm" parent="." unique_id=1683000290 instance=ExtResource("11_vtxa7")]
+position = Vector2(1296, 455)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2014448920]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1243561224]
+position = Vector2(2017, 535)
+shape = SubResource("RectangleShape2D_ewfiv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1254956507]
+position = Vector2(-27, 535)
+shape = SubResource("RectangleShape2D_csci6")
 
 [connection signal="interacted" from="prop/picture" to="." method="_on_picture_interacted"]
 [connection signal="interacted" from="prop/yiwu" to="." method="_on_yiwu_interacted"]

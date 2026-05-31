@@ -4,7 +4,8 @@ extends Node
 var is_active: bool = false
 
 ## 游戏进度标记：跨场景共享状态，用于控制节点显隐等进度相关逻辑
-## 例如 modou_interacted → 与魔豆对话后解锁 lv_1_background_a_2 的 tree 和 picture
+## 当前使用的标记：
+##   modou_planted → 玩家拾取魔豆并在 earth 区域种植后为 true，控制 ZoneB 中 tree/picture 显隐
 var flags: Dictionary = {}
 
 var _canvas: CanvasLayer = null

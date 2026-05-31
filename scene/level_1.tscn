@@ -6,26 +6,46 @@
 [ext_resource type="PackedScene" uid="uid://c3vxqds2ch1fe" path="res://scene/jack.tscn" id="3_3flxk"]
 [ext_resource type="PackedScene" uid="uid://br6dmbnbtgtxy" path="res://scene/modou.tscn" id="5_53ndp"]
 [ext_resource type="PackedScene" uid="uid://mc8pp3uq1upt" path="res://scene/lv_1_background_a_2.tscn" id="6_zoneb"]
+[ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="7_fkey"]
 
-[node name="level1" type="Node2D" unique_id=32838100]
+[sub_resource type="CircleShape2D" id="CircleShape2D_earth"]
+radius = 200.0
+
+[node name="level1" type="Node2D" unique_id=1401724973]
 script = ExtResource("1_xesoj")
 
-[node name="ZoneA" type="Node2D" parent="."]
+[node name="ZoneA" type="Node2D" parent="." unique_id=1947457011]
 
-[node name="LV1-background" parent="ZoneA" unique_id=748662892 instance=ExtResource("1_rpurj")]
+[node name="LV1-background" parent="ZoneA" unique_id=1211670899 instance=ExtResource("1_rpurj")]
 
-[node name="jack" parent="ZoneA" unique_id=1083977912 instance=ExtResource("3_3flxk")]
+[node name="jack" parent="ZoneA" unique_id=209508001 instance=ExtResource("3_3flxk")]
 position = Vector2(420, 846)
 scale = Vector2(0.3, 0.3)
 
-[node name="modou" parent="ZoneA" unique_id=2117758540 instance=ExtResource("5_53ndp")]
+[node name="modou" parent="ZoneA" unique_id=2102996695 instance=ExtResource("5_53ndp")]
 position = Vector2(622, 967)
 
-[node name="ZoneB" type="Node2D" parent="."]
+[node name="earth_area" type="Area2D" parent="ZoneA" unique_id=1429820658]
+position = Vector2(1200, 980)
 
-[node name="lv_1_background_a_2" parent="ZoneB" instance=ExtResource("6_zoneb")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneA/earth_area" unique_id=1447945760]
+position = Vector2(633, -78)
+shape = SubResource("CircleShape2D_earth")
 
-[node name="Player" parent="." unique_id=916301139 instance=ExtResource("2_3flxk")]
+[node name="TextureRect" type="TextureRect" parent="ZoneA/earth_area" unique_id=475605449]
+visible = false
+offset_left = 500.0
+offset_top = -385.0
+offset_right = 600.0
+offset_bottom = -290.0
+texture = ExtResource("7_fkey")
+
+[node name="ZoneB" type="Node2D" parent="." unique_id=878857716]
+visible = false
+
+[node name="lv_1_background_a_2" parent="ZoneB" unique_id=1177787390 instance=ExtResource("6_zoneb")]
+
+[node name="Player" parent="." unique_id=171918651 instance=ExtResource("2_3flxk")]
 position = Vector2(108, 278)
 
 [connection signal="interacted" from="ZoneA/jack" to="." method="_on_jack_interacted"]

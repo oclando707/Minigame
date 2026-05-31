@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cuh8ne115pyyc"]
+
+[ext_resource type="Texture2D" uid="uid://busqro5l5wu6b" path="res://level1asset/灰色建筑（电梯).png" id="1_x525m"]
+[ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="2_62clw"]
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="3_script"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_07tj7"]
+radius = 141.0
+height = 524.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvpyg"]
+size = Vector2(12, 1218)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vx6ei"]
+size = Vector2(20.5, 1252)
+
+[node name="dianti" type="Area2D" unique_id=919551730]
+script = ExtResource("3_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=60885802]
+texture = ExtResource("1_x525m")
+
+[node name="jaince" type="CollisionShape2D" parent="." unique_id=1242970592]
+position = Vector2(5, -566)
+shape = SubResource("CapsuleShape2D_07tj7")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=643357269]
+visible = false
+offset_left = -136.0
+offset_top = -945.0
+offset_right = -37.0
+offset_bottom = -850.0
+texture = ExtResource("2_62clw")
+
+[node name="pengzhuang1" type="CollisionShape2D" parent="." unique_id=1090916106]
+position = Vector2(-133, -138)
+shape = SubResource("RectangleShape2D_cvpyg")
+
+[node name="pengzhuang2" type="CollisionShape2D" parent="." unique_id=695249563]
+position = Vector2(135.25, -161)
+shape = SubResource("RectangleShape2D_vx6ei")
