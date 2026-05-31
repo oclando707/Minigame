@@ -1,0 +1,92 @@
+<h2>重构计划 — 变更清单</h2>
+<p class="subtitle">所有涉及的文件、操作类型和影响范围</p>
+
+<div class="section">
+  <h3>🗑️ 删除（5个文件——消除重复）</h3>
+  <table style="width:100%; border-collapse:collapse; font-size:0.9em;">
+    <tr style="background:#2a1515;">
+      <th style="padding:8px;text-align:left;width:50%;">文件</th>
+      <th style="padding:8px;text-align:left;">原因</th>
+    </tr>
+    <tr><td style="padding:8px;font-family:monospace;">scripts/yiwu.gd</td><td style="padding:8px;color:#ff9999;">并入 interactable.gd</td></tr>
+    <tr><td style="padding:8px;font-family:monospace;">scripts/picture.gd</td><td style="padding:8px;color:#ff9999;">并入 interactable.gd</td></tr>
+    <tr><td style="padding:8px;font-family:monospace;">scripts/modou.gd</td><td style="padding:8px;color:#ff9999;">并入 interactable.gd</td></tr>
+    <tr><td style="padding:8px;font-family:monospace;">scripts/jack.gd</td><td style="padding:8px;color:#ff9999;">并入 interactable.gd</td></tr>
+    <tr><td style="padding:8px;font-family:monospace;">scene/interact_zone.gd.uid</td><td style="padding:8px;color:#ff9999;">孤立的 UID 文件</td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <h3>✨ 新建（2个核心文件）</h3>
+  <table style="width:100%; border-collapse:collapse; font-size:0.9em;">
+    <tr style="background:#152a15;">
+      <th style="padding:8px;text-align:left;width:30%;">文件</th>
+      <th style="padding:8px;text-align:left;">职责</th>
+    </tr>
+    <tr>
+      <td style="padding:8px;font-family:monospace;">scripts/interactable.gd</td>
+      <td style="padding:8px;">通用 <code>Area2D</code> 交互组件（替代 4 份副本）<br/>
+        <span style="color:#88cc88;">interacted 信号 · 锁定 · 解锁 · 提示图标</span></td>
+    </tr>
+    <tr>
+      <td style="padding:8px;font-family:monospace;">scripts/dialogue_manager.gd</td>
+      <td style="padding:8px;">AutoLoad 对话引擎<br/>
+        <span style="color:#88cc88;">逐行显示 · 文本推进 · 玩家冻结/解冻 · 回调</span></td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <h3>✏️ 修改（6个文件——迁移到新系统）</h3>
+  <table style="width:100%; border-collapse:collapse; font-size:0.9em;">
+    <tr style="background:#2a2a15;">
+      <th style="padding:8px;text-align:left;width:30%;">文件</th>
+      <th style="padding:8px;text-align:left;">改动</th>
+    </tr>
+    <tr>
+      <td style="padding:8px;font-family:monospace;">project.godot</td>
+      <td style="padding:8px;">添加 <code>DialogueManager</code> AutoLoad</td>
+    </tr>
+    <tr>
+      <td style="padding:8px;font-family:monospace;">scripts/radio_main.gd</td>
+      <td style="padding:8px;">重写为使用 <code>interactable.gd</code> 模式，移除独立实现</td>
+    </tr>
+    <tr>
+      <td style="padding:8px;font-family:monospace;">scripts/level_1.gd</td>
+      <td style="padding:8px;">移除内联对话引擎，改用 <code>DialogueManager</code></td>
+    </tr>
+    <tr>
+      <td style="padding:8px;font-family:monospace;">scripts/lv_1_background_a_2.gd</td>
+      <td style="padding:8px;">移除内联对话引擎，改用 <code>DialogueManager</code></td>
+    </tr>
+    <tr>
+      <td style="padding:8px;font-family:monospace;">scene/level_1.tscn</td>
+      <td style="padding:8px;">modou 节点脚本指向 <code>interactable.gd</code></td>
+    </tr>
+    <tr>
+      <td style="padding:8px;font-family:monospace;">scene/modou.tscn</td>
+      <td style="padding:8px;">新文件，需要连接信号</td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <h3>🧹 清理（3个临时文件）</h3>
+  <div style="font-size:0.85em; color:#ccc; line-height:1.8;">
+    <code>scene/yiwu.tscn4986730145.tmp</code><br/>
+    <code>scene/yiwu.tscn4994268350.tmp</code><br/>
+    <code>scene/lv_1_background_a_2.tscn5006546733.tmp</code>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <h3>影响总结</h3>
+    <div style="display:flex; gap:20px;">
+      <div><span style="color:#6bff6b;font-size:1.5em;">+2</span> 新建<br/><span style="color:#aaa;">核心组件</span></div>
+      <div><span style="color:#ffcc44;font-size:1.5em;">~6</span> 修改<br/><span style="color:#aaa;">场景/脚本迁移</span></div>
+      <div><span style="color:#ff6b6b;font-size:1.5em;">-5</span> 删除<br/><span style="color:#aaa;">重复+孤立文件</span></div>
+      <div><span style="color:#ff6b6b;font-size:1.5em;">-3</span> 清理<br/><span style="color:#aaa;">临时文件</span></div>
+    </div>
+  </div>
+</div>

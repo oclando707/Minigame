@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://br6dmbnbtgtxy"]
+
+[ext_resource type="Texture2D" uid="uid://dxhlp5s7cbs1x" path="res://level1asset/魔豆.png" id="1_0xbh8"]
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="1_ioceq"]
+[ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="2_ioceq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0xbh8"]
+radius = 179.01117
+
+[node name="modou" type="Area2D" unique_id=2117758540]
+script = ExtResource("1_ioceq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1529398397]
+position = Vector2(3.0000153, 12.000023)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_0xbh8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1428468503]
+position = Vector2(22, -179)
+shape = SubResource("CircleShape2D_0xbh8")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=849371551]
+visible = false
+offset_left = -114.00001
+offset_top = -233.0
+offset_right = -15.000008
+offset_bottom = -138.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_ioceq")

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bh3m3kkalmvm8"]
 
 [ext_resource type="Texture2D" uid="uid://cf18o0rwtyeoy" path="res://level1asset/儿童简笔画.png" id="1_hf0kx"]
-[ext_resource type="Script" uid="uid://cqnm3qb07vuw" path="res://scripts/picture.gd" id="1_u80yu"]
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="1_u80yu"]
 [ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="2_u80yu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vcqrl"]

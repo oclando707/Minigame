@@ -6,24 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://vgmpq7or5pr1" path="res://level1asset/LV1background2/IMG_3069.PNG" id="3_xfd5k"]
 [ext_resource type="Texture2D" uid="uid://bqgcektsfheko" path="res://level1asset/LV1background2/IMG_3068.PNG" id="4_i5iu0"]
 [ext_resource type="Texture2D" uid="uid://0akvylyg27dv" path="res://level1asset/LV1background2/IMG_3067.PNG" id="5_hdh8v"]
-[ext_resource type="Texture2D" uid="uid://ba61mk7br8eks" path="res://level1asset/大树2.png" id="6_xfd5k"]
-[ext_resource type="PackedScene" uid="uid://b4467pwswqb80" path="res://scene/player.tscn" id="7_i5iu0"]
+[ext_resource type="PackedScene" uid="uid://bsbg08hy56evs" path="res://scene/tree.tscn" id="8_x8o5p"]
 [ext_resource type="PackedScene" uid="uid://cdgiamb6d7r2q" path="res://scene/yiwu.tscn" id="9_00iwe"]
 [ext_resource type="PackedScene" uid="uid://bh3m3kkalmvm8" path="res://scene/picture.tscn" id="9_x8o5p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00iwe"]
 size = Vector2(1930.25, 123)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_i5iu0"]
-a = Vector2(-35.25, -386.5)
-b = Vector2(-56.25, 273.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hdh8v"]
-size = Vector2(388, 37)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_00iwe"]
-a = Vector2(290, 296)
-b = Vector2(149, 373)
 
 [node name="lv_1_backgroundA2" type="Node2D" unique_id=807754963]
 script = ExtResource("1_x8o5p")
@@ -53,35 +41,8 @@ visibility_layer = 15
 position = Vector2(3, 473)
 shape = SubResource("RectangleShape2D_00iwe")
 
-[node name="tree" type="Sprite2D" parent="." unique_id=1439987074]
-position = Vector2(1643, 437)
-texture = ExtResource("6_xfd5k")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="tree" unique_id=1797357266]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="tree/StaticBody2D" unique_id=1313462329]
-position = Vector2(299.25, 170.5)
-shape = SubResource("SegmentShape2D_i5iu0")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="tree/StaticBody2D" unique_id=1072799175]
-position = Vector2(60, 530)
-shape = SubResource("RectangleShape2D_hdh8v")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="tree/StaticBody2D" unique_id=1925779257]
-position = Vector2(-37, 141)
-shape = SubResource("SegmentShape2D_00iwe")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tree/StaticBody2D" unique_id=1025503388]
-polygon = PackedVector2Array(63, 267, 184, 255, 223, 219, 253, 218, 248, 251, 201, 269, 157, 277, 66, 271)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="tree/StaticBody2D" unique_id=378736476]
-polygon = PackedVector2Array(-44, 380, 30, 410, 100, 410, 240, 445, 251, 385, 208, 386, 78, 388, 62, 379, -31, 377)
-
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="tree/StaticBody2D" unique_id=467836707]
-polygon = PackedVector2Array(122, 70, 186, 61, 224, 67, 259, 68, 254, 123, 216, 103, 141, 76)
-
-[node name="Player" parent="." unique_id=916301139 instance=ExtResource("7_i5iu0")]
-position = Vector2(190, 280)
+[node name="tree" parent="." unique_id=1163109383 instance=ExtResource("8_x8o5p")]
+position = Vector2(1651, 446)
 
 [node name="prop" type="Node2D" parent="." unique_id=869857541]
 

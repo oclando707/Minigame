@@ -1,0 +1,92 @@
+<h2>Part 2: interactable.gd — 通用交互组件</h2>
+<p class="subtitle">替代 4 份副本 + 统一收音机行为</p>
+
+<div class="section">
+  <h3>接口设计</h3>
+  <div class="mockup">
+    <div class="mockup-body" style="font-size:0.85em; line-height:1.8; font-family:monospace;">
+      <span style="color:#888;"># scripts/interactable.gd</span><br/>
+      <span style="color:#ff9944;">extends</span> <span style="color:#88ccff;">Area2D</span><br/><br/>
+
+      <span style="color:#888;">## 当玩家按下交互键时触发</span><br/>
+      <span style="color:#ff9944;">signal</span> <span style="color:#88ccff;">interacted</span><br/><br/>
+
+      <span style="color:#888;">## 是否显示提示图标（按F交互）</span><br/>
+      <span style="color:#ff9944;">@export var</span> show_prompt: <span style="color:#88ccff;">bool</span> = <span style="color:#aaddaa;">true</span><br/><br/>
+
+      <span style="color:#888;">## 是否可以多次交互（false = 一次性）</span><br/>
+      <span style="color:#ff9944;">@export var</span> repeatable: <span style="color:#88ccff;">bool</span> = <span style="color:#aaddaa;">true</span><br/><br/>
+
+      <span style="color:#888;"># 内部状态（与原代码行为一致）</span><br/>
+      <span style="color:#ff9944;">var</span> player_in_range: <span style="color:#88ccff;">bool</span> = <span style="color:#aaddaa;">false</span><br/>
+      <span style="color:#ff9944;">var</span> interaction_locked: <span style="color:#88ccff;">bool</span> = <span style="color:#aaddaa;">false</span><br/><br/>
+
+      <span style="color:#888;"># 公开方法</span><br/>
+      <span style="color:#ff9944;">func</span> <span style="color:#aaddff;">unlock_interaction</span>() → <span style="color:#88ccff;">void</span><br/>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>与原有代码的兼容对照</h3>
+  <table style="width:100%; border-collapse:collapse; font-size:0.85em;">
+    <tr style="background:#1a1a2a;">
+      <th style="padding:8px;text-align:left;width:30%;">原行为</th>
+      <th style="padding:8px;text-align:left;">新实现</th>
+    </tr>
+    <tr>
+      <td style="padding:8px;vertical-align:top;">原脚本 <code>_on_body_entered</code>：显示提示图标</td>
+      <td style="padding:8px;color:#88cc88;">✅ 完全相同逻辑</td>
+    </tr>
+    <tr>
+      <td style="padding:8px;vertical-align:top;">原脚本 <code>_on_body_exited</code>：隐藏提示图标</td>
+      <td style="padding:8px;color:#88cc88;">✅ 完全相同逻辑</td>
+    </tr>
+    <tr>
+      <td style="padding:8px;vertical-align:top;">原脚本 <code>_process</code>：检测 interact 输入</td>
+      <td style="padding:8px;color:#88cc88;">✅ 完全相同逻辑</td>
+    </tr>
+    <tr>
+      <td style="padding:8px;vertical-align:top;">原脚本 <code>interaction_locked = true</code> 阻止重复触发</td>
+      <td style="padding:8px;color:#88cc88;">✅ 完全相同</td>
+    </tr>
+    <tr>
+      <td style="padding:8px;vertical-align:top;">原脚本 <code>unlock_interaction()</code> 允许再次交互</td>
+      <td style="padding:8px;color:#88cc88;">✅ 完全相同</td>
+    </tr>
+    <tr>
+      <td style="padding:8px;vertical-align:top;">新增：<code>@export repeatable</code> 扩展</td>
+      <td style="padding:8px;color:#88ccff;">🆕 可配置一次性/可重复交互</td>
+    </tr>
+    <tr>
+      <td style="padding:8px;vertical-align:top;">新：收音机迁移到这个系统</td>
+      <td style="padding:8px;color:#88ccff;">🆕 radio 获得重复交互能力</td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <h3>场景使用方式</h3>
+  <div class="mockup">
+    <div class="mockup-body" style="font-size:0.8em;">
+      <span style="color:#888;"># modou.tscn / yiwu.tscn / picture.tscn / jack.tscn 节点结构不变</span><br/><br/>
+      <code>Area2D (根节点)</code><br/>
+      <code> ├── CollisionShape2D</code> &nbsp; <span style="color:#888;"># 不变</span><br/>
+      <code> ├── Sprite2D (外观)</code> &nbsp; <span style="color:#888;"># 不变</span><br/>
+      <code> └── TextureRect (F提示图标)</code> &nbsp; <span style="color:#888;"># 不变</span><br/><br/>
+      <span style="color:#88cc88;">唯一的改动：脚本引用指向 </span><code>res://scripts/interactable.gd</code>
+    </div>
+  </div>
+</div>
+
+<div class="pros-cons">
+  <div class="pros"><h4>不变的部分</h4><ul>
+    <li>节点结构、碰撞体、材质全部保持原有</li>
+    <li>信号名 </code>interacted</code> 不变，关卡连接不断</li>
+    <li>unlock_interaction() 签名不变</li>
+  </ul></div>
+  <div class="cons"><h4>仅清理</h4><ul>
+    <li>删除 4 份重复 .gd 文件</li>
+    <li>删除 .uid 文件（Godot 重新生成）</li>
+  </ul></div>
+</div>
