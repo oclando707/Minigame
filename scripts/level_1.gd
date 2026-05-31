@@ -27,5 +27,7 @@ func _on_jack_interacted() -> void:
 func _on_modou_interacted() -> void:
 	DialogueManager.show_dialogue(
 		modou_lines,
-		$Player
+		$Player,
+		"res://scene/textboxB.tscn",
+		func(): $modou.unlock_interaction()
 	)
