@@ -1,0 +1,119 @@
+<h2>架构重构对比</h2>
+<p class="subtitle">当前 vs 目标：消除重复、统一交互系统</p>
+
+<div class="split">
+  <!-- 当前架构 -->
+  <div class="mockup">
+    <div class="mockup-header">当前架构（重构前）</div>
+    <div class="mockup-body" style="font-size: 0.85em; line-height: 1.6;">
+      <div style="background:#3a1f1f; border:1px solid #ff6b6b; border-radius:8px; padding:10px; margin-bottom:10px;">
+        <strong>❌ 问题：4份完全相同的代码</strong><br/>
+        <code>yiwu.gd</code> ≡ <code>picture.gd</code> ≡ <code>modou.gd</code> ≡ <code>jack.gd</code><br/>
+        <span style="color:#aaa;">每个都是 ~37行的 Area2D 副本</span>
+      </div>
+      <div style="margin-bottom:8px;">
+        <strong>📦 每个可互动物品（独立场景 + 脚本）</strong>
+      </div>
+      <div style="display:flex; gap:4px; flex-wrap:wrap; margin-bottom:10px;">
+        <span style="background:#444;padding:3px 8px;border-radius:4px;">yiwu.tscn ⟐ yiwu.gd</span>
+        <span style="background:#444;padding:3px 8px;border-radius:4px;">picture.tscn ⟐ picture.gd</span>
+        <span style="background:#444;padding:3px 8px;border-radius:4px;">modou.tscn ⟐ modou.gd</span>
+        <span style="background:#444;padding:3px 8px;border-radius:4px;">jack.tscn ⟐ jack.gd</span>
+      </div>
+      <div style="background:#3a1f1f; border:1px solid #ff6b6b; border-radius:8px; padding:10px; margin-bottom:10px;">
+        <strong>❌ 问题：radio_main.gd 使用不同模式</strong><br/>
+        <span style="color:#aaa;">无信号驱动、无 unlock_interaction()<br/>对话不可重复触发</span>
+      </div>
+      <div style="background:#3a1f1f; border:1px solid #ff6b6b; border-radius:8px; padding:10px;">
+        <strong>❌ 问题：对话引擎分散</strong><br/>
+        <code>level_1.gd</code> 和 <code>lv_1_background_a_2.gd</code><br/>
+        <span style="color:#aaa;">各自实现了自己的对话逻辑</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 目标架构 -->
+  <div class="mockup">
+    <div class="mockup-header">目标架构（重构后）</div>
+    <div class="mockup-body" style="font-size: 0.85em; line-height: 1.6;">
+      <div style="background:#1f3a1f; border:1px solid #6bff6b; border-radius:8px; padding:10px; margin-bottom:10px;">
+        <strong>✅ 一份通用交互组件</strong><br/>
+        <code>scripts/interactable.gd</code> — 单一文件<br/>
+        <span style="color:#aaa;">所有交互物品共用同一逻辑</span>
+      </div>
+      <div style="margin-bottom:8px;">
+        <strong>📦 场景仅定义外观，脚本共用</strong>
+      </div>
+      <div style="display:flex; gap:4px; flex-wrap:wrap; margin-bottom:10px;">
+        <span style="background:#2a4a2a;padding:3px 8px;border-radius:4px;">yiwu.tscn → interactable.gd</span>
+        <span style="background:#2a4a2a;padding:3px 8px;border-radius:4px;">picture.tscn → interactable.gd</span>
+        <span style="background:#2a4a2a;padding:3px 8px;border-radius:4px;">modou.tscn → interactable.gd</span>
+        <span style="background:#2a4a2a;padding:3px 8px;border-radius:4px;">jack.tscn → interactable.gd</span>
+        <span style="background:#2a4a2a;padding:3px 8px;border-radius:4px;">radio.tscn → interactable.gd</span>
+      </div>
+      <div style="background:#1f3a1f; border:1px solid #6bff6b; border-radius:8px; padding:10px; margin-bottom:10px;">
+        <strong>✅ 统一信号驱动交互</strong><br/>
+        <code>interacted</code> 信号 + <code>unlock_interaction()</code><br/>
+        <span style="color:#aaa;">所有物品统一行为，支持重复交互</span>
+      </div>
+      <div style="background:#1f3a1f; border:1px solid #6bff6b; border-radius:8px; padding:10px;">
+        <strong>✅ 统一对话管理器（AutoLoad）</strong><br/>
+        <code>scripts/dialogue_manager.gd</code><br/>
+        <span style="color:#aaa;">所有关卡共享同一个对话引擎</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>数据流：交互 → 对话</h3>
+  <div class="mockup">
+    <div class="mockup-body" style="font-size:0.9em; padding:15px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; text-align:center; flex-wrap:wrap;">
+        <div style="background:#2a4a6a; border-radius:8px; padding:12px; flex:1; min-width:120px;">
+          <div style="font-size:0.8em; color:#88aacc;">玩家按 F</div>
+          <div style="font-weight:bold;">Input</div>
+        </div>
+        <span style="font-size:1.5em; color:#888;">→</span>
+        <div style="background:#2a4a6a; border-radius:8px; padding:12px; flex:1; min-width:120px;">
+          <div style="font-size:0.8em; color:#88aacc;">interacted 信号</div>
+          <div style="font-weight:bold;">Interactable</div>
+          <div style="font-size:0.7em; color:#aaa;">(Area2D 通用组件)</div>
+        </div>
+        <span style="font-size:1.5em; color:#888;">→</span>
+        <div style="background:#2a4a6a; border-radius:8px; padding:12px; flex:1; min-width:120px;">
+          <div style="font-size:0.8em; color:#88aacc;">show_dialogue(array)</div>
+          <div style="font-weight:bold;">DialogueManager</div>
+          <div style="font-size:0.7em; color:#aaa;">(AutoLoad 全局)</div>
+        </div>
+        <span style="font-size:1.5em; color:#888;">→</span>
+        <div style="background:#2a4a6a; border-radius:8px; padding:12px; flex:1; min-width:120px;">
+          <div style="font-size:0.8em; color:#88aacc;">textbox 显示</div>
+          <div style="font-weight:bold;">UI</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>重构收益</h3>
+  <div style="display:flex; gap:12px; flex-wrap:wrap;">
+    <div style="flex:1; min-width:180px; background:#1a2a1a; border-radius:8px; padding:12px; text-align:center;">
+      <div style="font-size:2em;">~140 → ~50</div>
+      <div style="color:#6bff6b;">重复代码行数减少</div>
+    </div>
+    <div style="flex:1; min-width:180px; background:#1a2a1a; border-radius:8px; padding:12px; text-align:center;">
+      <div style="font-size:2em;">5 → 1</div>
+      <div style="color:#6bff6b;">交互脚本文件数</div>
+    </div>
+    <div style="flex:1; min-width:180px; background:#1a2a1a; border-radius:8px; padding:12px; text-align:center;">
+      <div style="font-size:2em;">2 → 1</div>
+      <div style="color:#6bff6b;">对话引擎实例</div>
+    </div>
+    <div style="flex:1; min-width:180px; background:#1a2a1a; border-radius:8px; padding:12px; text-align:center;">
+      <div style="font-size:2em;">100%</div>
+      <div style="color:#6bff6b;">交互行为一致性</div>
+    </div>
+  </div>
+</div>

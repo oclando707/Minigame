@@ -1,0 +1,134 @@
+<h2>Part 3: DialogueManager — 统一对话引擎</h2>
+<p class="subtitle">AutoLoad 全局单例，消除关卡中重复的对话逻辑</p>
+
+<div class="section">
+  <h3>当前问题</h3>
+  <div class="mockup">
+    <div class="mockup-body" style="font-size:0.85em; line-height:1.8;">
+      <div style="display:flex; gap:16px;">
+        <div style="flex:1; background:#2a1515; border:1px solid #ff6b6b; border-radius:6px; padding:10px;">
+          <strong>level_1.gd（杰克对话）</strong>
+          <div style="font-size:0.8em; color:#ff9999;">
+            · CanvasLayer 自己创建<br/>
+            · 自己加载 textboxA<br/>
+            · 自己管理 _current_line<br/>
+            · 自己实现 _input<br/>
+            · 自己实现 _close_dialog<br/>
+            · ~50 行对话逻辑
+          </div>
+        </div>
+        <div style="flex:1; background:#2a1515; border:1px solid #ff6b6b; border-radius:6px; padding:10px;">
+          <strong>lv_1_background_a_2.gd（遗物+简笔画）</strong>
+          <div style="font-size:0.8em; color:#ff9999;">
+            · CanvasLayer 自己创建<br/>
+            · 自己加载 textboxB<br/>
+            · 自己管理 _current_line<br/>
+            · 自己实现 _input<br/>
+            · 自己实现 _close_dialog<br/>
+            · ~50 行对话逻辑
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:12px; color:#ff9944;">⚠️ 两份代码 80% 相同，只是在 <code>textboxA</code> vs <code>textboxB</code> 上有差异</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>DialogueManager API</h3>
+  <div class="mockup">
+    <div class="mockup-body" style="font-size:0.85em; line-height:1.8; font-family:monospace;">
+      <span style="color:#888;"># scripts/dialogue_manager.gd (AutoLoad)</span><br/>
+      <span style="color:#ff9944;">extends</span> <span style="color:#88ccff;">Node</span><br/><br/>
+
+      <span style="color:#888;">## 显示对话。lines=字符串数组，textbox_scene=textboxA/textboxB</span><br/>
+      <span style="color:#ff9944;">func</span> <span style="color:#aaddff;">show_dialogue</span>(<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;lines: <span style="color:#88ccff;">Array[String]</span>,<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;player: <span style="color:#88ccff;">CharacterBody2D</span>,<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;textbox_scene: <span style="color:#88ccff;">String</span> = <span style="color:#aaddaa;">"res://scene/textboxB.tscn"</span>,<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;on_finished: <span style="color:#88ccff;">Callable</span> = <span style="color:#aaddaa;">Callable()</span><br/>
+      ) → <span style="color:#88ccff;">void</span><br/><br/>
+
+      <span style="color:#888;">## 当前是否正在显示对话</span><br/>
+      <span style="color:#ff9944;">var</span> is_active: <span style="color:#88ccff;">bool</span>  <span style="color:#888;"># 只读</span>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>与原代码的行为对照</h3>
+  <table style="width:100%; border-collapse:collapse; font-size:0.85em;">
+    <tr style="background:#1a1a2a;">
+      <th style="padding:8px;text-align:left;width:35%;">原行为</th>
+      <th style="padding:8px;text-align:left;">DialogueManager 保持</th>
+    </tr>
+    <tr>
+      <td style="padding:8px;">防止重复打开对话（检查 _dialog 是否为 null）</td>
+      <td style="padding:8px;color:#88cc88;">✅ is_active 守卫，重复调用直接 return</td>
+    </tr>
+    <tr>
+      <td style="padding:8px;">冻结玩家移动（set_movement_enabled(false)）</td>
+      <td style="padding:8px;color:#88cc88;">✅ 参数接收 player 引用，自动冻结/解冻</td>
+    </tr>
+    <tr>
+      <td style="padding:8px;">CanvasLayer + textbox 场景实例化</td>
+      <td style="padding:8px;color:#88cc88;">✅ 完全相同流程</td>
+    </tr>
+    <tr>
+      <td style="padding:8px;">隐藏 VBoxContainer（选项按钮）</td>
+      <td style="padding:8px;color:#88cc88;">✅ 自动检测并隐藏</td>
+    </tr>
+    <tr>
+      <td style="padding:8px;">按任意键推进文本/关闭</td>
+      <td style="padding:8px;color:#88cc88;">✅ 完全相同的 _input 逻辑</td>
+    </tr>
+    <tr>
+      <td style="padding:8px;">对话完成清理 CanvasLayer</td>
+      <td style="padding:8px;color:#88cc88;">✅ queue_free + 恢复玩家移动</td>
+    </tr>
+    <tr>
+      <td style="padding:8px;">对话完成后的回调</td>
+      <td style="padding:8px;color:#88ccff;">🆕 on_finished Callable（可选）</td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <h3>关卡脚本简化对比</h3>
+  <div class="split">
+    <div class="mockup">
+      <div class="mockup-header">原来 level_1.gd（~70行）</div>
+      <div class="mockup-body" style="font-size:0.75em; color:#ff9999; line-height:1.6;">
+        var _canvas, _dialog, _current_line<br/>
+        func _on_jack_interacted():<br/>
+        &nbsp;&nbsp;// 15行设置代码<br/>
+        func _show_current_line():<br/>
+        &nbsp;&nbsp;// 5行<br/>
+        func _input(event):<br/>
+        &nbsp;&nbsp;// 5行<br/>
+        func _close_dialog():<br/>
+        &nbsp;&nbsp;// 7行
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mockup-header">新的 level_1.gd（~25行）</div>
+      <div class="mockup-body" style="font-size:0.75em; color:#88cc88; line-height:1.6;">
+        @export var dialog_lines: Array[String] = [...]<br/><br/>
+        func _on_jack_interacted():<br/>
+        &nbsp;&nbsp;DialogueManager.show_dialogue(<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;dialog_lines,<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;$Player,<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;"res://scene/textboxA.tscn",<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;func(): $jack.visible = false<br/>
+        &nbsp;&nbsp;)
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <h3>textboxA vs textboxB 差异处理</h3>
+    <p style="color:#ccc;">原代码中唯一的区分点：<code>textboxA</code> 和 <code>textboxB</code> 是不同的 UI 资源。<br/>DialogueManager 通过 <strong>textbox_scene 参数</strong> 让调用方指定，不内置死路径。</p>
+  </div>
+</div>
