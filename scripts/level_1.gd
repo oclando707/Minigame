@@ -37,6 +37,17 @@ var modou_follower: Sprite2D = null
 ## 玩家是否在 earth 交互区域内
 var player_near_earth: bool = false
 
+## 玩家是否在 feixu 的检测范围内（ZoneB）
+var player_near_feixu: bool = false
+## 是否正在推动 feixu（长按 F 键过程中）
+var is_pushing: bool = false
+## F 键按住累计时长（秒）
+var push_hold_time: float = 0.0
+## feixu 是否已被推落（防止重复触发）
+var feixu_pushed: bool = false
+## 标记 kong 碰撞体是否已禁用
+var kong_disabled: bool = false
+
 
 ## =============================================================================
 ## 场景就绪
@@ -51,6 +62,9 @@ func _ready() -> void:
 
 	# 连接 earth 区域的进入/离开信号
 	_connect_earth_signals()
+
+	# 连接 feixu 的检测区域信号（ZoneB）
+	_connect_feixu_signals()
 
 	# 根据全局进度标记控制 ZoneB 中 tree 和 picture 的显隐
 	_apply_modou_flag()
@@ -84,14 +98,20 @@ func _update_modou_follower() -> void:
 ## 每帧处理
 ## =============================================================================
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	# 更新魔豆跟随位置
 	if modou_picked_up:
 		_update_modou_follower()
 
-	# 检测 earth 区域的 F 键交互：仅在玩家在 earth 区域内 AND 魔豆已拾取时触发
+	# ZoneA：earth 区域的 F 键交互（仅在玩家在 earth 区域内 AND 魔豆已拾取时触发）
 	if player_near_earth and modou_picked_up and Input.is_action_just_pressed("interact"):
 		_on_earth_interacted()
+
+	# ZoneB：feixu 推动逻辑
+	_process_feixu_push(delta)
+
+	# feixu 推落后：监测是否已跌落到 kong 区域并禁用碰撞
+	_check_kong_fall()
 
 
 ## =============================================================================
@@ -122,7 +142,6 @@ func _on_earth_exited(body: Node2D) -> void:
 
 
 ## 设置 earth 区域 TextureRect 的可见性
-## 仅在玩家携带魔豆进入该区域时显示 F 键提示
 func _set_earth_prompt(visible_prompt: bool) -> void:
 	var texture_rect := $ZoneA/earth_area/TextureRect as TextureRect
 	if texture_rect:
@@ -133,11 +152,7 @@ func _set_earth_prompt(visible_prompt: bool) -> void:
 ## earth 交互：玩家携带魔豆按 F 键种下魔豆
 ## =============================================================================
 
-## 对话结束后执行种植逻辑：
-## - 隐藏跟随的魔豆
-## - 设置全局标记 modou_planted，供 ZoneB 中 tree/picture 显隐判断
 func _on_earth_interacted() -> void:
-	# 隐藏 earth 区域的 F 键提示
 	_set_earth_prompt(false)
 
 	DialogueManager.show_dialogue(
@@ -150,36 +165,192 @@ func _on_earth_interacted() -> void:
 			if modou_follower:
 				modou_follower.visible = false
 			# 设置全局进度标记：魔豆已种植
-			# _apply_modou_flag 读取此标记控制 ZoneB 中 tree 和 picture 的显隐
 			DialogueManager.flags["modou_planted"] = true
 	)
+
+
+## =============================================================================
+## feixu 信号连接（ZoneB）
+## =============================================================================
+
+## 连接 feixu 子节点的 detect_area 进入/离开信号
+## feixu 是 RigidBody2D，detect_area 是其子节点 Area2D
+func _connect_feixu_signals() -> void:
+	var feixu := $ZoneB/lv_1_background_a_2/prop/feixu as RigidBody2D
+	if not feixu:
+		push_error("_connect_feixu_signals: feixu 节点未找到")
+		return
+
+	var detect_area := feixu.get_node_or_null("detect_area") as Area2D
+	if not detect_area:
+		push_error("_connect_feixu_signals: detect_area 节点未找到，请用 Godot 编辑器打开 feixu.tscn 确认 detect_area 子节点存在")
+		return
+
+	# 监听玩家进入/离开 feixu 检测范围
+	detect_area.body_entered.connect(_on_feixu_detect_entered)
+	detect_area.body_exited.connect(_on_feixu_detect_exited)
+
+
+## 玩家进入 feixu 的检测范围：显示 F 键推动提示
+func _on_feixu_detect_entered(body: Node2D) -> void:
+	if body is CharacterBody2D:
+		player_near_feixu = true
+		if not feixu_pushed:
+			_set_feixu_prompt(true)
+
+
+## 玩家离开 feixu 的检测范围：隐藏 F 键提示，取消正在进行的推动
+func _on_feixu_detect_exited(body: Node2D) -> void:
+	if body is CharacterBody2D:
+		player_near_feixu = false
+		_set_feixu_prompt(false)
+		# 玩家离开检测区域时取消推动
+		_cancel_push()
+
+
+## 设置 feixu 的 F 键提示可见性
+func _set_feixu_prompt(visible_prompt: bool) -> void:
+	var feixu := $ZoneB/lv_1_background_a_2/prop/feixu
+	if not feixu:
+		return
+	var texture_rect := feixu.get_node_or_null("detect_area/TextureRect") as TextureRect
+	if texture_rect:
+		texture_rect.visible = visible_prompt
+
+
+## =============================================================================
+## feixu 推动逻辑（ZoneB）
+## =============================================================================
+
+## 每帧处理 feixu 的推动交互
+## 按住 F 键累计时长，达到 1 秒后推动 feixu 向左跌落
+## 提前松手则取消，不影响 feixu 位置
+func _process_feixu_push(delta: float) -> void:
+	# 对话中或 feixu 已推落时不做处理
+	if DialogueManager.is_active or feixu_pushed:
+		return
+
+	if is_pushing:
+		if Input.is_action_pressed("interact"):
+			# 按住 F 键，累计时长
+			push_hold_time += delta
+			if push_hold_time >= 1.0:
+				# 达到 1 秒阈值：推动成功
+				_complete_push()
+		else:
+			# 提前松手：推动取消
+			_cancel_push()
+	else:
+		# 未在推动状态：检测 F 键按下以开始推动
+		# 仅在玩家处于 feixu 检测范围内且当前在 ZoneB 时触发
+		if player_near_feixu and $ZoneB.visible and Input.is_action_just_pressed("interact"):
+			_start_push()
+
+
+## 开始推动：冻结玩家移动，切换 push 动画并水平翻转
+func _start_push() -> void:
+	is_pushing = true
+	push_hold_time = 0.0
+
+	# 冻结玩家正常移动
+	$Player.set_movement_enabled(false)
+	# 切换到推动动画（set_movement_enabled 会设为 idle，在此覆盖）
+	$Player/AnimationPlayer.current_animation = "push"
+	# 水平翻转 push 动画：玩家面朝左侧推动 feixu
+	$Player/cha.flip_h = true
+
+	_set_feixu_prompt(false)
+
+
+## 推动成功：唤醒 feixu RigidBody2D 并向左上方施加冲量
+## feixu 从 paltfarm 平台跌落后与 Terrain 的 kong 碰撞体接触
+func _complete_push() -> void:
+	is_pushing = false
+	push_hold_time = 0.0
+	feixu_pushed = true
+
+	# 恢复玩家正常移动和动画
+	$Player.set_movement_enabled(true)
+
+	# 唤醒并推动 feixu RigidBody2D
+	var feixu := $ZoneB/lv_1_background_a_2/prop/feixu as RigidBody2D
+	if not feixu:
+		return
+	# can_sleep=false 已在 .tscn 中设置，保证冲量持续生效
+	# 向左上方施加冲量使其飞出 paltfarm 平台
+	feixu.apply_central_impulse(Vector2(-300, -150))
+
+
+## 推动取消：玩家松手太早，feixu 不动，恢复玩家状态
+func _cancel_push() -> void:
+	if not is_pushing:
+		return
+	is_pushing = false
+	push_hold_time = 0.0
+
+	# 恢复玩家正常移动和动画
+	$Player.set_movement_enabled(true)
+
+	# 如果玩家仍在检测范围内，重新显示 F 键提示
+	if player_near_feixu and not feixu_pushed:
+		_set_feixu_prompt(true)
+
+
+## =============================================================================
+## kong 碰撞体禁用：feixu 推落后，每帧检查其 Y 坐标
+## =============================================================================
+
+## feixu 推落后持续监测其位置：一旦跌落到 kong 区域高度以下（y > 750），
+## 禁用 Terrain 中名为 kong 的 CollisionShape2D，玩家可自由通过
+func _check_kong_fall() -> void:
+	if not feixu_pushed or kong_disabled:
+		return
+
+	var feixu := $ZoneB/lv_1_background_a_2/prop/feixu as RigidBody2D
+	if not feixu:
+		return
+
+	# feixu 落到平台下方时（global_position.y > 750），kong 碰撞体消失
+	if feixu.global_position.y > 750:
+		_disable_kong()
+
+
+## 禁用 lv_1_background_a_2 中 Terrain/Terrain 下的 kong 碰撞体
+## 禁用后玩家可以自由通过该区域
+func _disable_kong() -> void:
+	var terrain_sprite := $ZoneB/lv_1_background_a_2/Terrain as Sprite2D
+	if not terrain_sprite:
+		return
+	var terrain_body := terrain_sprite.get_node_or_null("Terrain") as StaticBody2D
+	if not terrain_body:
+		return
+	var kong := terrain_body.get_node_or_null("kong") as CollisionShape2D
+	if kong:
+		kong.disabled = true
+		kong_disabled = true
 
 
 ## =============================================================================
 ## 场景切换（Tab 键）：在同一地点的两个时间之间切换
 ## =============================================================================
 
-## 按 Tab 键切换 ZoneA ↔ ZoneB
-## ZoneA 和 ZoneB 是同一地点不同时间——切换时只改变可见性和物理状态
 func _input(event: InputEvent) -> void:
 	if DialogueManager.is_active:
 		return
+	# 推动过程中禁止切换场景
+	if is_pushing:
+		return
 	if event.is_action_pressed("switch"):
 		if $ZoneA.visible:
-			# 当前在 ZoneA（现在）→ 隐藏 ZoneA，显示 ZoneB（另一时间）
 			_set_zone_active($ZoneA, false)
 			_set_zone_active($ZoneB, true)
-			# 切换后重新检查进度标记，决定 tree 和 picture 是否可见
 			_apply_modou_flag()
 		else:
-			# 当前在 ZoneB（另一时间）→ 隐藏 ZoneB，显示 ZoneA（现在）
 			_set_zone_active($ZoneB, false)
 			_set_zone_active($ZoneA, true)
 
 
 ## 设置区域的激活状态（可见性 + 物理碰撞）
-## active=true  → 显示节点，启用所有物理体
-## active=false → 隐藏节点，禁用所有物理体（避免与显示中的另一区域碰撞重叠）
 func _set_zone_active(zone: Node, active: bool) -> void:
 	zone.visible = active
 	_set_physics_recursive(zone, active)
@@ -187,21 +358,18 @@ func _set_zone_active(zone: Node, active: bool) -> void:
 
 ## 递归遍历节点子树，按类型启用/禁用物理交互
 ## 隐藏区域中的 StaticBody2D 碰撞层清零，Area2D 关闭检测
-## 跳过 tree 节点：tree 的碰撞由 _apply_modou_flag 独立管理
+## 跳过 tree / feixu 节点：由各自的逻辑独立管理物理状态
 func _set_physics_recursive(node: Node, enabled: bool) -> void:
-	# tree 节点不在此处理，由 _apply_modou_flag 控制其物理状态
-	if node.name == "tree":
+	# tree / feixu 节点不在此处理，由各自的逻辑独立管理物理状态
+	if node.name == "tree" or node.name == "feixu":
 		for child in node.get_children():
 			_set_physics_recursive(child, enabled)
 		return
 
 	if node is Area2D:
-		# Area2D：控制 monitoring（检测其他物体）和 monitorable（被其他物体检测）
 		node.monitoring = enabled
 		node.monitorable = enabled
 	elif node is StaticBody2D:
-		# StaticBody2D：通过碰撞层控制是否参与物理碰撞
-		# 禁用时将全部碰撞层清零；启用时恢复默认层（层 1-4）
 		for i in range(1, 5):
 			node.set_collision_layer_value(i, enabled)
 		node.set_collision_mask_value(1, enabled)
@@ -219,21 +387,18 @@ func _set_physics_recursive(node: Node, enabled: bool) -> void:
 ## 未种下魔豆时 tree 完全不可见、不可碰撞，玩家可自由通过
 func _apply_modou_flag() -> void:
 	var modou_done: bool = DialogueManager.flags.get("modou_planted", false)
-	var tree := $ZoneB/lv_1_background_a_2/tree
+	var tree := $ZoneB/lv_1_background_a_2/prop/tree
 
 	# picture：进度控制显隐
 	$ZoneB/lv_1_background_a_2/prop/picture.visible = modou_done
 
 	# tree：进度控制显隐 + 碰撞
-	# tree 是 StaticBody2D，需要同时关闭 visible 和碰撞层
 	tree.visible = modou_done
 	if modou_done:
-		# 魔豆已种下：启用 tree 的碰撞层
 		for i in range(1, 5):
 			tree.set_collision_layer_value(i, true)
 		tree.set_collision_mask_value(1, true)
 	else:
-		# 魔豆未种下：tree 完全不可见、不可碰撞
 		for i in range(1, 32):
 			tree.set_collision_layer_value(i, false)
 		tree.set_collision_mask_value(1, false)
@@ -255,22 +420,17 @@ func _on_jack_interacted() -> void:
 
 ## 魔豆对话：对话结束后魔豆被拾取，跟随玩家身后
 ## 原始位置的魔豆消失，跟随精灵出现
-## 同时检查玩家是否已在 earth 区域内：若在则显示 earth 交互提示
 func _on_modou_interacted() -> void:
 	DialogueManager.show_dialogue(
 		modou_lines,
 		$Player,
 		"res://scene/textboxB.tscn",
 		func():
-			# 对话结束：拾取魔豆
-			# 隐藏原本位置上的魔豆
 			$ZoneA/modou.visible = false
-			# 显示跟随精灵，开始跟随玩家身后
 			modou_picked_up = true
 			if modou_follower:
 				modou_follower.visible = true
 				_update_modou_follower()
-			# 如果玩家已经站在 earth 区域内，立即显示交互提示
 			if player_near_earth:
 				_set_earth_prompt(true)
 	)

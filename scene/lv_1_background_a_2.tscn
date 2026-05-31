@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bsbg08hy56evs" path="res://scene/tree.tscn" id="8_x8o5p"]
 [ext_resource type="PackedScene" uid="uid://cdgiamb6d7r2q" path="res://scene/yiwu.tscn" id="9_00iwe"]
 [ext_resource type="PackedScene" uid="uid://bh3m3kkalmvm8" path="res://scene/picture.tscn" id="9_x8o5p"]
+[ext_resource type="PackedScene" uid="uid://d3t5c07fp8uri" path="res://scene/feixu.tscn" id="11_ibisq"]
 [ext_resource type="PackedScene" uid="uid://c0w21kotu2n3p" path="res://scene/paltfarm.tscn" id="11_vtxa7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00iwe"]
@@ -43,27 +44,35 @@ texture = ExtResource("3_xfd5k")
 [node name="front" type="Sprite2D" parent="background2" unique_id=1546416174]
 texture = ExtResource("4_i5iu0")
 
-[node name="earth" type="Sprite2D" parent="." unique_id=711360020]
+[node name="Terrain" type="Sprite2D" parent="." unique_id=711360020]
 position = Vector2(959, 542)
 texture = ExtResource("5_hdh8v")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="earth" unique_id=1733391753]
+[node name="Terrain" type="StaticBody2D" parent="Terrain" unique_id=1733391753]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="earth/StaticBody2D" unique_id=1335252480]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Terrain" unique_id=1335252480]
 visibility_layer = 15
 position = Vector2(-574.0625, 486)
 shape = SubResource("RectangleShape2D_00iwe")
 
-[node name="kong" type="CollisionShape2D" parent="earth/StaticBody2D" unique_id=798235479]
+[node name="kong" type="CollisionShape2D" parent="Terrain/Terrain" unique_id=798235479]
 position = Vector2(-41, 510)
 shape = SubResource("RectangleShape2D_vtxa7")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="earth/StaticBody2D" unique_id=188184072]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Terrain/Terrain" unique_id=188184072]
 position = Vector2(534.25, 480)
 shape = SubResource("RectangleShape2D_ibisq")
 
-[node name="tree" parent="." unique_id=1163109383 instance=ExtResource("8_x8o5p")]
-position = Vector2(1651, 446)
+[node name="border" type="StaticBody2D" parent="Terrain" unique_id=2014448920]
+position = Vector2(-959, -542)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/border" unique_id=1243561224]
+position = Vector2(2017, 535)
+shape = SubResource("RectangleShape2D_ewfiv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Terrain/border" unique_id=1254956507]
+position = Vector2(-27, 535)
+shape = SubResource("RectangleShape2D_csci6")
 
 [node name="prop" type="Node2D" parent="." unique_id=869857541]
 
@@ -73,18 +82,17 @@ position = Vector2(1808, 643)
 [node name="yiwu" parent="prop" unique_id=386279027 instance=ExtResource("9_00iwe")]
 position = Vector2(283, 808)
 
+[node name="tree" parent="prop" unique_id=1163109383 instance=ExtResource("8_x8o5p")]
+position = Vector2(1651, 446)
+
+[node name="feixu" parent="prop" unique_id=360874373 instance=ExtResource("11_ibisq")]
+position = Vector2(1092, 405)
+collision_mask = 1
+gravity_scale = 1.0
+max_contacts_reported = 0
+
 [node name="paltfarm" parent="." unique_id=1683000290 instance=ExtResource("11_vtxa7")]
 position = Vector2(1296, 455)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2014448920]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1243561224]
-position = Vector2(2017, 535)
-shape = SubResource("RectangleShape2D_ewfiv")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1254956507]
-position = Vector2(-27, 535)
-shape = SubResource("RectangleShape2D_csci6")
 
 [connection signal="interacted" from="prop/picture" to="." method="_on_picture_interacted"]
 [connection signal="interacted" from="prop/yiwu" to="." method="_on_yiwu_interacted"]
