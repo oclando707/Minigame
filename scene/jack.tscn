@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c3vxqds2ch1fe"]
+
+[ext_resource type="Texture2D" uid="uid://c57uy6bfl1dso" path="res://minigame_assets/Level_01/Level_01_A1/jack&dog/jack and dog.png" id="1_4yfdg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c7sxc"]
+radius = 552.5215
+
+[node name="Area2D" type="Area2D" unique_id=1083977912]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1004051735]
+texture = ExtResource("1_4yfdg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1996089424]
+position = Vector2(104, -24)
+shape = SubResource("CircleShape2D_c7sxc")

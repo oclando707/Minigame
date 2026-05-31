@@ -2,10 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://de1dlom2xp3ou" path="res://scene/lv_1_background.tscn" id="1_rpurj"]
 [ext_resource type="PackedScene" uid="uid://b4467pwswqb80" path="res://scene/player.tscn" id="2_3flxk"]
+[ext_resource type="PackedScene" uid="uid://c3vxqds2ch1fe" path="res://scene/jack.tscn" id="3_3flxk"]
 
 [node name="level1" type="Node2D" unique_id=32838100]
 
 [node name="LV1-background" parent="." unique_id=748662892 instance=ExtResource("1_rpurj")]
 
+[node name="jack" parent="." unique_id=1083977912 instance=ExtResource("3_3flxk")]
+position = Vector2(420, 846)
+scale = Vector2(0.3, 0.3)
+
 [node name="Player" parent="." unique_id=916301139 instance=ExtResource("2_3flxk")]
-position = Vector2(360, 696)
+position = Vector2(108, 278)
