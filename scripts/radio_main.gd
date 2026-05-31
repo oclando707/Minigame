@@ -1,32 +1,18 @@
-extends Area2D
+extends Node
 
-@onready var music := $MusicPlayer
-var is_playing := true
-var can_interact := false
+@onready var _music: AudioStreamPlayer2D = $"../MusicPlayer"
+var is_playing: bool = true
 
-func _ready():
-	music.play()
 
-func _process(_delta):
-	if can_interact and Input.is_action_just_pressed("interact"):
-		show_dialogue()
+func _ready() -> void:
+	_music.play()
 
-func show_dialogue():
-	var textbox = preload("res://scene/textboxB.tscn").instantiate()
 
+## 由关卡脚本在接收到 interacted 信号后调用
+func toggle_music() -> void:
 	if is_playing:
-		textbox.get_node("text").text = "这台收音机正大声放着广场舞音乐……\n【按F键关闭】"
-		music.stop()
+		_music.stop()
 		is_playing = false
 	else:
-		textbox.get_node("text").text = "收音机安静了。"
-
-	get_tree().current_scene.add_child(textbox)
-
-func _on_interact_zone_body_entered(body):
-	if body.name == "Player":
-		can_interact = true
-
-func _on_interact_zone_body_exited(body):
-	if body.name == "Player":
-		can_interact = false
+		_music.play()
+		is_playing = true

@@ -1,13 +1,11 @@
 [gd_scene format=3 uid="uid://07may5kyht6c"]
 
 [ext_resource type="Texture2D" uid="uid://bhr16rj4pyeir" path="res://minigame_assets/Level_01/Level_01_A1/播音机.png" id="1_6yaaa"]
-[ext_resource type="Script" uid="uid://dd3c7058a2sot" path="res://scripts/radio_main.gd" id="3_jddx7"]
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="3_jddx7"]
+[ext_resource type="Script" path="res://scripts/radio_main.gd" id="4_radio"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3dfu"]
 size = Vector2(245.5, 181.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_osh7q"]
-size = Vector2(542.5, 349)
 
 [node name="Radio" type="Area2D" unique_id=1110167217]
 script = ExtResource("3_jddx7")
@@ -26,11 +24,5 @@ shape = SubResource("RectangleShape2D_a3dfu")
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1753036396]
 
-[node name="InteractZone" type="Area2D" parent="." unique_id=235233509]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractZone" unique_id=1070364584]
-position = Vector2(740, 741)
-shape = SubResource("RectangleShape2D_osh7q")
-
-[connection signal="body_entered" from="InteractZone" to="." method="_on_interact_zone_body_entered"]
-[connection signal="body_exited" from="InteractZone" to="." method="_on_interact_zone_body_exited"]
+[node name="MusicController" type="Node" parent="." unique_id=3017592849]
+script = ExtResource("4_radio")
