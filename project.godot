@@ -67,3 +67,7 @@ interact={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+
+[autoload]
+
+DialogueManager="*res://scripts/dialogue_manager.gd"
