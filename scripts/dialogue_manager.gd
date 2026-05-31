@@ -3,6 +3,10 @@ extends Node
 ## 当前是否正在显示对话
 var is_active: bool = false
 
+## 游戏进度标记：跨场景共享状态，用于控制节点显隐等进度相关逻辑
+## 例如 modou_interacted → 与魔豆对话后解锁 lv_1_background_a_2 的 tree 和 picture
+var flags: Dictionary = {}
+
 var _canvas: CanvasLayer = null
 var _dialog: Control = null
 var _current_lines: Array[String] = []

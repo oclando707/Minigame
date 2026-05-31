@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bsbg08hy56evs"]
+
+[ext_resource type="Texture2D" uid="uid://ba61mk7br8eks" path="res://level1asset/大树2.png" id="1_dcgk5"]
+
+[node name="tree" type="StaticBody2D" unique_id=1163109383]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=384407425]
+texture = ExtResource("1_dcgk5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1968240854]
+polygon = PackedVector2Array(-161, 540, 278, 539, 277, -333, 240, -281, 245, 67, 121, 69, 247, 116, 243, 221, 216, 224, 188, 255, 60, 265, 164, 277, 237, 253, 226, 389, 186, 384, 82, 386, -6, 379, -42, 375, 37, 409, 136, 418, 211, 435, 152, 490, 59, 507, -124, 508)
