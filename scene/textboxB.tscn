@@ -75,8 +75,28 @@ texture_normal = ExtResource("4_vppn7")
 texture_pressed = ExtResource("5_vu1uo")
 texture_hover = ExtResource("5_vu1uo")
 
+[node name="xuanxiang1" type="Label" parent="VBoxContainer/button1" unique_id=1172959733]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 40.0
+offset_right = 96.0
+offset_bottom = 73.0
+theme_override_fonts/font = ExtResource("3_su64o")
+theme_override_font_sizes/font_size = 32
+text = "11"
+
 [node name="button2" type="TextureButton" parent="VBoxContainer" unique_id=1915514378]
 layout_mode = 2
 texture_normal = ExtResource("4_vppn7")
 texture_pressed = SubResource("CompressedTexture2D_b7rwb")
 texture_hover = ExtResource("5_vu1uo")
+
+[node name="xuanxiang2" type="Label" parent="VBoxContainer/button2" unique_id=313190838]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 39.0
+offset_right = 96.0
+offset_bottom = 72.0
+theme_override_fonts/font = ExtResource("3_su64o")
+theme_override_font_sizes/font_size = 32
+text = "22"

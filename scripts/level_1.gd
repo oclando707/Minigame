@@ -25,6 +25,12 @@ extends Node2D
 	"把魔豆埋进土里。也许未来会长出什么……"
 ]
 
+## niupixian 分支对话文本（ZoneA 场景中）
+## 对话结束后弹出 "查看" / "不查看" 两个选项
+@export var niupixian_lines: Array[String] = [
+	"墙上贴着一张牛皮癣广告。"
+]
+
 
 ## =============================================================================
 ## 状态变量
@@ -47,6 +53,8 @@ var push_hold_time: float = 0.0
 var feixu_pushed: bool = false
 ## 标记 kong 碰撞体是否已禁用
 var kong_disabled: bool = false
+## 标记 dixiashi 是否已被 feixu 撞击并切换为损坏状态
+var dixiashi_toggled: bool = false
 
 
 ## =============================================================================
@@ -297,22 +305,24 @@ func _cancel_push() -> void:
 
 
 ## =============================================================================
-## kong 碰撞体禁用：feixu 推落后，每帧检查其 Y 坐标
+## feixu 推落后监测：kong 碰撞体 + dixiashi 碰撞切换
 ## =============================================================================
 
-## feixu 推落后持续监测其位置：一旦跌落到 kong 区域高度以下（y > 750），
-## 禁用 Terrain 中名为 kong 的 CollisionShape2D，玩家可自由通过
+## feixu 推落后持续监测：
+## - 跌落到 kong 区域高度以下 → 禁用 kong 碰撞体
+## - 碰到 dixiashi → 切换 dixiashi 的精灵和碰撞体（完好→损坏）
 func _check_kong_fall() -> void:
-	if not feixu_pushed or kong_disabled:
-		return
-
 	var feixu := $ZoneB/lv_1_background_a_2/prop/feixu as RigidBody2D
 	if not feixu:
 		return
 
-	# feixu 落到平台下方时（global_position.y > 750），kong 碰撞体消失
-	if feixu.global_position.y > 750:
+	# kong 碰撞体：feixu 落到平台下方时禁用
+	if feixu_pushed and not kong_disabled and feixu.global_position.y > 750:
 		_disable_kong()
+
+	# dixiashi 碰撞切换：feixu 与 dixiashi 接触后切换精灵和碰撞体
+	if feixu_pushed and not dixiashi_toggled:
+		_check_dixiashi_hit(feixu)
 
 
 ## 禁用 lv_1_background_a_2 中 Terrain/Terrain 下的 kong 碰撞体
@@ -328,6 +338,28 @@ func _disable_kong() -> void:
 	if kong:
 		kong.disabled = true
 		kong_disabled = true
+
+
+## 检测 feixu 是否碰到 dixiashi（每帧距离检测）
+## feixu 推落后与 dixiashi 距离 < 500px 时触发切换
+func _check_dixiashi_hit(feixu: RigidBody2D) -> void:
+	var dixiashi := $ZoneB/lv_1_background_a_2/prop/dixiashi as StaticBody2D
+	if not dixiashi:
+		return
+
+	var dist := feixu.global_position.distance_to(dixiashi.global_position)
+	if dist < 500.0:
+		_toggle_dixiashi(dixiashi)
+
+
+## 切换 dixiashi 精灵和碰撞体：完好(hao/hao2) → 损坏(huai/huai2/huai3)
+func _toggle_dixiashi(di: StaticBody2D) -> void:
+	dixiashi_toggled = true
+	di.get_node("hao").visible = false
+	di.get_node("huai").visible = true
+	(di.get_node("hao2") as CollisionPolygon2D).disabled = true
+	(di.get_node("huai2") as CollisionPolygon2D).disabled = false
+	(di.get_node("huai3") as CollisionPolygon2D).disabled = false
 
 
 ## =============================================================================
@@ -433,4 +465,22 @@ func _on_modou_interacted() -> void:
 				_update_modou_follower()
 			if player_near_earth:
 				_set_earth_prompt(true)
+	)
+
+
+## niupixian 分支对话交互：对话结束后弹出 "查看" / "不查看" 选项
+## - "查看" → 显示 niupixiantanchaung 弹窗，点击叉号关闭
+## - "不查看" → 直接结束对话
+## 对话结束后按 F 仍可再次与 niupixian 交互
+func _on_niupixian_interacted() -> void:
+	DialogueManager.show_branching_dialogue(
+		niupixian_lines,
+		$Player,
+		"res://scene/textboxB.tscn",
+		"查看",
+		"不查看",
+		"res://scene/niupixiantanchaung.tscn",
+		Callable(),
+		Callable(),
+		func(): $"ZoneA/LV1-background/niupixian".unlock_interaction()
 	)

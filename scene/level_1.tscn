@@ -41,7 +41,6 @@ offset_bottom = -290.0
 texture = ExtResource("7_fkey")
 
 [node name="ZoneB" type="Node2D" parent="." unique_id=878857716]
-visible = false
 
 [node name="lv_1_background_a_2" parent="ZoneB" unique_id=1177787390 instance=ExtResource("6_zoneb")]
 
@@ -50,3 +49,4 @@ position = Vector2(108, 278)
 
 [connection signal="interacted" from="ZoneA/jack" to="." method="_on_jack_interacted"]
 [connection signal="interacted" from="ZoneA/modou" to="." method="_on_modou_interacted"]
+[connection signal="interacted" from="ZoneA/LV1-background/niupixian" to="." method="_on_niupixian_interacted"]

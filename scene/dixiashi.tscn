@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c1523b7c2yelv"]
+
+[ext_resource type="Texture2D" uid="uid://cjmvptxbofq8r" path="res://level1asset/地下室/aa.png" id="1_08e4w"]
+[ext_resource type="Texture2D" uid="uid://b760jrnx1j1lc" path="res://level1asset/地下室/bb.png" id="2_iuf13"]
+
+[node name="dixiashi" type="StaticBody2D" unique_id=1771062512]
+scale = Vector2(0.8, 0.8)
+
+[node name="hao" type="Sprite2D" parent="." unique_id=1005181824]
+texture = ExtResource("1_08e4w")
+
+[node name="huai" type="Sprite2D" parent="." unique_id=1667931662]
+visible = false
+texture = ExtResource("2_iuf13")
+
+[node name="hao2" type="CollisionPolygon2D" parent="." unique_id=445351765]
+visible = false
+polygon = PackedVector2Array(-532.49994, 163.74998, 534.99994, 159.99998, 337.49997, -98.74999, 283.74997, -68.74999, 307.49997, 8.749999, 11.249999, 24.999998, -21.249998, -68.74999, -91.24999, -73.74999, -91.24999, -16.249998, -134.99998, -32.499996, -151.24998, -94.99999, -197.49998, -58.749996, -241.24997, -168.74998, -242.49997, -49.999996, -287.49997, -131.24998)
+
+[node name="huai2" type="CollisionPolygon2D" parent="." unique_id=2028171625]
+polygon = PackedVector2Array(-529.99994, 161.24998, -64.99999, 163.74998, -82.49999, -81.24999, -83.74999, -81.24999, -81.24999, -13.749999, -133.74998, -34.999996, -149.99998, -89.99999, -197.49998, -48.749996, -238.74998, -167.49998, -247.49997, -58.749996, -291.24997, -131.24998)
+disabled = true
+
+[node name="huai3" type="CollisionPolygon2D" parent="." unique_id=2054703782]
+polygon = PackedVector2Array(308.74997, -87.49999, 286.24997, 161.24998, 543.74994, 161.24998, 367.49997, -89.99999, 308.74997, -93.74999)
+disabled = true

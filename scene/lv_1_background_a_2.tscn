@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bsbg08hy56evs" path="res://scene/tree.tscn" id="8_x8o5p"]
 [ext_resource type="PackedScene" uid="uid://cdgiamb6d7r2q" path="res://scene/yiwu.tscn" id="9_00iwe"]
 [ext_resource type="PackedScene" uid="uid://bh3m3kkalmvm8" path="res://scene/picture.tscn" id="9_x8o5p"]
+[ext_resource type="PackedScene" uid="uid://c1523b7c2yelv" path="res://scene/dixiashi.tscn" id="11_ewfiv"]
 [ext_resource type="PackedScene" uid="uid://d3t5c07fp8uri" path="res://scene/feixu.tscn" id="11_ibisq"]
 [ext_resource type="PackedScene" uid="uid://c0w21kotu2n3p" path="res://scene/paltfarm.tscn" id="11_vtxa7"]
 
@@ -80,16 +81,19 @@ shape = SubResource("RectangleShape2D_csci6")
 position = Vector2(1808, 643)
 
 [node name="yiwu" parent="prop" unique_id=386279027 instance=ExtResource("9_00iwe")]
-position = Vector2(283, 808)
+position = Vector2(156, 804)
 
 [node name="tree" parent="prop" unique_id=1163109383 instance=ExtResource("8_x8o5p")]
 position = Vector2(1651, 446)
 
 [node name="feixu" parent="prop" unique_id=360874373 instance=ExtResource("11_ibisq")]
-position = Vector2(1092, 405)
+position = Vector2(1091, 420)
 collision_mask = 1
 gravity_scale = 1.0
 max_contacts_reported = 0
+
+[node name="dixiashi" parent="prop" unique_id=37771507 instance=ExtResource("11_ewfiv")]
+position = Vector2(790, 833)
 
 [node name="paltfarm" parent="." unique_id=1683000290 instance=ExtResource("11_vtxa7")]
 position = Vector2(1296, 455)

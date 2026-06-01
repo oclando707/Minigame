@@ -7,37 +7,29 @@
 size = Vector2(651.25, 340.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_detect"]
-size = Vector2(400.0, 300.0)
+size = Vector2(400, 300)
 
-[node name="feixu" type="RigidBody2D"]
-## 增加质量和重力，让 feixu 推动距离变短、更快落地
-mass = 50.0
-gravity_scale = 3.0
-## 碰撞层：可互动物品层(4)，与地形(1)和玩家(2)碰撞
-collision_layer = 4
+[node name="feixu" type="RigidBody2D" unique_id=1996942253]
 collision_mask = 3
-## contact_monitor 必须开启，body_entered 信号才会触发
-contact_monitor = true
+gravity_scale = 3.0
 max_contacts_reported = 1
-## 关闭自动休眠：确保冲量始终生效
-can_sleep = false
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1977548543]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_q54xm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-6.375, 19.375)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1668500805]
+position = Vector2(-3, 11)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_body")
 
-[node name="detect_area" type="Area2D" parent="."]
+[node name="detect_area" type="Area2D" parent="." unique_id=162876129]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_area" unique_id=610419484]
 position = Vector2(200, -150)
 shape = SubResource("RectangleShape2D_detect")
 
-[node name="TextureRect" type="TextureRect" parent="detect_area"]
+[node name="TextureRect" type="TextureRect" parent="detect_area" unique_id=1284330969]
 visible = false
 offset_left = -50.0
 offset_top = -200.0
