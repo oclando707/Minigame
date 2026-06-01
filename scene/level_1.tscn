@@ -49,4 +49,3 @@ position = Vector2(108, 278)
 
 [connection signal="interacted" from="ZoneA/jack" to="." method="_on_jack_interacted"]
 [connection signal="interacted" from="ZoneA/modou" to="." method="_on_modou_interacted"]
-[connection signal="interacted" from="ZoneA/LV1-background/niupixian" to="." method="_on_niupixian_interacted"]

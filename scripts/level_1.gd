@@ -183,6 +183,7 @@ func _on_earth_interacted() -> void:
 
 ## 连接 feixu 子节点的 detect_area 进入/离开信号
 ## feixu 是 RigidBody2D，detect_area 是其子节点 Area2D
+## 同时连接 feixu 的 body_entered 信号用于检测碰撞（dixiashi 等）
 func _connect_feixu_signals() -> void:
 	var feixu := $ZoneB/lv_1_background_a_2/prop/feixu as RigidBody2D
 	if not feixu:
@@ -197,6 +198,9 @@ func _connect_feixu_signals() -> void:
 	# 监听玩家进入/离开 feixu 检测范围
 	detect_area.body_entered.connect(_on_feixu_detect_entered)
 	detect_area.body_exited.connect(_on_feixu_detect_exited)
+
+	# 监听 feixu 碰撞：用于检测 feixu 碰到 dixiashi 后切换精灵/碰撞体
+	feixu.body_entered.connect(_on_feixu_body_collided)
 
 
 ## 玩家进入 feixu 的检测范围：显示 F 键推动提示
@@ -320,9 +324,7 @@ func _check_kong_fall() -> void:
 	if feixu_pushed and not kong_disabled and feixu.global_position.y > 750:
 		_disable_kong()
 
-	# dixiashi 碰撞切换：feixu 与 dixiashi 接触后切换精灵和碰撞体
-	if feixu_pushed and not dixiashi_toggled:
-		_check_dixiashi_hit(feixu)
+	# dixiashi 碰撞切换：feixu 的 body_entered 信号在碰撞时调用 _on_feixu_body_collided
 
 
 ## 禁用 lv_1_background_a_2 中 Terrain/Terrain 下的 kong 碰撞体
@@ -340,26 +342,25 @@ func _disable_kong() -> void:
 		kong_disabled = true
 
 
-## 检测 feixu 是否碰到 dixiashi（每帧距离检测）
-## feixu 推落后与 dixiashi 距离 < 500px 时触发切换
-func _check_dixiashi_hit(feixu: RigidBody2D) -> void:
-	var dixiashi := $ZoneB/lv_1_background_a_2/prop/dixiashi as StaticBody2D
-	if not dixiashi:
+## feixu 与 StaticBody2D 碰撞时触发（RigidBody2D.body_entered）
+## feixu 碰到 dixiashi 时切换精灵和碰撞体（完好 → 损坏）
+func _on_feixu_body_collided(body: Node) -> void:
+	if not feixu_pushed or dixiashi_toggled:
 		return
-
-	var dist := feixu.global_position.distance_to(dixiashi.global_position)
-	if dist < 500.0:
-		_toggle_dixiashi(dixiashi)
+	if body is StaticBody2D and body.name == "dixiashi":
+		# 用 call_deferred 延迟到下一帧执行，避免在物理回调中修改碰撞状态
+		_toggle_dixiashi.call_deferred(body as StaticBody2D)
 
 
 ## 切换 dixiashi 精灵和碰撞体：完好(hao/hao2) → 损坏(huai/huai2/huai3)
+## 使用 set_deferred 修改碰撞状态，避免 "Can't change state while flushing queries" 错误
 func _toggle_dixiashi(di: StaticBody2D) -> void:
 	dixiashi_toggled = true
 	di.get_node("hao").visible = false
 	di.get_node("huai").visible = true
-	(di.get_node("hao2") as CollisionPolygon2D).disabled = true
-	(di.get_node("huai2") as CollisionPolygon2D).disabled = false
-	(di.get_node("huai3") as CollisionPolygon2D).disabled = false
+	(di.get_node("hao2") as CollisionPolygon2D).set_deferred("disabled", true)
+	(di.get_node("huai2") as CollisionPolygon2D).set_deferred("disabled", false)
+	(di.get_node("huai3") as CollisionPolygon2D).set_deferred("disabled", false)
 
 
 ## =============================================================================
