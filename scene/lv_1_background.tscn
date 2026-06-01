@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://d1ev8srcqmlg6" path="res://level1asset/LV1background/IMG_3059.PNG" id="3_bovdm"]
 [ext_resource type="Texture2D" uid="uid://d21lg3285vwad" path="res://level1asset/LV1background/IMG_3062.PNG" id="3_hlm4x"]
 [ext_resource type="Texture2D" uid="uid://df8sfg7fmaekq" path="res://level1asset/LV1background/IMG_3063.PNG" id="4_bovdm"]
+[ext_resource type="Texture2D" uid="uid://bsm6v6vr5exjx" path="res://level1asset/居民楼.png" id="5_llce0"]
 [ext_resource type="PackedScene" uid="uid://c0w21kotu2n3p" path="res://scene/paltfarm.tscn" id="6_bovdm"]
 [ext_resource type="PackedScene" uid="uid://cuh8ne115pyyc" path="res://scene/dianti.tscn" id="7_nalfn"]
 [ext_resource type="PackedScene" uid="uid://dkbmtqw8gg0ts" path="res://scene/niupixian.tscn" id="8_l5itp"]
@@ -17,6 +18,12 @@ size = Vector2(301.75, 112.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l5itp"]
 size = Vector2(854, 116)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_llce0"]
+size = Vector2(249, 1085)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8q21u"]
+size = Vector2(97, 1089)
 
 [node name="LV1-background" type="Node2D" unique_id=748662892]
 visibility_layer = 15
@@ -39,6 +46,10 @@ texture = ExtResource("3_bovdm")
 position = Vector2(960, 544)
 texture = ExtResource("3_hlm4x")
 
+[node name="juminlou" type="Sprite2D" parent="background" unique_id=1460880666]
+position = Vector2(1195, 280)
+texture = ExtResource("5_llce0")
+
 [node name="Sprite2D" type="Sprite2D" parent="background" unique_id=170944941]
 position = Vector2(960, 544)
 texture = ExtResource("4_bovdm")
@@ -57,11 +68,19 @@ shape = SubResource("RectangleShape2D_nalfn")
 position = Vector2(533, 480)
 shape = SubResource("RectangleShape2D_l5itp")
 
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="background/Sprite2D/Terrain2" unique_id=1277004867]
+position = Vector2(1083.5, -6.5)
+shape = SubResource("RectangleShape2D_llce0")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="background/Sprite2D/Terrain2" unique_id=1101101902]
+position = Vector2(-1015.5, -8.5)
+shape = SubResource("RectangleShape2D_8q21u")
+
 [node name="paltfarm" parent="." unique_id=2008837322 instance=ExtResource("6_bovdm")]
 position = Vector2(1296, 455)
 
 [node name="dianti" parent="." unique_id=919551730 instance=ExtResource("7_nalfn")]
-position = Vector2(912, 784)
+position = Vector2(912, 616)
 
 [node name="niupixian" parent="." unique_id=1804175374 instance=ExtResource("8_l5itp")]
 position = Vector2(1182, 477)

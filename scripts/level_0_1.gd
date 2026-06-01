@@ -7,6 +7,11 @@ var _current_line: int = 0
 var _dialog_source: Node = null
 
 
+## 场景就绪时设置摄像机右边界为 3048（level_0_1 场景更宽）
+func _ready() -> void:
+	$Player/Camera2D.limit_right = 3048
+
+
 func start_dialog(lines: Array, source: Node = null) -> void:
 	if _dialog:
 		return

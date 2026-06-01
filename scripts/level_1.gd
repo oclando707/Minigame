@@ -16,7 +16,10 @@ extends Node2D
 
 ## 魔豆首次对话：描述魔豆，对话结束后魔豆拾取并跟随玩家
 @export var modou_lines: Array[String] = [
-	"一颗魔豆。"
+	"地上有什么东西？","
+	像豆子一样……也许这就是那个小男孩说的魔豆。",
+	"在童话中，魔豆会长成参天的藤蔓，为人提供攀升的路途……",
+	"“要找个地方种下去试试吗？”"
 ]
 
 ## 玩家带魔豆与 earth 区域交互后的对话
@@ -62,6 +65,9 @@ var dixiashi_toggled: bool = false
 ## =============================================================================
 
 func _ready() -> void:
+	# 设置摄像机右边界（level_1 场景宽度为 1920）
+	$Player/Camera2D.limit_right = 1920
+
 	# ZoneB（另一时间线）初始隐藏，Tab 键在两者之间切换
 	_set_zone_active($ZoneB, false)
 
