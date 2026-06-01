@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c8ghioacj6j1a"
-path="res://.godot/imported/GrayStar.png-88da62af3f80ece385a9a4436bd3376c.ctex"
+path="res://.godot/imported/SilverStar.png-1ceb455603f7c91ab9b6c1d8330d3342.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://minigame_assets/Global/GlobalItem_GrayStar/GrayStar.png"
-dest_files=["res://.godot/imported/GrayStar.png-88da62af3f80ece385a9a4436bd3376c.ctex"]
+source_file="res://minigame_assets/Global/GlobalItem_GrayStar/SilverStar.png"
+dest_files=["res://.godot/imported/SilverStar.png-1ceb455603f7c91ab9b6c1d8330d3342.ctex"]
 
 [params]
 

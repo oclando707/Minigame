@@ -62,6 +62,5 @@ func _close_dialog() -> void:
 
 func _on_radio_interacted() -> void:
 	start_dialog([
-		"这台收音机正大声放着广场舞音乐……",
-		"按F可以关掉它。"
+		"这台播音机正大声放着广场舞音乐……",
 	], $Radio)

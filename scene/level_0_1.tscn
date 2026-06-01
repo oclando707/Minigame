@@ -6,14 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://evd4ihmq3bu4" path="res://minigame_assets/Level_01/Level_01_A1/Buildings/远景.PNG" id="4_71r6h"]
 [ext_resource type="Texture2D" uid="uid://bslcg0jqfamke" path="res://minigame_assets/Level_01/Level_01_A1/Buildings/菜市场.PNG" id="5_6od21"]
 [ext_resource type="Texture2D" uid="uid://cxkpjr2kixj14" path="res://minigame_assets/Level_01/Level_01_A1/crowd.png" id="6_amu75"]
+[ext_resource type="Script" uid="uid://cf60psa3k2gnb" path="res://scene/crowd.gd" id="7_0r3if"]
 [ext_resource type="Script" uid="uid://ckedxe3iimpo3" path="res://scripts/push_box.gd" id="7_8bheo"]
 [ext_resource type="PackedScene" uid="uid://07may5kyht6c" path="res://scene/radio.tscn" id="8_8bheo"]
+[ext_resource type="AudioStream" uid="uid://bcmp3v0g5egej" path="res://minigame_assets/Level_01/Level_01_A1/菜市场喧嚣声.wav" id="8_rrsdc"]
 [ext_resource type="Script" uid="uid://bw3gn8sjxyhxr" path="res://scripts/level_0_1.gd" id="9_sp3i7"]
 [ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="10_fkey"]
 [ext_resource type="Script" uid="uid://c5fb41c0wucb1" path="res://scripts/radio_hint.gd" id="11_boxhint"]
 [ext_resource type="Texture2D" uid="uid://di8vfi0cs4cbl" path="res://minigame_assets/Level_01/Level_01_A1/Buildings/Lv0-1完好密码门/未命名作品(22).png" id="12_amu75"]
 [ext_resource type="Script" uid="uid://be8o7gs0ligio" path="res://scripts/code_door.gd" id="12_kiljn"]
 [ext_resource type="AudioStream" uid="uid://bx0urhbvvrdlk" path="res://minigame_assets/Level_01/Level_01_A1/验证通过.wav" id="14_rrsdc"]
+[ext_resource type="Script" uid="uid://bgd45r4tx4odv" path="res://scripts/star.gd" id="17_dnnvp"]
+[ext_resource type="Texture2D" uid="uid://c8ghioacj6j1a" path="res://minigame_assets/Global/GlobalItem_GrayStar/SilverStar.png" id="18_dnnvp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kiljn"]
 size = Vector2(245, 142.5)
@@ -39,6 +43,9 @@ size = Vector2(366.64624, 463.73743)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnnvp"]
 size = Vector2(444, 279.25)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_osn5a"]
+size = Vector2(856.5, 356)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkine"]
 size = Vector2(98.5, 96.5625)
 
@@ -50,6 +57,9 @@ size = Vector2(281.5, 944)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v70rh"]
 size = Vector2(358, 939)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v70rh"]
+radius = 63.788715
 
 [node name="Level0-1" type="Node2D" unique_id=1644037248]
 script = ExtResource("9_sp3i7")
@@ -152,6 +162,7 @@ shape = SubResource("RectangleShape2D_8bheo")
 
 [node name="Crowd" type="Area2D" parent="." unique_id=1767651250]
 z_index = 3
+script = ExtResource("7_0r3if")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Crowd" unique_id=785545041]
 position = Vector2(1787, 814)
@@ -164,6 +175,16 @@ scale = Vector2(0.5282556, 0.44787073)
 texture = ExtResource("6_amu75")
 region_enabled = true
 region_rect = Rect2(383.40417, 291.58698, 814.093, 681.01874)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Crowd" unique_id=2018632042]
+position = Vector2(1787, 814)
+stream = ExtResource("8_rrsdc")
+
+[node name="InteractZone" type="Area2D" parent="Crowd" unique_id=945991842]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crowd/InteractZone" unique_id=1868552901]
+position = Vector2(1585.25, 760)
+shape = SubResource("RectangleShape2D_osn5a")
 
 [node name="Push_Box" type="CharacterBody2D" parent="." unique_id=1711854372]
 position = Vector2(1073, 888)
@@ -189,7 +210,6 @@ position = Vector2(3, 7)
 shape = SubResource("RectangleShape2D_jkine")
 
 [node name="FHint" type="Sprite2D" parent="Push_Box" unique_id=727272897]
-visible = false
 position = Vector2(0, -60)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("10_fkey")
@@ -212,14 +232,36 @@ position = Vector2(2458.25, 462)
 shape = SubResource("RectangleShape2D_hxftr")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CodeDoor" unique_id=486974362]
+position = Vector2(2465, 461)
 stream = ExtResource("14_rrsdc")
+
+[node name="FHint" type="Sprite2D" parent="CodeDoor" unique_id=798021259]
+visible = false
+position = Vector2(2461, 355)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("10_fkey")
 
 [node name="InteractZone" type="Area2D" parent="CodeDoor" unique_id=700936765]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CodeDoor/InteractZone" unique_id=1755002065]
-position = Vector2(2466, 469.5)
+position = Vector2(2463, 472)
 shape = SubResource("RectangleShape2D_v70rh")
 
+[node name="StarSliver_01" type="Area2D" parent="." unique_id=2024390710]
+position = Vector2(1558, 437)
+script = ExtResource("17_dnnvp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StarSliver_01" unique_id=1692184562]
+position = Vector2(14, -15)
+shape = SubResource("CircleShape2D_v70rh")
+
+[node name="Sprite2D" type="Sprite2D" parent="StarSliver_01" unique_id=745272446]
+position = Vector2(12, -15)
+scale = Vector2(0.70175415, 0.57081556)
+texture = ExtResource("18_dnnvp")
+region_enabled = true
+region_rect = Rect2(731.94727, 473.44434, 171.0133, 233.93335)
+
 [connection signal="interacted" from="Radio" to="." method="_on_radio_interacted"]
-[connection signal="body_entered" from="CodeDoor/InteractZone" to="CodeDoor" method="_on_interact_zone_body_entered"]
-[connection signal="body_exited" from="CodeDoor/InteractZone" to="CodeDoor" method="_on_interact_zone_body_exited"]
+[connection signal="body_entered" from="CodeDoor/InteractZone" to="CodeDoor" method="_on_body_entered"]
+[connection signal="body_exited" from="CodeDoor/InteractZone" to="CodeDoor" method="_on_body_exited"]

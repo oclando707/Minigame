@@ -20,21 +20,10 @@ func _process(_delta: float) -> void:
 	if player_in_range and not interaction_locked and Input.is_action_just_pressed("interact"):
 		interaction_locked = true
 		f_hint.visible = false
+		if is_playing:
+			music.stop()
+			is_playing = false
 		interacted.emit()
-		show_dialogue()
-
-
-func show_dialogue() -> void:
-	var textbox = preload("res://scene/textboxB.tscn").instantiate()
-
-	if is_playing:
-		textbox.get_node("text").text = "这台收音机正大声放着广场舞音乐……\n【按F键关闭】"
-		music.stop()
-		is_playing = false
-	else:
-		textbox.get_node("text").text = "收音机安静了。"
-
-	get_tree().current_scene.add_child(textbox)
 
 
 func _on_body_entered(body: Node2D) -> void:
