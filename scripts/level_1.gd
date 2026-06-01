@@ -84,6 +84,9 @@ func _ready() -> void:
 	# 连接 feixu 的检测区域信号（ZoneB）
 	_connect_feixu_signals()
 
+	# 连接 ZoneB Terrain/level 关卡出口触发器
+	_connect_level_exit()
+
 	# 连接 niupixian 的 interacted 信号（嵌套在实例化场景内，需代码连接）
 	get_node("ZoneA/LV1-background/niupixian").interacted.connect(_on_niupixian_interacted)
 
@@ -533,6 +536,27 @@ func _on_modou_interacted() -> void:
 			if player_near_earth:
 				_set_earth_prompt(true)
 	)
+
+
+## =============================================================================
+## ZoneB Terrain/level 关卡出口触发器
+## =============================================================================
+
+## 连接 ZoneB/lv_1_background_a_2/Terrain/level Area2D 的 body_entered
+func _connect_level_exit() -> void:
+	var level_area := $ZoneB/lv_1_background_a_2/Terrain/level as Area2D
+	if not level_area:
+		push_error("_connect_level_exit: Terrain/level Area2D 未找到")
+		return
+	level_area.body_entered.connect(_on_level_exit_entered)
+
+
+## 玩家触碰 Terrain/level 触发器 -> 解锁 lv_2 并切换到 level_3_1
+func _on_level_exit_entered(body: Node2D) -> void:
+	if not (body is CharacterBody2D):
+		return
+	DialogueManager.flags["level_2_unlocked"] = true
+	get_tree().change_scene_to_file("res://scene/level_3_1.tscn")
 
 
 ## niupixian 分支对话交互：对话结束后弹出 "查看" / "不查看" 选项

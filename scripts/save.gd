@@ -5,7 +5,7 @@ extends Control
 
 func _ready() -> void:
 	# 绑定悬停音效
-	for btn in [$lv_0, $lv_1, $lv_1_2, $CloseBtn]:
+	for btn in [$lv_0, $lv_1, $lv_1_2, $lv_2, $CloseBtn]:
 		get_node("/root/MusicManager").bind_hover_sfx(btn)
 
 	# lv_0 始终可用
@@ -19,6 +19,11 @@ func _ready() -> void:
 	$lv_1_2.visible = lv12_unlocked
 	$lv_1_2.disabled = not lv12_unlocked
 
+	# lv_2：通过 level_1 ZoneB Terrain/level 出口解锁
+	var lv2_unlocked: bool = DialogueManager.flags.get("level_2_unlocked", false)
+	$lv_2.visible = lv2_unlocked
+	$lv_2.disabled = not lv2_unlocked
+
 
 func _on_lv_0_pressed() -> void:
 	get_tree().change_scene_to_file("res://scene/level_0_1.tscn")
@@ -30,6 +35,10 @@ func _on_lv_1_pressed() -> void:
 
 func _on_lv_1_2_pressed() -> void:
 	pass  # 后续关卡，暂未实现
+
+
+func _on_lv_2_pressed() -> void:
+	get_tree().change_scene_to_file("res://scene/level_3_1.tscn")
 
 
 func _on_close_pressed() -> void:

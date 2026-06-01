@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://nsjo8l03h6gu"]
+[gd_scene format=3 uid="uid://c0403n68ypegb"]
 
 [ext_resource type="Texture2D" uid="uid://1fly56q8i6j4" path="res://minigame_assets/Level2-1/背景2.png" id="2_0nxth"]
 [ext_resource type="PackedScene" uid="uid://b4467pwswqb80" path="res://scene/player.tscn" id="3_player"]
@@ -7,24 +7,24 @@
 [ext_resource type="Texture2D" uid="uid://bogbusdcoq0df" path="res://minigame_assets/Level_01/Level_01_A2/机器人_三状态/机器人 _平和.png" id="5_robot_peace"]
 [ext_resource type="Texture2D" uid="uid://dq8rvthjphf0s" path="res://minigame_assets/Level_01/Level_01_A2/机器人_三状态/机器人_攻击.png" id="6_robot_attack"]
 [ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="7_fkey"]
-[ext_resource type="Script" uid="uid://bgut5gprhlqqp" path="res://scripts/shutdown_button.gd" id="8_shutdown"]
+[ext_resource type="Script" path="res://scripts/shutdown_button.gd" id="8_shutdown"]
 [ext_resource type="Texture2D" uid="uid://d0tp3ka43dpe" path="res://minigame_assets/Level3-1/3-1A1/毁灭装置_关闭.png" id="9_device_off"]
-[ext_resource type="Script" uid="uid://b8p2y0xhijyhk" path="res://scripts/spike.gd" id="10_spike"]
+[ext_resource type="Script" path="res://scripts/spike.gd" id="10_spike"]
 [ext_resource type="Texture2D" uid="uid://8td5ep7k3j7j" path="res://minigame_assets/Level2-1/Level2-1A2/2-1尖刺组合/未命名作品(29).png" id="12_0nxth"]
 [ext_resource type="Texture2D" uid="uid://ca2ikarynlvl3" path="res://minigame_assets/Level3-1/3-1A2/密码箱/密码箱.png" id="12_chest"]
 [ext_resource type="Script" uid="uid://ckkjff2015hof" path="res://scripts/level_3_1.gd" id="13_level"]
-[ext_resource type="Script" uid="uid://b1ru1j0lkn4tk" path="res://scripts/light_beam.gd" id="14_light_beam"]
-[ext_resource type="Script" uid="uid://d4flcks071npq" path="res://scripts/light_controller.gd" id="15_light_ctrl"]
+[ext_resource type="Script" path="res://scripts/light_beam.gd" id="14_light_beam"]
+[ext_resource type="PackedScene" uid="uid://ddm1lc3quv13d" path="res://scene/pause.tscn" id="14_pause"]
+[ext_resource type="Script" path="res://scripts/light_controller.gd" id="15_light_ctrl"]
 [ext_resource type="Texture2D" uid="uid://stryb1n36a8i" path="res://minigame_assets/Level2-1/灯光/灯光 红.png" id="16_light_red"]
 [ext_resource type="Texture2D" uid="uid://d0gaodxv65l7a" path="res://minigame_assets/Level2-1/Level2-1A1/门 1.png" id="18_q2syr"]
 [ext_resource type="Texture2D" uid="uid://dgu41ldf6tesx" path="res://minigame_assets/Level2-1/Level2-1A2/2-1尖刺组合/门2.png" id="19_e5y7y"]
-[ext_resource type="Script" uid="uid://bvx2w04o4kx6b" path="res://scripts/elevator.gd" id="19_elevator"]
-[ext_resource type="Script" uid="uid://qsnj63mqt406" path="res://scripts/door.gd" id="20_door"]
-[ext_resource type="Script" uid="uid://ce0ndp7sa475" path="res://scripts/lab_entrance.gd" id="21_lab"]
+[ext_resource type="Script" path="res://scripts/elevator.gd" id="19_elevator"]
+[ext_resource type="Script" path="res://scripts/door.gd" id="20_door"]
+[ext_resource type="Script" path="res://scripts/lab_entrance.gd" id="21_lab"]
 [ext_resource type="PackedScene" uid="uid://br6dmbnbtgtxy" path="res://scene/modou.tscn" id="22_modou"]
 [ext_resource type="PackedScene" uid="uid://cwocn7km7m1xd" path="res://scene/earth.tscn" id="23_earth"]
 [ext_resource type="Texture2D" uid="uid://cubclyerf88ow" path="res://minigame_assets/Level2-1/Level2-1A2/藤蔓生长动画/growing_0019.png" id="24_vine"]
-[ext_resource type="PackedScene" uid="uid://ddm1lc3quv13d" path="res://scene/pause.tscn" id="14_pause"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gnd_a1"]
 size = Vector2(956, 67)
@@ -70,18 +70,15 @@ script = ExtResource("13_level")
 
 [node name="Sky_A1" type="Sprite2D" parent="." unique_id=277859255]
 z_index = -10
-position = Vector2(0, 0)
-scale = Vector2(1.0, 1.0)
 texture = ExtResource("2_0nxth")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 960, 1080)
 
-[node name="Sky_A2" type="Sprite2D" parent="." unique_id=4166888995]
+[node name="Sky_A2" type="Sprite2D" parent="." unique_id=-128078301]
+modulate = Color(0.65, 0.7, 0.75, 1)
 z_index = -10
 position = Vector2(960, 0)
-scale = Vector2(1.0, 1.0)
-modulate = Color(0.65, 0.7, 0.75, 1.0)
 texture = ExtResource("2_0nxth")
 centered = false
 region_enabled = true
@@ -390,6 +387,6 @@ texture = ExtResource("4_146qx")
 region_enabled = true
 region_rect = Rect2(11.332642, 10.333649, 464.66666, 138.66669)
 
-[node name="PauseCanvas" type="CanvasLayer" parent="." unique_id=3006985745]
+[node name="PauseCanvas" type="CanvasLayer" parent="." unique_id=-1287981551]
 
-[node name="pause" parent="PauseCanvas" unique_id=4007985739 instance=ExtResource("14_pause")]
+[node name="pause" parent="PauseCanvas" unique_id=-286981557 instance=ExtResource("14_pause")]
