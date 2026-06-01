@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://bx0urhbvvrdlk" path="res://minigame_assets/Level_01/Level_01_A1/验证通过.wav" id="14_rrsdc"]
 [ext_resource type="Script" path="res://scripts/star.gd" id="17_dnnvp"]
 [ext_resource type="Texture2D" uid="uid://c8ghioacj6j1a" path="res://minigame_assets/Global/GlobalItem_GrayStar/SilverStar.png" id="18_dnnvp"]
+[ext_resource type="Texture2D" uid="uid://dsff6n3r6u4qf" path="res://minigame_assets/Global/按键Tab/键位Tab.png" id="19_tabkey"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kiljn"]
 size = Vector2(245, 142.5)
@@ -240,6 +241,12 @@ visible = false
 position = Vector2(2461, 355)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("10_fkey")
+
+[node name="TabHint" type="Sprite2D" parent="CodeDoor"]
+visible = false
+position = Vector2(2461, 320)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("19_tabkey")
 
 [node name="InteractZone" type="Area2D" parent="CodeDoor" unique_id=700936765]
 

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/code_door.gd" id="1_door_script"]
 [ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="2_fkey"]
+[ext_resource type="Texture2D" uid="uid://dsff6n3r6u4qf" path="res://minigame_assets/Global/按键Tab/键位Tab.png" id="3_tabkey"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
 size = Vector2(80, 200)
@@ -24,6 +25,12 @@ visible = false
 position = Vector2(0, -120)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_fkey")
+
+[node name="TabHint" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -160)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_tabkey")
 
 [node name="InteractZone" type="Area2D" parent="."]
 

@@ -1,9 +1,151 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bd3igpy8km68n"]
 
-[ext_resource type="PackedScene" uid="uid://b4467pwswqb80" path="res://scene/player.tscn" id="1_player"]
+[ext_resource type="Texture2D" uid="uid://b20bg776jli01" path="res://minigame_assets/Level_01/Level_01_A2/0-1A2背景(1)/0-1A2背景.png" id="1_6gnji"]
+[ext_resource type="Texture2D" uid="uid://cljjoybufy4ar" path="res://minigame_assets/Level_01/Level_01_A2/0-1A2背景(1)/0-1Tile_02/未命名作品(28).png" id="2_hsj00"]
+[ext_resource type="PackedScene" uid="uid://b4467pwswqb80" path="res://scene/player.tscn" id="2_oo04h"]
+[ext_resource type="Texture2D" uid="uid://bpytimqsjgbms" path="res://minigame_assets/Level_01/Level_01_A1/Buildings/Lv_0-1破损密码门/未命名作品(23).png" id="4_68c7g"]
+[ext_resource type="Texture2D" uid="uid://bogbusdcoq0df" path="res://minigame_assets/Level_01/Level_01_A2/机器人_三状态/机器人 _平和.png" id="5_i8lor"]
+[ext_resource type="Texture2D" uid="uid://n1auqflil643" path="res://minigame_assets/Level_01/Level_01_A2/变异草/变异草.png" id="6_srs08"]
+[ext_resource type="Script" uid="uid://cvcp51xichita" path="res://scripts/robot.gd" id="7_robot"]
+[ext_resource type="Script" uid="uid://xeri4cg33pv5" path="res://scripts/grass.gd" id="8_grass"]
+[ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="9_fkey"]
 
-[node name="Level0-2_A2" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oo04h"]
+size = Vector2(881, 183)
 
-[node name="Player" parent="." instance=ExtResource("1_player")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_68c7g"]
+size = Vector2(177, 442)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7m53"]
+size = Vector2(588.5, 156)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8x304"]
+size = Vector2(1029, 62)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j62ct"]
+size = Vector2(21.509602, 128.48338)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_reiu1"]
+size = Vector2(220.5, 210.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xahkf"]
+size = Vector2(183, 194)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fodhs"]
+size = Vector2(240, 439)
+
+[node name="Level0-2_A2" type="Node2D" unique_id=2146850108]
+
+[node name="Sky" type="Sprite2D" parent="." unique_id=1713566542]
+z_index = -10
+scale = Vector2(0.89172864, 0.907563)
+texture = ExtResource("1_6gnji")
+centered = false
+
+[node name="Player" parent="." unique_id=916301139 instance=ExtResource("2_oo04h")]
 z_index = 2
-position = Vector2(56, 821)
+position = Vector2(275, 860)
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=2134161052]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=410858750]
+position = Vector2(446.5, 993.5)
+shape = SubResource("RectangleShape2D_oo04h")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground" unique_id=1594669328]
+position = Vector2(354.5, 993.5)
+scale = Vector2(3.2136364, 0.8097345)
+texture = ExtResource("2_hsj00")
+region_enabled = true
+region_rect = Rect2(484.3339, 806.7333, 220.00003, 226.59998)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground" unique_id=2012127412]
+position = Vector2(799.5, 858)
+shape = SubResource("RectangleShape2D_68c7g")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Ground" unique_id=86897710]
+position = Vector2(795.55725, 858)
+scale = Vector2(0.83281726, 1.9574468)
+texture = ExtResource("2_hsj00")
+region_enabled = true
+region_rect = Rect2(484.5359, 805.001, 222.20007, 235.63208)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground" unique_id=1769542447]
+position = Vector2(999.75, 717)
+shape = SubResource("RectangleShape2D_l7m53")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Ground" unique_id=1021570586]
+position = Vector2(1006, 709)
+scale = Vector2(2.7078407, 1.0321045)
+texture = ExtResource("2_hsj00")
+region_enabled = true
+region_rect = Rect2(484.53326, 806.6996, 221.46735, 163.52905)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Ground" unique_id=1246111418]
+position = Vector2(1401.5, 1051)
+shape = SubResource("RectangleShape2D_8x304")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Ground" unique_id=1554813343]
+position = Vector2(1408.1609, 1055.6531)
+scale = Vector2(4.703921, 0.35742477)
+texture = ExtResource("2_hsj00")
+region_enabled = true
+region_rect = Rect2(485, 804.5, 220, 181)
+
+[node name="BrokenDoor" type="StaticBody2D" parent="." unique_id=1194069963]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BrokenDoor" unique_id=644294758]
+position = Vector2(99.02668, 797)
+rotation = -3.1415925
+scale = Vector2(6.8781676, -1.6188864)
+shape = SubResource("RectangleShape2D_j62ct")
+
+[node name="Sprite2D" type="Sprite2D" parent="BrokenDoor" unique_id=1010673381]
+position = Vector2(102, 794.5)
+scale = Vector2(0.48780486, 0.4977478)
+texture = ExtResource("4_68c7g")
+region_enabled = true
+region_rect = Rect2(493.82916, 1528.7607, 287.11115, 444.30774)
+
+[node name="Robot" type="Area2D" parent="." unique_id=148060857]
+position = Vector2(1180, 919)
+script = ExtResource("7_robot")
+
+[node name="Sprite2D" type="Sprite2D" parent="Robot" unique_id=514854974]
+position = Vector2(4, 16.000015)
+scale = Vector2(0.34290025, 0.24764146)
+texture = ExtResource("5_i8lor")
+region_enabled = true
+region_rect = Rect2(448.6458, 220.7692, 662.3691, 848.86145)
+
+[node name="FHint" type="Sprite2D" parent="Robot" unique_id=1367947214]
+visible = false
+position = Vector2(0, -160)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("9_fkey")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Robot" unique_id=1321774408]
+position = Vector2(5, -12)
+shape = SubResource("RectangleShape2D_reiu1")
+
+[node name="DetectZone" type="Area2D" parent="Robot" unique_id=1979835615]
+position = Vector2(-15, -26)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Robot/DetectZone" unique_id=1508597131]
+position = Vector2(21, 25)
+shape = SubResource("RectangleShape2D_xahkf")
+
+[node name="Grass" type="Area2D" parent="." unique_id=1281037645]
+position = Vector2(1683, 844)
+script = ExtResource("8_grass")
+
+[node name="Sprite2D" type="Sprite2D" parent="Grass" unique_id=1503099835]
+position = Vector2(-16.000122, -52.00001)
+scale = Vector2(0.53498673, 0.52317876)
+texture = ExtResource("6_srs08")
+region_enabled = true
+region_rect = Rect2(99.04608, 58.74382, 1129.6714, 906.7383)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grass" unique_id=1903833162]
+position = Vector2(-18, -33.5)
+shape = SubResource("RectangleShape2D_fodhs")
