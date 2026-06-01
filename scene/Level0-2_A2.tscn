@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dsff6n3r6u4qf" path="res://minigame_assets/Global/按键Tab/键位Tab.png" id="10_fodhs"]
 [ext_resource type="Script" uid="uid://0wblgs2orfr0" path="res://scripts/level_0_2_a2.gd" id="11_a2script"]
 [ext_resource type="AudioStream" uid="uid://ccf0bdxlvv2yj" path="res://music/dragon-studio-dry-grass-rustling-478361.mp3" id="12_kutcy"]
+[ext_resource type="PackedScene" uid="uid://ddm1lc3quv13d" path="res://scene/pause.tscn" id="13_pause"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oo04h"]
 size = Vector2(881, 183)
@@ -186,3 +187,7 @@ texture = ExtResource("10_fodhs")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Grass" unique_id=550270859]
 stream = ExtResource("12_kutcy")
 autoplay = true
+
+[node name="PauseCanvas" type="CanvasLayer" parent="." unique_id=3002985743]
+
+[node name="pause" parent="PauseCanvas" unique_id=4003985737 instance=ExtResource("13_pause")]

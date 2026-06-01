@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://bgd45r4tx4odv" path="res://scripts/star.gd" id="17_dnnvp"]
 [ext_resource type="Texture2D" uid="uid://c8ghioacj6j1a" path="res://minigame_assets/Global/GlobalItem_GrayStar/SilverStar.png" id="18_dnnvp"]
 [ext_resource type="Texture2D" uid="uid://dsff6n3r6u4qf" path="res://minigame_assets/Global/按键Tab/键位Tab.png" id="19_tabkey"]
+[ext_resource type="PackedScene" uid="uid://ddm1lc3quv13d" path="res://scene/pause.tscn" id="20_pause"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kiljn"]
 size = Vector2(245, 142.5)
@@ -283,6 +284,10 @@ scale = Vector2(0.70175415, 0.57081556)
 texture = ExtResource("18_dnnvp")
 region_enabled = true
 region_rect = Rect2(731.94727, 473.44434, 171.0133, 233.93335)
+
+[node name="PauseCanvas" type="CanvasLayer" parent="." unique_id=3001985742]
+
+[node name="pause" parent="PauseCanvas" unique_id=4002985736 instance=ExtResource("20_pause")]
 
 [connection signal="interacted" from="Radio" to="." method="_on_radio_interacted"]
 [connection signal="body_entered" from="CodeDoor/InteractZone" to="CodeDoor" method="_on_body_entered"]

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://br6dmbnbtgtxy" path="res://scene/modou.tscn" id="5_53ndp"]
 [ext_resource type="PackedScene" uid="uid://mc8pp3uq1upt" path="res://scene/lv_1_background_a_2.tscn" id="6_zoneb"]
 [ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="7_fkey"]
+[ext_resource type="PackedScene" uid="uid://ddm1lc3quv13d" path="res://scene/pause.tscn" id="8_pause"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_earth"]
 radius = 200.0
@@ -47,6 +48,10 @@ visible = false
 
 [node name="Player" parent="." unique_id=171918651 instance=ExtResource("2_3flxk")]
 position = Vector2(73, 821)
+
+[node name="PauseCanvas" type="CanvasLayer" parent="." unique_id=3004985744]
+
+[node name="pause" parent="PauseCanvas" unique_id=4005985738 instance=ExtResource("8_pause")]
 
 [connection signal="interacted" from="ZoneA/jack" to="." method="_on_jack_interacted"]
 [connection signal="interacted" from="ZoneA/modou" to="." method="_on_modou_interacted"]
