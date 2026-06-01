@@ -30,10 +30,7 @@ func _on_settings_pressed() -> void:
 	_set_menu = scene.instantiate() as Control
 	add_child(_set_menu)
 
-	for btn_name: String in ["ExitBtn", "CancelBtn", "ApplyBtn"]:
-		var btn := _set_menu.get_node(btn_name) as TextureButton
-		btn.pressed.connect(_close_settings)
-		get_node("/root/MusicManager").bind_hover_sfx(btn)
+	_set_menu.closed.connect(_close_settings)
 
 
 func _close_settings() -> void:

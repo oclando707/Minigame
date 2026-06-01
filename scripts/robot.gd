@@ -113,6 +113,7 @@ func _show_choice_dialogue() -> void:
 	# 播放机器人机械音效
 	var sfx := AudioStreamPlayer2D.new()
 	sfx.stream = load("res://.godot/imported/audiopapkin-sound-design-elements-robot-mechanism-021-344709.mp3-e212bbf39775a9a7312c140b89859cd3.mp3str")
+	sfx.bus = &"SFX"
 	add_child(sfx)
 	sfx.finished.connect(sfx.queue_free)
 	sfx.play()

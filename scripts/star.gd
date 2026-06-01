@@ -21,8 +21,9 @@ func _on_body_entered(body: Node2D) -> void:
 	set_deferred("monitoring", false)
 	set_deferred("monitorable", false)
 
-	# 播放对应类型的星星音效
+	# 播放对应类型的星星音效（SFX 总线）
 	var sfx := AudioStreamPlayer2D.new()
+	sfx.bus = &"SFX"
 	match star_type:
 		StarType.SILVER:
 			sfx.stream = load("res://.godot/imported/银色星星.wav-bbef5b93a2586fc8cf4200e14d937814.sample")

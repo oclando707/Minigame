@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://djl5qucuxo2a6" path="res://minigame_assets/SetMenu/应用_hover.png" id="9_apply_hover"]
 [ext_resource type="Texture2D" uid="uid://b7o0lex8olg8c" path="res://minigame_assets/SetMenu/取消_idle.png" id="10_cancel_idle"]
 [ext_resource type="Texture2D" uid="uid://cytiaxr501lqv" path="res://minigame_assets/SetMenu/取消_hover.png" id="11_cancel_hover"]
+[ext_resource type="Script" uid="uid://dq17yhj5k4m00" path="res://scripts/set_menu.gd" id="12_script"]
 
 [node name="SetMenu" type="Control" unique_id=387696961]
 layout_mode = 3
@@ -19,7 +20,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
+script = ExtResource("12_script")
 
 [node name="Overlay" type="TextureRect" parent="." unique_id=1679431239]
 modulate = Color(0, 0, 0, 1)

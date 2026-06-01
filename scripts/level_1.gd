@@ -318,6 +318,7 @@ func _complete_push() -> void:
 
 	# 播放废墟坠落音效
 	var sfx := AudioStreamPlayer2D.new()
+	sfx.bus = &"SFX"
 	sfx.stream = load("res://.godot/imported/freesound_community-stones-falling-6375.mp3-79b06d30e8ec1c91c233dfbb86a82178.mp3str")
 	add_child(sfx)
 	sfx.finished.connect(sfx.queue_free)
@@ -382,6 +383,7 @@ func _on_feixu_body_collided(body: Node) -> void:
 		# 播放撞击音效
 		var sfx := AudioStreamPlayer2D.new()
 		sfx.stream = load("res://.godot/imported/levigoodway-vine-boom-sound-410789.mp3-4dbeababaf6566c78604366589af2c61.mp3str")
+		sfx.bus = &"SFX"
 		add_child(sfx)
 		sfx.finished.connect(sfx.queue_free)
 		sfx.play()
@@ -490,6 +492,7 @@ func _on_jack_interacted() -> void:
 	# 创建临时音效播放器
 	var bark_player := AudioStreamPlayer2D.new()
 	bark_player.stream = preload("res://level1asset/第一关/狗叫.wav")
+	bark_player.bus = &"SFX"
 	add_child(bark_player)
 
 	# 监听每行对话显示：第2行（index 1）时播放狗叫

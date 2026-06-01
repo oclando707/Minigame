@@ -1,7 +1,6 @@
 extends Control
 
 const SET_MENU_PATH := "res://scene/set_menu.tscn"
-
 const SAVE_MENU_PATH := "res://scene/save.tscn"
 
 var _set_menu: Control = null
@@ -9,6 +8,7 @@ var _save_menu: Control = null
 
 
 func _ready() -> void:
+	get_node("/root/MusicManager").play(MusicManager.BGM_MAIN_MENU)
 	for btn in [$BtnStart, $BtnQuit, $BtnSetting, $BtnSave]:
 		get_node("/root/MusicManager").bind_hover_sfx(btn)
 
@@ -29,9 +29,8 @@ func _on_setting_button_pressed() -> void:
 	_set_menu = scene.instantiate() as Control
 	add_child(_set_menu)
 
-	_set_menu.get_node("ExitBtn").pressed.connect(_close_settings)
-	get_node("/root/MusicManager").bind_hover_sfx(_set_menu.get_node("ExitBtn"))
-	
+	_set_menu.closed.connect(_close_settings)
+
 
 
 func _on_save_button_pressed() -> void:
