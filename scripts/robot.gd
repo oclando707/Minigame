@@ -69,6 +69,7 @@ func _patrol(delta: float) -> void:
 # ==================== 追逐 ====================
 func _chase(delta: float) -> void:
 	if not _target_player:
+		_patrol(delta)  # 无目标时巡逻搜索
 		return
 	# 玩家躲进草里 → 丢失目标
 	if _target_player.is_in_group("hidden"):

@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cwocn7km7m1xd"]
 
-[ext_resource type="Texture2D" uid="uid://did74pnfw8exj" path="res://minigame_assets/Global/Tile_land.PNG" id="1_wjqfs"]
+[ext_resource type="Texture2D" uid="uid://tlycfhq0v41x" path="res://minigame_assets/Level2-1/Level2-1A2/藤曼.png" id="1_wjqfs"]
 [ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="2_lxywf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gwsvq"]
-radius = 220.05453
+radius = 212.59586
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wjqfs"]
 size = Vector2(192.5, 128.5)
@@ -12,21 +12,24 @@ size = Vector2(192.5, 128.5)
 [node name="earth" type="Area2D" unique_id=688254752]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1132424379]
-position = Vector2(65, -135)
+position = Vector2(32, -168)
+scale = Vector2(1.4714283, 1.5166667)
 texture = ExtResource("1_wjqfs")
 hframes = 5
 vframes = 4
 frame = 16
+region_enabled = true
+region_rect = Rect2(1.5767822, -3.1999512, 254.42322, 1083.2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2100659324]
-position = Vector2(1, -210)
+position = Vector2(29, -149)
 shape = SubResource("CircleShape2D_gwsvq")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=253466425]
-offset_left = -135.0
-offset_top = -503.0
-offset_right = -36.0
-offset_bottom = -408.0
+offset_left = 236.0
+offset_top = -194.0
+offset_right = 335.0
+offset_bottom = -99.0
 texture = ExtResource("2_lxywf")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2080793607]
