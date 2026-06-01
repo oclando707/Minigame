@@ -31,8 +31,12 @@ func _on_setting_button_pressed() -> void:
 
 	_set_menu.closed.connect(_close_settings)
 
+	UIAnim.pop_in(_set_menu)
 
 
+## BtnSave 按钮 — 弹出存档/选关界面（1920×1080）
+## save.tscn 作为子节点添加到此 Main Control（1920×1080）下。
+## save.tscn 根节点 SavePanel 通过 anchors_preset=15 撑满父容器。
 func _on_save_button_pressed() -> void:
 	if _save_menu:
 		return
@@ -45,14 +49,18 @@ func _on_save_button_pressed() -> void:
 	close_btn.pressed.connect(_close_save)
 	get_node("/root/MusicManager").bind_hover_sfx(close_btn)
 
+	UIAnim.pop_in(_save_menu)
+
 
 func _close_settings() -> void:
 	if _set_menu:
-		_set_menu.queue_free()
+		var menu := _set_menu
 		_set_menu = null
+		UIAnim.pop_out(menu, func(): menu.queue_free())
 
 
 func _close_save() -> void:
 	if _save_menu:
-		_save_menu.queue_free()
+		var menu := _save_menu
 		_save_menu = null
+		UIAnim.pop_out(menu, func(): menu.queue_free())

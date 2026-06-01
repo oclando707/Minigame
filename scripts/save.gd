@@ -1,6 +1,12 @@
 extends Control
 ## 存档/选关界面 — 由主菜单 BtnSave 打开
 ## 按钮显隐由 DialogueManager.flags 全局标记控制
+##
+## 尺寸说明：
+## 本场景（save.tscn）由 时空奇遇记.gd 的 BtnSave 按钮触发，
+## 作为子节点添加到 Main Control（1920×1080）下。
+## SavePanel 根节点使用 anchors_preset=15 撑满父容器，
+## 渲染尺寸为 1920×1080。
 
 
 func _ready() -> void:

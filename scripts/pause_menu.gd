@@ -32,8 +32,11 @@ func _on_settings_pressed() -> void:
 
 	_set_menu.closed.connect(_close_settings)
 
+	UIAnim.pop_in(_set_menu)
+
 
 func _close_settings() -> void:
 	if _set_menu:
-		_set_menu.queue_free()
+		var menu := _set_menu
 		_set_menu = null
+		UIAnim.pop_out(menu, func(): menu.queue_free())

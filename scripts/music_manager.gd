@@ -164,11 +164,17 @@ func play_sfx_oneshot(p_path: String, p_lifetime: float = 2.0) -> void:
 	)
 
 
-## 为按钮绑定鼠标悬停音效
+## 为按钮绑定鼠标悬停音效 + 按下弹跳动画
 func bind_hover_sfx(p_button: BaseButton) -> void:
-	if p_button.mouse_entered.is_connected(_play_hover_sfx):
-		return
-	p_button.mouse_entered.connect(_play_hover_sfx)
+	if not p_button.mouse_entered.is_connected(_play_hover_sfx):
+		p_button.mouse_entered.connect(_play_hover_sfx)
+	if not p_button.button_down.is_connected(_play_button_press.bind(p_button)):
+		p_button.button_down.connect(_play_button_press.bind(p_button))
+
+
+func _play_button_press(p_btn: BaseButton) -> void:
+	UIAnim.button_press(p_btn)
+
 
 ## 播放 UI 悬停音效（SFX 总线，限播 0.7 秒）
 func _play_hover_sfx() -> void:

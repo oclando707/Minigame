@@ -21,6 +21,7 @@ config/windows_native_icon="res://minigame_assets/Global/游戏图标.ico"
 DialogueManager="*res://scripts/dialogue_manager.gd"
 StarManager="*res://scripts/star_manager.gd"
 MusicManager="*res://scripts/music_manager.gd"
+UIAnim="*res://scripts/ui_anim.gd"
 
 [display]
 

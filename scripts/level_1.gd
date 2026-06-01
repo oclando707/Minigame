@@ -556,6 +556,10 @@ func _on_level_exit_entered(body: Node2D) -> void:
 	if not (body is CharacterBody2D):
 		return
 	DialogueManager.flags["level_2_unlocked"] = true
+	call_deferred("_do_level_exit")
+
+
+func _do_level_exit() -> void:
 	get_tree().change_scene_to_file("res://scene/level_3_1.tscn")
 
 
