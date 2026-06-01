@@ -3,7 +3,10 @@ extends StaticBody2D
 
 
 func open() -> void:
+	# 禁用碰撞
 	if has_node("CollisionShape2D"):
 		$CollisionShape2D.set_deferred("disabled", true)
-	if has_node("Sprite2D"):
-		$Sprite2D.visible = false
+	# 隐藏所有贴图
+	for child in get_children():
+		if child is Sprite2D:
+			child.visible = false

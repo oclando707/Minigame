@@ -1,4 +1,4 @@
-﻿extends Area2D
+extends Area2D
 ## 机器人 — 平和巡逻 / 攻击追逐 / 休眠
 ## 靠近按F → 对话二选一（激怒→攻击  /  离开→保持和平）
 
@@ -9,6 +9,7 @@ enum State { PEACEFUL, ATTACKING, DORMANT }
 @export var patrol_left: float = -200.0
 @export var patrol_right: float = 200.0
 @export var initial_state: State = State.PEACEFUL
+@export var can_activate_sleep_all: bool = false  ## 对话中出现"启动休眠总开关"选项
 
 var state: State
 var _start_x: float = 0.0
@@ -52,6 +53,10 @@ func _input(event: InputEvent) -> void:
 		return
 	if event is InputEventKey and event.pressed and event.keycode == KEY_F:
 		if state == State.PEACEFUL:
+			# 玩家同时在可拾取物品范围内 → 物品优先
+			for ia in get_tree().get_nodes_in_group("interactables"):
+				if ia.player_in_range and not ia.interaction_locked:
+					return
 			_show_choice_dialogue()
 
 
@@ -127,20 +132,30 @@ func _show_choice_dialogue() -> void:
 	if _target_player and _target_player.has_method("set_movement_enabled"):
 		_target_player.set_movement_enabled(false)
 
+	# 对话文本 → 选项
+	var lines: Array[String] = ["主人你回来了"]
+	DialogueManager.show_dialogue(lines, _target_player, "res://scene/textboxB.tscn", func():
+		_show_choices()
+	)
+
+
+func _show_choices() -> void:
 	var canvas := CanvasLayer.new()
 	get_tree().current_scene.add_child(canvas)
 
 	var textbox := preload("res://scene/textboxB.tscn").instantiate() as Control
 	canvas.add_child(textbox)
 
-	# 显示选项按钮
+	# 隐藏全屏黑色遮罩，不挡游戏画面
+	if textbox.has_node("background"):
+		textbox.get_node("background").visible = false
+
 	var vbox := textbox.get_node("VBoxContainer") as VBoxContainer
 	vbox.visible = true
 
 	var btn1 := vbox.get_node("button1") as TextureButton
 	var btn2 := vbox.get_node("button2") as TextureButton
 
-	# 给按钮加文字标签
 	_add_btn_label(btn1, "激怒它")
 	_add_btn_label(btn2, "离开")
 	get_node("/root/MusicManager").bind_hover_sfx(btn1)
@@ -153,6 +168,15 @@ func _show_choice_dialogue() -> void:
 		_choice_leave(canvas)
 	)
 
+	# 第三选项：启动休眠总开关
+	if can_activate_sleep_all and not DialogueManager.flags.get("robots_deactivated", false):
+		var btn3 := _create_choice_button("启动休眠总开关")
+		vbox.add_child(btn3)
+		get_node("/root/MusicManager").bind_hover_sfx(btn3)
+		btn3.pressed.connect(func():
+			_choice_sleep_all(canvas)
+		)
+
 
 func _add_btn_label(btn: TextureButton, text_str: String) -> void:
 	var label := Label.new()
@@ -163,6 +187,25 @@ func _add_btn_label(btn: TextureButton, text_str: String) -> void:
 	label.add_theme_color_override("font_color", Color(0, 0.4, 0.77, 1))
 	label.set_anchors_preset(Control.PRESET_FULL_RECT)
 	btn.add_child(label)
+
+
+func _create_choice_button(text_str: String) -> TextureButton:
+	var btn := TextureButton.new()
+	btn.texture_normal = preload("res://minigame_assets/textbox/选项_idle.png")
+	btn.texture_pressed = preload("res://minigame_assets/textbox/选项_hover.png")
+	btn.texture_hover = preload("res://minigame_assets/textbox/选项_hover.png")
+	_add_btn_label(btn, text_str)
+	return btn
+
+
+func _choice_sleep_all(canvas: CanvasLayer) -> void:
+	_cleanup_dialogue(canvas)
+	DialogueManager.flags["robots_deactivated"] = true
+	# 通知所有机器人进入休眠
+	for robot in get_tree().get_nodes_in_group("robots"):
+		if robot.has_method("set_dormant"):
+			robot.set_dormant()
+	_talking = false
 
 
 func _choice_anger(canvas: CanvasLayer) -> void:

@@ -11,9 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://d0tp3ka43dpe" path="res://minigame_assets/Level3-1/3-1A1/毁灭装置_关闭.png" id="9_device_off"]
 [ext_resource type="Script" uid="uid://b8p2y0xhijyhk" path="res://scripts/spike.gd" id="10_spike"]
 [ext_resource type="Texture2D" uid="uid://8td5ep7k3j7j" path="res://minigame_assets/Level2-1/Level2-1A2/2-1尖刺组合/未命名作品(29).png" id="12_0nxth"]
-[ext_resource type="Texture2D" uid="uid://ca2ikarynlvl3" path="res://minigame_assets/Level3-1/3-1A2/密码箱/密码箱.png" id="12_chest"]
 [ext_resource type="Script" uid="uid://ckkjff2015hof" path="res://scripts/level_3_1.gd" id="13_level"]
+[ext_resource type="Texture2D" uid="uid://qtgluy60af8g" path="res://minigame_assets/Level2-1/弹窗/弹窗/弹窗背景.png" id="13_p4rgj"]
 [ext_resource type="Script" uid="uid://b1ru1j0lkn4tk" path="res://scripts/light_beam.gd" id="14_light_beam"]
+[ext_resource type="PackedScene" uid="uid://ddm1lc3quv13d" path="res://scene/pause.tscn" id="14_pause"]
 [ext_resource type="Script" uid="uid://d4flcks071npq" path="res://scripts/light_controller.gd" id="15_light_ctrl"]
 [ext_resource type="Texture2D" uid="uid://stryb1n36a8i" path="res://minigame_assets/Level2-1/灯光/灯光 红.png" id="16_light_red"]
 [ext_resource type="Texture2D" uid="uid://d0gaodxv65l7a" path="res://minigame_assets/Level2-1/Level2-1A1/门 1.png" id="18_q2syr"]
@@ -24,7 +25,9 @@
 [ext_resource type="PackedScene" uid="uid://br6dmbnbtgtxy" path="res://scene/modou.tscn" id="22_modou"]
 [ext_resource type="PackedScene" uid="uid://cwocn7km7m1xd" path="res://scene/earth.tscn" id="23_earth"]
 [ext_resource type="Texture2D" uid="uid://cubclyerf88ow" path="res://minigame_assets/Level2-1/Level2-1A2/藤蔓生长动画/growing_0019.png" id="24_vine"]
-[ext_resource type="PackedScene" uid="uid://ddm1lc3quv13d" path="res://scene/pause.tscn" id="14_pause"]
+[ext_resource type="Script" path="res://scripts/disappearing_platform.gd" id="25_platform"]
+[ext_resource type="Texture2D" uid="uid://des66y5oqlrst" path="res://minigame_assets/Level2-1/场景内背景图.png" id="26_erbyl"]
+[ext_resource type="Script" uid="uid://hcv0jk0d5qer" path="res://scripts/interactable.gd" id="27_interactable"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gnd_a1"]
 size = Vector2(956, 67)
@@ -45,16 +48,19 @@ size = Vector2(120, 120)
 size = Vector2(155, 126)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chest"]
-size = Vector2(80, 120)
+size = Vector2(136, 65)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nxth"]
-size = Vector2(120, 74)
+size = Vector2(959, 74)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_light_beam"]
 size = Vector2(67, 365.125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
-size = Vector2(84.5, 381.25)
+size = Vector2(70, 364.28125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_light_exit"]
+size = Vector2(120, 300)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_elevator_platform"]
 size = Vector2(220.5, 29)
@@ -65,30 +71,30 @@ size = Vector2(229, 17)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bb7b8"]
 size = Vector2(120, 134)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plat"]
+size = Vector2(111.5, 38.375)
+
 [node name="Level3-1" type="Node2D" unique_id=1629564741]
 script = ExtResource("13_level")
 
 [node name="Sky_A1" type="Sprite2D" parent="." unique_id=277859255]
 z_index = -10
-position = Vector2(0, 0)
-scale = Vector2(1.0, 1.0)
 texture = ExtResource("2_0nxth")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 960, 1080)
 
-[node name="Sky_A2" type="Sprite2D" parent="." unique_id=4166888995]
+[node name="Sky_A2" type="Sprite2D" parent="." unique_id=-128078301]
+modulate = Color(0.65, 0.7, 0.75, 1)
 z_index = -10
 position = Vector2(960, 0)
-scale = Vector2(1.0, 1.0)
-modulate = Color(0.65, 0.7, 0.75, 1.0)
 texture = ExtResource("2_0nxth")
 centered = false
 region_enabled = true
 region_rect = Rect2(960, 0, 960, 1080)
 
 [node name="CameraAnchor" type="Node2D" parent="." unique_id=2005296187]
-position = Vector2(920, 540)
+position = Vector2(956, 549)
 
 [node name="Camera2D" type="Camera2D" parent="CameraAnchor" unique_id=549070319]
 position = Vector2(41, 71)
@@ -138,9 +144,10 @@ position = Vector2(656, 497)
 script = ExtResource("4_robot")
 patrol_left = -100.0
 patrol_right = 80.0
+can_activate_sleep_all = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Robot_A1" unique_id=351021000]
-position = Vector2(-25.000027, -15.000015)
+position = Vector2(31.99998, -6.0000153)
 scale = Vector2(0.24965253, 0.17334907)
 texture = ExtResource("5_robot_peace")
 region_enabled = true
@@ -153,43 +160,42 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("7_fkey")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Robot_A1" unique_id=675171803]
-position = Vector2(-3, -21)
+position = Vector2(66, -15)
 shape = SubResource("RectangleShape2D_robot_body")
 
 [node name="DetectZone" type="Area2D" parent="Robot_A1" unique_id=709606636]
 position = Vector2(-42, -79)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Robot_A1/DetectZone" unique_id=1065400478]
-position = Vector2(67.09375, 63.820313)
+position = Vector2(71, 53)
 shape = SubResource("RectangleShape2D_robot_detect")
 
 [node name="Robot_A2" type="Area2D" parent="." unique_id=205647639]
-position = Vector2(1400, 905)
+position = Vector2(1268, 523)
 script = ExtResource("4_robot")
 initial_state = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="Robot_A2" unique_id=787763680]
-position = Vector2(-126.99997, -418)
+position = Vector2(-7.9999695, -47)
 scale = Vector2(0.24854985, 0.1981132)
 texture = ExtResource("6_robot_attack")
 region_enabled = true
 region_rect = Rect2(448, 220, 662, 848)
 
 [node name="FHint" type="Sprite2D" parent="Robot_A2" unique_id=125710062]
-visible = false
 position = Vector2(0, -160)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("7_fkey")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Robot_A2" unique_id=1088290651]
-position = Vector2(-136, -439)
+position = Vector2(2, -43)
 shape = SubResource("RectangleShape2D_robot_body")
 
 [node name="DetectZone" type="Area2D" parent="Robot_A2" unique_id=1261819388]
 position = Vector2(-113, -423)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Robot_A2/DetectZone" unique_id=673560610]
-position = Vector2(-19, -1)
+position = Vector2(86, 369)
 shape = SubResource("RectangleShape2D_robot_detect")
 
 [node name="ShutdownButton" type="Area2D" parent="." unique_id=859234252]
@@ -198,7 +204,6 @@ position = Vector2(580, 870)
 script = ExtResource("8_shutdown")
 
 [node name="Sprite2D" type="Sprite2D" parent="ShutdownButton" unique_id=1490370198]
-visible = false
 position = Vector2(858, 309)
 scale = Vector2(1, 0.9658333)
 texture = ExtResource("9_device_off")
@@ -229,16 +234,18 @@ region_rect = Rect2(550.5365, 525.8607, 919.24023, 882.1742)
 position = Vector2(15, -29)
 shape = SubResource("RectangleShape2D_water")
 
-[node name="PasswordChest" type="StaticBody2D" parent="." unique_id=1991180439]
-position = Vector2(831, 545)
+[node name="PassIDChest" type="StaticBody2D" parent="." unique_id=1991180439]
+position = Vector2(883, 517)
 
-[node name="Sprite2D" type="Sprite2D" parent="PasswordChest" unique_id=397091135]
-position = Vector2(13.000023, -56.99997)
-scale = Vector2(0.5637038, 0.6)
-texture = ExtResource("12_chest")
+[node name="Sprite2D" type="Sprite2D" parent="PassIDChest" unique_id=397091135]
+position = Vector2(-0.9999809, 4.999954)
+scale = Vector2(0.1995822, 0.12858696)
+texture = ExtResource("13_p4rgj")
+region_enabled = true
+region_rect = Rect2(5.665985, 0, 696.334, 472)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PasswordChest" unique_id=1250688633]
-position = Vector2(14, -47)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PassIDChest" unique_id=1250688633]
+position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_chest")
 
 [node name="DividerLayer" type="CanvasLayer" parent="." unique_id=2013859012]
@@ -254,12 +261,12 @@ offset_right = 3.0
 [node name="Building" type="StaticBody2D" parent="." unique_id=712400357]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Building" unique_id=828513538]
-position = Vector2(959, 597)
+position = Vector2(959.5, 597)
 shape = SubResource("RectangleShape2D_0nxth")
 
 [node name="Sprite2D" type="Sprite2D" parent="Building" unique_id=1259633095]
-position = Vector2(961, 595)
-scale = Vector2(2.0286887, 0.50304866)
+position = Vector2(961, 595.625)
+scale = Vector2(2.0286887, 0.49542665)
 texture = ExtResource("4_146qx")
 
 [node name="LightController" type="Node2D" parent="." unique_id=442074836]
@@ -316,8 +323,8 @@ position = Vector2(-1, -112)
 shape = SubResource("RectangleShape2D_door")
 
 [node name="门1" type="Sprite2D" parent="Door_A1" unique_id=1288986319]
-position = Vector2(1, -117)
-scale = Vector2(0.9444444, 0.71343875)
+position = Vector2(1, -124.25)
+scale = Vector2(0.9444444, 0.7420948)
 texture = ExtResource("18_q2syr")
 
 [node name="Door_A2" type="StaticBody2D" parent="." unique_id=586107572]
@@ -327,28 +334,66 @@ script = ExtResource("20_door")
 [node name="Sprite2D" type="Sprite2D" parent="Door_A2" unique_id=230973810]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door_A2" unique_id=1407486706]
-position = Vector2(1.75, -112.375)
+position = Vector2(9, -110.140625)
 shape = SubResource("RectangleShape2D_door")
 
 [node name="门2" type="Sprite2D" parent="Door_A2" unique_id=1435965740]
-position = Vector2(0, -102.6875)
-scale = Vector2(1, 0.7061881)
+position = Vector2(10, -109.99999)
+scale = Vector2(0.8039216, 0.7405941)
 texture = ExtResource("19_e5y7y")
+
+[node name="Door_A1_Zone" type="Area2D" parent="." unique_id=572644051]
+position = Vector2(420, 600)
+script = ExtResource("21_lab")
+door_to_open = NodePath("../Door_A1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door_A1_Zone" unique_id=150553325]
+shape = SubResource("RectangleShape2D_door")
 
 [node name="LabEntrance" type="Area2D" parent="." unique_id=862264908]
 position = Vector2(550, 640)
 script = ExtResource("21_lab")
-door_to_open = NodePath("../Door_A1")
+door_to_open = NodePath("../Door_A2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LabEntrance" unique_id=486970487]
-position = Vector2(-30, -258)
+position = Vector2(-30, -266.90625)
 shape = SubResource("RectangleShape2D_door")
+
+[node name="LightExitZone" type="Area2D" parent="." unique_id=1925902102]
+position = Vector2(450, 610)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightExitZone" unique_id=514950532]
+shape = SubResource("RectangleShape2D_light_exit")
+
+[node name="PassID" type="Area2D" parent="." unique_id=1072722659]
+position = Vector2(750, 550)
+script = ExtResource("27_interactable")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PassID" unique_id=2089185392]
+position = Vector2(132, -31)
+shape = SubResource("RectangleShape2D_chest")
+
+[node name="TextureRect" type="TextureRect" parent="PassID" unique_id=522267011]
+visible = false
+offset_left = -80.0
+offset_top = -100.0
+offset_right = 80.0
+offset_bottom = -40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="PassID" unique_id=877942828]
+visible = false
+position = Vector2(194.99994, -50.25)
+scale = Vector2(1.5735294, 1.2170626)
+texture = ExtResource("13_p4rgj")
+region_enabled = true
+region_rect = Rect2(11.719177, 0, 680.70905, 463.08154)
 
 [node name="Modou" parent="." unique_id=1333901530 instance=ExtResource("22_modou")]
 position = Vector2(97, 1002)
 
 [node name="Earth" parent="." unique_id=1715810768 instance=ExtResource("23_earth")]
-position = Vector2(226, 555)
+visible = false
+position = Vector2(176, 569)
 
 [node name="Vine_A2" type="Sprite2D" parent="." unique_id=1605524024]
 visible = false
@@ -359,7 +404,7 @@ texture = ExtResource("24_vine")
 [node name="Elevator_A1" type="AnimatableBody2D" parent="." unique_id=220412324]
 position = Vector2(300, 950)
 script = ExtResource("19_elevator")
-door_to_open = NodePath("../Door_A2")
+door_to_open = NodePath("../Door_A1")
 
 [node name="Sprite2D" type="Sprite2D" parent="Elevator_A1" unique_id=697062765]
 position = Vector2(13, 36)
@@ -390,6 +435,65 @@ texture = ExtResource("4_146qx")
 region_enabled = true
 region_rect = Rect2(11.332642, 10.333649, 464.66666, 138.66669)
 
-[node name="PauseCanvas" type="CanvasLayer" parent="." unique_id=3006985745]
+[node name="Plat1" type="AnimatableBody2D" parent="." unique_id=1145117841]
+position = Vector2(1698, 937)
+script = ExtResource("25_platform")
+start_delay = 5.0
 
-[node name="pause" parent="PauseCanvas" unique_id=4007985739 instance=ExtResource("14_pause")]
+[node name="Sprite2D" type="Sprite2D" parent="Plat1" unique_id=1601280899]
+position = Vector2(73.30006, -29.960045)
+scale = Vector2(0.26106542, 0.27999964)
+texture = ExtResource("4_146qx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plat1" unique_id=651396174]
+position = Vector2(77.25, -30.1875)
+shape = SubResource("RectangleShape2D_plat")
+
+[node name="Timer" type="Timer" parent="Plat1" unique_id=1821870054]
+
+[node name="Plat2" type="AnimatableBody2D" parent="." unique_id=1904479828]
+position = Vector2(1350, 680)
+script = ExtResource("25_platform")
+start_visible = false
+start_delay = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Plat2" unique_id=1205400467]
+position = Vector2(154.99998, -150.41998)
+scale = Vector2(0.16803287, 0.16365878)
+texture = ExtResource("4_146qx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plat2" unique_id=2059675797]
+position = Vector2(150, -156)
+shape = SubResource("RectangleShape2D_plat")
+
+[node name="Timer" type="Timer" parent="Plat2" unique_id=1633514352]
+
+[node name="Plat3" type="AnimatableBody2D" parent="." unique_id=1318357197]
+position = Vector2(1605, 672)
+script = ExtResource("25_platform")
+start_delay = 15.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Plat3" unique_id=173477922]
+position = Vector2(-0.9999943, 5.07999)
+scale = Vector2(0.18442623, 0.1819511)
+texture = ExtResource("4_146qx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plat3" unique_id=36122015]
+position = Vector2(-5.5, 5.125)
+shape = SubResource("RectangleShape2D_plat")
+
+[node name="Timer" type="Timer" parent="Plat3" unique_id=625509347]
+
+[node name="PauseCanvas" type="CanvasLayer" parent="." unique_id=-1287981551]
+
+[node name="pause" parent="PauseCanvas" unique_id=-286981557 instance=ExtResource("14_pause")]
+visible = false
+
+[node name="smallBG_01" type="Sprite2D" parent="." unique_id=726757367]
+visible = false
+z_index = -1
+position = Vector2(956.5, 416.49997)
+scale = Vector2(0.79448617, 1.1417111)
+texture = ExtResource("26_erbyl")
+region_enabled = true
+region_rect = Rect2(8.578573, 48.30449, 1197.1459, 374.71204)

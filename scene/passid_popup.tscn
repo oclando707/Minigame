@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://cdc2e1vv3dvb"]
+
+[ext_resource type="Texture2D" uid="uid://6ca64ih3rkqr" path="res://minigame_assets/PauseMenu/黑色遮罩.png" id="1_bg"]
+[ext_resource type="Texture2D" uid="uid://ds7qngx5ha6n5" path="res://minigame_assets/textbox/对话框1.png" id="2_frame"]
+[ext_resource type="Texture2D" uid="uid://gcdqvhyp1t3m" path="res://minigame_assets/textbox/选项_idle.png" id="3_btn"]
+[ext_resource type="Texture2D" uid="uid://c2cxp33fyawpn" path="res://minigame_assets/textbox/选项_hover.png" id="4_btn_hover"]
+[ext_resource type="Texture2D" uid="uid://qtgluy60af8g" path="res://minigame_assets/Level2-1/弹窗/弹窗/弹窗背景.png" id="5_ag0xx"]
+
+[node name="PassIDPopup" type="Control" unique_id=319013353]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="TextureRect" parent="." unique_id=451007621]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_bg")
+
+[node name="frame" type="TextureRect" parent="." unique_id=800078297]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -430.0
+offset_top = -300.0
+offset_right = 430.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_frame")
+
+[node name="doc" type="TextureRect" parent="." unique_id=1821963856]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -380.0
+offset_top = -260.0
+offset_right = 380.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="btn_ok" type="TextureButton" parent="." unique_id=583918436]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -709.0
+offset_top = 66.0
+offset_right = -279.0
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_btn")
+texture_hover = ExtResource("4_btn_hover")
+
+[node name="ok_label" type="Label" parent="btn_ok" unique_id=1746322402]
+z_index = 1
+layout_mode = 0
+offset_left = 121.0
+offset_top = 43.0
+offset_right = 271.0
+offset_bottom = 76.0
+text = "确认"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btn_close" type="TextureButton" parent="." unique_id=1841436046]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = 100.0
+offset_right = 210.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_btn")
+texture_hover = ExtResource("4_btn_hover")
+
+[node name="close_label" type="Label" parent="btn_close" unique_id=1900590304]
+z_index = 1
+layout_mode = 0
+offset_left = 56.0
+offset_top = 22.5
+offset_right = 305.0
+offset_bottom = 103.5
+text = "关闭"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="弹窗背景" type="Sprite2D" parent="." unique_id=819258262]
+position = Vector2(955, 492.5)
+scale = Vector2(2.4985757, 1.1758474)
+texture = ExtResource("5_ag0xx")

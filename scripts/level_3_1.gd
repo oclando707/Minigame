@@ -27,11 +27,23 @@ func _ready() -> void:
 	if has_node("Modou"):
 		$Modou.interacted.connect(_on_modou_picked)
 
+	if has_node("PassID"):
+		$PassID.interacted.connect(_on_passid_interacted)
+
 	if has_node("Earth"):
 		$Earth.body_entered.connect(func(b: Node2D):
 			if b is CharacterBody2D: _near_earth = true)
 		$Earth.body_exited.connect(func(b: Node2D):
 			if b is CharacterBody2D: _near_earth = false)
+
+	# A1 穿过灯光区域 → A2 尖刺永久缩回
+	if has_node("LightExitZone"):
+		$LightExitZone.body_entered.connect(func(b: Node2D):
+			if b is CharacterBody2D:
+				var spine := $Spine as Area2D
+				if spine and spine.has_method("retract"):
+					spine.retract()
+		)
 
 	_update_vine()
 
@@ -84,3 +96,34 @@ func _update_vine() -> void:
 	var planted: bool = DialogueManager.flags.get("modou_planted", false)
 	if has_node("Vine_A2"):
 		$Vine_A2.visible = planted
+
+
+func _on_passid_interacted() -> void:
+	a1.set_movement_enabled(false)
+
+	var popup := preload("res://scene/passid_popup.tscn").instantiate() as Control
+	get_tree().current_scene.add_child(popup)
+
+	# 关闭 → 什么也不做
+	popup.get_node("btn_close").pressed.connect(func():
+		a1.set_movement_enabled(true)
+		popup.queue_free()
+		if has_node("PassID"):
+			$PassID.unlock_interaction()
+	)
+
+	# 确认 → 关机密文件 → 弹出死难者名单
+	popup.get_node("btn_ok").pressed.connect(func():
+		DialogueManager.flags["passid_read"] = true
+		popup.queue_free()
+
+		var popup2 := preload("res://scene/victim_list_popup.tscn").instantiate() as Control
+		get_tree().current_scene.add_child(popup2)
+
+		popup2.get_node("btn_close").pressed.connect(func():
+			a1.set_movement_enabled(true)
+			popup2.queue_free()
+			if has_node("PassID"):
+				$PassID.unlock_interaction()
+		)
+	)
