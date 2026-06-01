@@ -3,6 +3,9 @@ extends Node
 ## 当前是否正在显示对话
 var is_active: bool = false
 
+## 每行对话显示时触发，参数为当前行索引（从0开始）
+signal line_shown(index: int)
+
 ## 游戏进度标记：跨场景共享状态，用于控制节点显隐等进度相关逻辑
 ## 当前使用的标记：
 ##   modou_planted → 玩家拾取魔豆并在 earth 区域种植后为 true，控制 ZoneB 中 tree/picture 显隐
@@ -177,6 +180,7 @@ func _setup_button_label_colors(btn: TextureButton, label: Label) -> void:
 func _show_current_line() -> void:
 	if _current_index < _current_lines.size():
 		_dialog.get_node("text").set("text", _current_lines[_current_index])
+		line_shown.emit(_current_index)
 	else:
 		if _branching_mode:
 			# 分支模式：对话文本结束后显示选项按钮

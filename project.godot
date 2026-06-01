@@ -14,11 +14,13 @@ config/name="时空奇遇记"
 run/main_scene="uid://c8llgc0wl3qe2"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+config/windows_native_icon="res://minigame_assets/Global/游戏图标.ico"
 
 [autoload]
 
 DialogueManager="*res://scripts/dialogue_manager.gd"
 StarManager="*res://scripts/star_manager.gd"
+MusicManager="*res://scripts/music_manager.gd"
 
 [display]
 

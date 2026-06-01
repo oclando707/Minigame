@@ -11,6 +11,10 @@ var is_playing := true
 
 
 func _ready() -> void:
+	# 加载广场舞音乐并配置距离衰减
+	music.stream = load("res://.godot/imported/广场舞音乐.wav-b36a43ef426119d01eabd9f9ab7baef0.sample")
+	music.max_distance = 800.0       # 800px 外完全听不到
+	music.attenuation = 1.0          # 线性衰减：距离越远越小声
 	music.play()
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)

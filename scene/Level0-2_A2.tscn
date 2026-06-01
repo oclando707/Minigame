@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://xeri4cg33pv5" path="res://scripts/grass.gd" id="8_grass"]
 [ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="9_fkey"]
 [ext_resource type="Texture2D" uid="uid://dsff6n3r6u4qf" path="res://minigame_assets/Global/按键Tab/键位Tab.png" id="10_fodhs"]
+[ext_resource type="Script" uid="uid://0wblgs2orfr0" path="res://scripts/level_0_2_a2.gd" id="11_a2script"]
+[ext_resource type="AudioStream" uid="uid://ccf0bdxlvv2yj" path="res://music/dragon-studio-dry-grass-rustling-478361.mp3" id="12_kutcy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oo04h"]
 size = Vector2(881, 183)
@@ -42,6 +44,7 @@ size = Vector2(183, 194)
 size = Vector2(240, 439)
 
 [node name="Level0-2_A2" type="Node2D" unique_id=2146850108]
+script = ExtResource("11_a2script")
 
 [node name="Sky" type="Sprite2D" parent="." unique_id=1713566542]
 z_index = -10
@@ -179,3 +182,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("10_fodhs")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Grass" unique_id=550270859]
+stream = ExtResource("12_kutcy")

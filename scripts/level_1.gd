@@ -1,5 +1,8 @@
 extends Node2D
 
+const BGM_ZONE_A := "res://.godot/imported/德米特里的植物园2.wav-7c682378035f8d37dd3a36771b04a236.sample"
+const BGM_ZONE_B := "res://.godot/imported/缧绁.wav-3597d7d2e1e1fb5c6fd55bdbe5992fe6.sample"
+
 ## =============================================================================
 ## 对话文本导出（ZoneA / 现在）
 ## =============================================================================
@@ -67,6 +70,7 @@ var dixiashi_toggled: bool = false
 func _ready() -> void:
 	# 设置摄像机右边界（level_1 场景宽度为 1920）
 	$Player/Camera2D.limit_right = 1920
+	get_node("/root/MusicManager").play(BGM_ZONE_A)
 
 	# ZoneB（另一时间线）初始隐藏，Tab 键在两者之间切换
 	_set_zone_active($ZoneB, false)
@@ -311,6 +315,13 @@ func _complete_push() -> void:
 	# 向左上方施加冲量使其飞出 paltfarm 平台
 	feixu.apply_central_impulse(Vector2(-300, -150))
 
+	# 播放废墟坠落音效
+	var sfx := AudioStreamPlayer2D.new()
+	sfx.stream = load("res://.godot/imported/freesound_community-stones-falling-6375.mp3-79b06d30e8ec1c91c233dfbb86a82178.mp3str")
+	add_child(sfx)
+	sfx.finished.connect(sfx.queue_free)
+	sfx.play()
+
 
 ## 推动取消：玩家松手太早，feixu 不动，恢复玩家状态
 func _cancel_push() -> void:
@@ -367,7 +378,13 @@ func _on_feixu_body_collided(body: Node) -> void:
 	if not feixu_pushed or dixiashi_toggled:
 		return
 	if body is StaticBody2D and body.name == "dixiashi":
-		# 用 call_deferred 延迟到下一帧执行，避免在物理回调中修改碰撞状态
+		# 播放撞击音效
+		var sfx := AudioStreamPlayer2D.new()
+		sfx.stream = load("res://.godot/imported/levigoodway-vine-boom-sound-410789.mp3-4dbeababaf6566c78604366589af2c61.mp3str")
+		add_child(sfx)
+		sfx.finished.connect(sfx.queue_free)
+		sfx.play()
+
 		_toggle_dixiashi.call_deferred(body as StaticBody2D)
 
 
@@ -399,11 +416,13 @@ func _input(event: InputEvent) -> void:
 			_apply_modou_flag()
 			# 切换到 ZoneB（未来）→ 隐藏魔豆跟随精灵
 			_set_modou_visible(false)
+			get_node("/root/MusicManager").crossfade(BGM_ZONE_B)
 		else:
 			_set_zone_active($ZoneB, false)
 			_set_zone_active($ZoneA, true)
 			# 切换回 ZoneA（现在）→ 恢复魔豆跟随精灵
 			_set_modou_visible(true)
+			get_node("/root/MusicManager").crossfade(BGM_ZONE_A)
 
 
 ## 设置区域的激活状态（可见性 + 物理碰撞）
@@ -465,12 +484,32 @@ func _apply_modou_flag() -> void:
 ## =============================================================================
 
 ## Jack 对话：对话结束后 Jack 消失（不可重复交互）
+## 第2行"犬吠，像是在回应"显示时和对话结束时各播放一次狗叫
 func _on_jack_interacted() -> void:
+	# 创建临时音效播放器
+	var bark_player := AudioStreamPlayer2D.new()
+	bark_player.stream = preload("res://level1asset/第一关/狗叫.wav")
+	add_child(bark_player)
+
+	# 监听每行对话显示：第2行（index 1）时播放狗叫
+	var _on_line: Callable = func(index: int):
+		if index == 1:
+			bark_player.play()
+
+	DialogueManager.line_shown.connect(_on_line)
+
 	DialogueManager.show_dialogue(
 		dialog_lines,
 		$Player,
 		"res://scene/textboxA.tscn",
-		func(): $ZoneA/jack.visible = false
+		func():
+			# 对话结束：再播放一次狗叫，然后断开信号、移除播放器
+			bark_player.play()
+			# 等音效播完再清理
+			await get_tree().create_timer(0.5).timeout
+			DialogueManager.line_shown.disconnect(_on_line)
+			bark_player.queue_free()
+			$ZoneA/jack.visible = false
 	)
 
 
