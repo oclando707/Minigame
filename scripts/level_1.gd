@@ -80,6 +80,9 @@ func _ready() -> void:
 	# 连接 feixu 的检测区域信号（ZoneB）
 	_connect_feixu_signals()
 
+	# 连接 niupixian 的 interacted 信号（嵌套在实例化场景内，需代码连接）
+	get_node("ZoneA/LV1-background/niupixian").interacted.connect(_on_niupixian_interacted)
+
 	# 根据全局进度标记控制 ZoneB 中 tree 和 picture 的显隐
 	_apply_modou_flag()
 
@@ -106,6 +109,16 @@ func _update_modou_follower() -> void:
 	# 魔豆跟在玩家身后，偏移约 60px
 	var offset_x: float = -60.0 if facing_right else 60.0
 	modou_follower.global_position = $Player.global_position + Vector2(offset_x, 30.0)
+
+
+## 控制魔豆跟随精灵的可见性
+## 切换到 ZoneB 时隐藏，切回 ZoneA 时恢复（仅在已拾取时显示）
+func _set_modou_visible(visible_flag: bool) -> void:
+	if not modou_follower:
+		return
+	if not modou_picked_up:
+		return
+	modou_follower.visible = visible_flag
 
 
 ## =============================================================================
@@ -384,9 +397,13 @@ func _input(event: InputEvent) -> void:
 			_set_zone_active($ZoneA, false)
 			_set_zone_active($ZoneB, true)
 			_apply_modou_flag()
+			# 切换到 ZoneB（未来）→ 隐藏魔豆跟随精灵
+			_set_modou_visible(false)
 		else:
 			_set_zone_active($ZoneB, false)
 			_set_zone_active($ZoneA, true)
+			# 切换回 ZoneA（现在）→ 恢复魔豆跟随精灵
+			_set_modou_visible(true)
 
 
 ## 设置区域的激活状态（可见性 + 物理碰撞）

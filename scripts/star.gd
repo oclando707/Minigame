@@ -6,7 +6,7 @@ enum StarType { SILVER, GOLD }
 
 @export var star_type: StarType = StarType.SILVER
 
-@onready var sfx: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var sfx: AudioStreamPlayer2D = get_node_or_null("AudioStreamPlayer2D") as AudioStreamPlayer2D
 @onready var sprite: Sprite2D = $Sprite2D
 
 

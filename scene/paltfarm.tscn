@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://c0w21kotu2n3p"]
 
 [ext_resource type="Texture2D" uid="uid://ht3n83sful5f" path="res://level1asset/可上升平台.png" id="1_fqehh"]
-[ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="2_65t71"]
-[ext_resource type="Script" uid="uid://hcv0jk0d5qer" path="res://scripts/interactable.gd" id="3_script"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_65t71"]
 size = Vector2(482.5, 53.5)
@@ -13,7 +11,6 @@ size = Vector2(105.5, 164.5)
 [node name="paltfarm" type="Node2D" unique_id=1683000290]
 
 [node name="Area2D" type="Area2D" parent="." unique_id=88390393]
-script = ExtResource("3_script")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Area2D" unique_id=586345539]
 
@@ -25,17 +22,6 @@ light_mask = 8
 visibility_layer = 3
 position = Vector2(1.75, 81.25)
 shape = SubResource("RectangleShape2D_65t71")
-
-[node name="TextureRect" type="TextureRect" parent="Area2D" unique_id=580377829]
-visible = false
-light_mask = 8
-visibility_layer = 2
-offset_left = -1.0
-offset_top = -294.0
-offset_right = 98.0
-offset_bottom = -199.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_65t71")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2046338098]
 position = Vector2(188.25, -25.25)
