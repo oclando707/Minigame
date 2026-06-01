@@ -32,9 +32,9 @@ position = Vector2(63, -336)
 shape = SubResource("CircleShape2D_3hpr3")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=986975542]
-visible = false
-offset_left = -424.0
-offset_top = -663.0
-offset_right = -325.0
-offset_bottom = -568.0
+offset_left = -615.0
+offset_top = -1210.0
+offset_right = -516.0
+offset_bottom = -1115.0
+scale = Vector2(4, 4)
 texture = ExtResource("4_mxknp")

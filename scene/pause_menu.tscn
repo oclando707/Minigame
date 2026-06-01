@@ -8,8 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://bfc1jp1y8xjem" path="res://minigame_assets/PauseMenu/设置_hover.png" id="6_71u2q"]
 [ext_resource type="Texture2D" uid="uid://bcqypdryi5w7u" path="res://minigame_assets/PauseMenu/返回界面_idle.png" id="7_xugnn"]
 [ext_resource type="Texture2D" uid="uid://yuusn8litjx4" path="res://minigame_assets/PauseMenu/返回界面_hover.png" id="8_03dpp"]
+[ext_resource type="Script" uid="uid://bn17wgit3qlz1" path="res://scripts/pause_menu.gd" id="9_pause_menu"]
 
 [node name="PauseMenu" type="Control" unique_id=1016799949]
+script = ExtResource("9_pause_menu")
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,10 +20,15 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="background" type="TextureRect" parent="." unique_id=1613475591]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_cq4tv")
+expand_mode = 1
+stretch_mode = 5
 metadata/_edit_lock_ = true
 
 [node name="title" type="TextureRect" parent="." unique_id=712436060]

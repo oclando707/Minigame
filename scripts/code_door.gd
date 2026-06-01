@@ -11,8 +11,8 @@ var unlocked: bool = false
 
 
 func _ready():
-	$InteractZone.body_entered.connect(_on_body_entered)
-	$InteractZone.body_exited.connect(_on_body_exited)
+	# 信号已通过 .tscn 连接，不在此重复连接
+	pass
 
 
 func _process(_delta):

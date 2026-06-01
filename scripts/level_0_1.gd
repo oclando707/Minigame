@@ -1,5 +1,7 @@
 extends Node2D
 
+const BGM_LEVEL_0_1 := "res://.godot/imported/第二关.mp3-35875a80c07bf0b6977212394ec51378.mp3str"
+
 var _canvas: CanvasLayer = null
 var _dialog: Control = null
 var _current_lines: Array = []
@@ -10,6 +12,7 @@ var _dialog_source: Node = null
 ## 场景就绪时设置摄像机右边界为 3048（level_0_1 场景更宽）
 func _ready() -> void:
 	$Player/Camera2D.limit_right = 3048
+	get_node("/root/MusicManager").play(BGM_LEVEL_0_1)
 
 
 func start_dialog(lines: Array, source: Node = null) -> void:

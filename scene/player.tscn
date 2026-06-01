@@ -96,6 +96,8 @@
 [ext_resource type="Texture2D" uid="uid://be25t7a231yux" path="res://minigame_assets/Global/chara_walk/chara_walk_0023.png" id="94_vl6wn"]
 [ext_resource type="Script" uid="uid://c6w4wrns0s5je" path="res://scripts/Player.gd" id="95_qp3rb"]
 [ext_resource type="Texture2D" uid="uid://cawjwkq8dqjvx" path="res://cha/merged-image.png" id="96_cmg3n"]
+[ext_resource type="AudioStream" uid="uid://lbd0d6yw24i7" path="res://music/音效/SFX_06.mp3" id="97_step"]
+[ext_resource type="AudioStream" uid="uid://wbo565be8xob" path="res://music/音效/SFX_10.mp3" id="98_land"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1ww5g"]
 resource_local_to_scene = true
@@ -559,3 +561,9 @@ vframes = 16
 root_node = NodePath("../cha")
 libraries/ = SubResource("AnimationLibrary_et5mr")
 autoplay = &"walk"
+
+[node name="StepSFX" type="AudioStreamPlayer2D" parent="." unique_id=1090256613]
+stream = ExtResource("97_step")
+
+[node name="LandSFX" type="AudioStreamPlayer2D" parent="." unique_id=1160048844]
+stream = ExtResource("98_land")

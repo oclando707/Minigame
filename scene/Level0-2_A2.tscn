@@ -9,6 +9,10 @@
 [ext_resource type="Script" uid="uid://cvcp51xichita" path="res://scripts/robot.gd" id="7_robot"]
 [ext_resource type="Script" uid="uid://xeri4cg33pv5" path="res://scripts/grass.gd" id="8_grass"]
 [ext_resource type="Texture2D" uid="uid://b37fnhpbhnjed" path="res://minigame_assets/Global/按键F.png" id="9_fkey"]
+[ext_resource type="Texture2D" uid="uid://dsff6n3r6u4qf" path="res://minigame_assets/Global/按键Tab/键位Tab.png" id="10_fodhs"]
+[ext_resource type="Script" uid="uid://0wblgs2orfr0" path="res://scripts/level_0_2_a2.gd" id="11_a2script"]
+[ext_resource type="AudioStream" uid="uid://ccf0bdxlvv2yj" path="res://music/dragon-studio-dry-grass-rustling-478361.mp3" id="12_kutcy"]
+[ext_resource type="PackedScene" uid="uid://ddm1lc3quv13d" path="res://scene/pause.tscn" id="13_pause"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oo04h"]
 size = Vector2(881, 183)
@@ -21,6 +25,12 @@ size = Vector2(588.5, 156)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8x304"]
 size = Vector2(1029, 62)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ba2c"]
+size = Vector2(46, 1098)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kutcy"]
+size = Vector2(113, 1097)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j62ct"]
 size = Vector2(21.509602, 128.48338)
@@ -35,6 +45,7 @@ size = Vector2(183, 194)
 size = Vector2(240, 439)
 
 [node name="Level0-2_A2" type="Node2D" unique_id=2146850108]
+script = ExtResource("11_a2script")
 
 [node name="Sky" type="Sprite2D" parent="." unique_id=1713566542]
 z_index = -10
@@ -44,7 +55,7 @@ centered = false
 
 [node name="Player" parent="." unique_id=916301139 instance=ExtResource("2_oo04h")]
 z_index = 2
-position = Vector2(275, 860)
+position = Vector2(248, 768)
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=2134161052]
 
@@ -91,6 +102,14 @@ scale = Vector2(4.703921, 0.35742477)
 texture = ExtResource("2_hsj00")
 region_enabled = true
 region_rect = Rect2(485, 804.5, 220, 181)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Ground" unique_id=146447564]
+position = Vector2(-8, 536)
+shape = SubResource("RectangleShape2D_3ba2c")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Ground" unique_id=1949906636]
+position = Vector2(1969, 539.5)
+shape = SubResource("RectangleShape2D_kutcy")
 
 [node name="BrokenDoor" type="StaticBody2D" parent="." unique_id=1194069963]
 
@@ -149,3 +168,26 @@ region_rect = Rect2(99.04608, 58.74382, 1129.6714, 906.7383)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grass" unique_id=1903833162]
 position = Vector2(-18, -33.5)
 shape = SubResource("RectangleShape2D_fodhs")
+
+[node name="TextureRect" type="TextureRect" parent="Grass" unique_id=285731407]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.0
+offset_top = -388.00003
+offset_right = 1457.0
+offset_bottom = 1772.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("10_fodhs")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Grass" unique_id=550270859]
+stream = ExtResource("12_kutcy")
+autoplay = true
+
+[node name="PauseCanvas" type="CanvasLayer" parent="." unique_id=3002985743]
+
+[node name="pause" parent="PauseCanvas" unique_id=4003985737 instance=ExtResource("13_pause")]

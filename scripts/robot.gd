@@ -111,6 +111,13 @@ func _show_choice_dialogue() -> void:
 	_talking = true
 	f_hint.visible = false
 
+	# 播放机器人机械音效
+	var sfx := AudioStreamPlayer2D.new()
+	sfx.stream = load("res://.godot/imported/audiopapkin-sound-design-elements-robot-mechanism-021-344709.mp3-e212bbf39775a9a7312c140b89859cd3.mp3str")
+	add_child(sfx)
+	sfx.finished.connect(sfx.queue_free)
+	sfx.play()
+
 	# 冻结玩家
 	if _target_player == null:
 		for b in get_overlapping_bodies():
@@ -136,6 +143,8 @@ func _show_choice_dialogue() -> void:
 	# 给按钮加文字标签
 	_add_btn_label(btn1, "激怒它")
 	_add_btn_label(btn2, "离开")
+	get_node("/root/MusicManager").bind_hover_sfx(btn1)
+	get_node("/root/MusicManager").bind_hover_sfx(btn2)
 
 	btn1.pressed.connect(func():
 		_choice_anger(canvas)

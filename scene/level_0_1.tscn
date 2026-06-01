@@ -16,9 +16,10 @@
 [ext_resource type="Texture2D" uid="uid://di8vfi0cs4cbl" path="res://minigame_assets/Level_01/Level_01_A1/Buildings/Lv0-1完好密码门/未命名作品(22).png" id="12_amu75"]
 [ext_resource type="Script" uid="uid://be8o7gs0ligio" path="res://scripts/code_door.gd" id="12_kiljn"]
 [ext_resource type="AudioStream" uid="uid://bx0urhbvvrdlk" path="res://minigame_assets/Level_01/Level_01_A1/验证通过.wav" id="14_rrsdc"]
-[ext_resource type="Script" path="res://scripts/star.gd" id="17_dnnvp"]
+[ext_resource type="Script" uid="uid://bgd45r4tx4odv" path="res://scripts/star.gd" id="17_dnnvp"]
 [ext_resource type="Texture2D" uid="uid://c8ghioacj6j1a" path="res://minigame_assets/Global/GlobalItem_GrayStar/SilverStar.png" id="18_dnnvp"]
 [ext_resource type="Texture2D" uid="uid://dsff6n3r6u4qf" path="res://minigame_assets/Global/按键Tab/键位Tab.png" id="19_tabkey"]
+[ext_resource type="PackedScene" uid="uid://ddm1lc3quv13d" path="res://scene/pause.tscn" id="20_pause"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kiljn"]
 size = Vector2(245, 142.5)
@@ -28,6 +29,12 @@ size = Vector2(255.5, 46)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0r3if"]
 size = Vector2(2541.5, 138)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6x4kj"]
+size = Vector2(20, 1098)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8d521"]
+size = Vector2(20, 1081)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8pgc2"]
 size = Vector2(274, 124.25)
@@ -86,6 +93,14 @@ shape = SubResource("RectangleShape2D_rrsdc")
 position = Vector2(1783.25, 1008)
 shape = SubResource("RectangleShape2D_0r3if")
 
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Ground" unique_id=2123145891]
+position = Vector2(0, 539)
+shape = SubResource("RectangleShape2D_6x4kj")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Ground" unique_id=671265528]
+position = Vector2(3064, 539.5)
+shape = SubResource("RectangleShape2D_8d521")
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1060650782]
 z_index = 1
 position = Vector2(121.5, 1007.5)
@@ -112,7 +127,7 @@ region_rect = Rect2(819.4668, 949.6001, 550.00024, 126.8667)
 
 [node name="Player" parent="." unique_id=916301139 instance=ExtResource("3_sp3i7")]
 z_index = 2
-position = Vector2(56, 821)
+position = Vector2(96, 808)
 
 [node name="platform" type="StaticBody2D" parent="." unique_id=1184445431]
 
@@ -211,6 +226,7 @@ position = Vector2(3, 7)
 shape = SubResource("RectangleShape2D_jkine")
 
 [node name="FHint" type="Sprite2D" parent="Push_Box" unique_id=727272897]
+visible = false
 position = Vector2(0, -60)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("10_fkey")
@@ -242,7 +258,7 @@ position = Vector2(2461, 355)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("10_fkey")
 
-[node name="TabHint" type="Sprite2D" parent="CodeDoor"]
+[node name="TabHint" type="Sprite2D" parent="CodeDoor" unique_id=1968102436]
 visible = false
 position = Vector2(2461, 320)
 scale = Vector2(0.3, 0.3)
@@ -268,6 +284,10 @@ scale = Vector2(0.70175415, 0.57081556)
 texture = ExtResource("18_dnnvp")
 region_enabled = true
 region_rect = Rect2(731.94727, 473.44434, 171.0133, 233.93335)
+
+[node name="PauseCanvas" type="CanvasLayer" parent="." unique_id=3001985742]
+
+[node name="pause" parent="PauseCanvas" unique_id=4002985736 instance=ExtResource("20_pause")]
 
 [connection signal="interacted" from="Radio" to="." method="_on_radio_interacted"]
 [connection signal="body_entered" from="CodeDoor/InteractZone" to="CodeDoor" method="_on_body_entered"]

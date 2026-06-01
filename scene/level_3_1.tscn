@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://br6dmbnbtgtxy" path="res://scene/modou.tscn" id="22_modou"]
 [ext_resource type="PackedScene" uid="uid://cwocn7km7m1xd" path="res://scene/earth.tscn" id="23_earth"]
 [ext_resource type="Texture2D" uid="uid://cubclyerf88ow" path="res://minigame_assets/Level2-1/Level2-1A2/藤蔓生长动画/growing_0019.png" id="24_vine"]
+[ext_resource type="PackedScene" uid="uid://ddm1lc3quv13d" path="res://scene/pause.tscn" id="14_pause"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gnd_a1"]
 size = Vector2(956, 67)
@@ -388,3 +389,7 @@ scale = Vector2(2.1034482, 1)
 texture = ExtResource("4_146qx")
 region_enabled = true
 region_rect = Rect2(11.332642, 10.333649, 464.66666, 138.66669)
+
+[node name="PauseCanvas" type="CanvasLayer" parent="." unique_id=3006985745]
+
+[node name="pause" parent="PauseCanvas" unique_id=4007985739 instance=ExtResource("14_pause")]

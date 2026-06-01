@@ -1,5 +1,8 @@
 extends Node2D
 
+const BGM_ZONE_A := "res://.godot/imported/德米特里的植物园2.wav-7c682378035f8d37dd3a36771b04a236.sample"
+const BGM_ZONE_B := "res://.godot/imported/缧绁.wav-3597d7d2e1e1fb5c6fd55bdbe5992fe6.sample"
+
 ## =============================================================================
 ## 对话文本导出（ZoneA / 现在）
 ## =============================================================================
@@ -67,6 +70,7 @@ var dixiashi_toggled: bool = false
 func _ready() -> void:
 	# 设置摄像机右边界（level_1 场景宽度为 1920）
 	$Player/Camera2D.limit_right = 1920
+	get_node("/root/MusicManager").play(BGM_ZONE_A)
 
 	# ZoneB（另一时间线）初始隐藏，Tab 键在两者之间切换
 	_set_zone_active($ZoneB, false)
@@ -79,6 +83,9 @@ func _ready() -> void:
 
 	# 连接 feixu 的检测区域信号（ZoneB）
 	_connect_feixu_signals()
+
+	# 连接 niupixian 的 interacted 信号（嵌套在实例化场景内，需代码连接）
+	get_node("ZoneA/LV1-background/niupixian").interacted.connect(_on_niupixian_interacted)
 
 	# 根据全局进度标记控制 ZoneB 中 tree 和 picture 的显隐
 	_apply_modou_flag()
@@ -106,6 +113,16 @@ func _update_modou_follower() -> void:
 	# 魔豆跟在玩家身后，偏移约 60px
 	var offset_x: float = -60.0 if facing_right else 60.0
 	modou_follower.global_position = $Player.global_position + Vector2(offset_x, 30.0)
+
+
+## 控制魔豆跟随精灵的可见性
+## 切换到 ZoneB 时隐藏，切回 ZoneA 时恢复（仅在已拾取时显示）
+func _set_modou_visible(visible_flag: bool) -> void:
+	if not modou_follower:
+		return
+	if not modou_picked_up:
+		return
+	modou_follower.visible = visible_flag
 
 
 ## =============================================================================
@@ -286,6 +303,7 @@ func _complete_push() -> void:
 	is_pushing = false
 	push_hold_time = 0.0
 	feixu_pushed = true
+	DialogueManager.flags["level_1_2_unlocked"] = true
 
 	# 恢复玩家正常移动和动画
 	$Player.set_movement_enabled(true)
@@ -297,6 +315,13 @@ func _complete_push() -> void:
 	# can_sleep=false 已在 .tscn 中设置，保证冲量持续生效
 	# 向左上方施加冲量使其飞出 paltfarm 平台
 	feixu.apply_central_impulse(Vector2(-300, -150))
+
+	# 播放废墟坠落音效
+	var sfx := AudioStreamPlayer2D.new()
+	sfx.stream = load("res://.godot/imported/freesound_community-stones-falling-6375.mp3-79b06d30e8ec1c91c233dfbb86a82178.mp3str")
+	add_child(sfx)
+	sfx.finished.connect(sfx.queue_free)
+	sfx.play()
 
 
 ## 推动取消：玩家松手太早，feixu 不动，恢复玩家状态
@@ -354,7 +379,13 @@ func _on_feixu_body_collided(body: Node) -> void:
 	if not feixu_pushed or dixiashi_toggled:
 		return
 	if body is StaticBody2D and body.name == "dixiashi":
-		# 用 call_deferred 延迟到下一帧执行，避免在物理回调中修改碰撞状态
+		# 播放撞击音效
+		var sfx := AudioStreamPlayer2D.new()
+		sfx.stream = load("res://.godot/imported/levigoodway-vine-boom-sound-410789.mp3-4dbeababaf6566c78604366589af2c61.mp3str")
+		add_child(sfx)
+		sfx.finished.connect(sfx.queue_free)
+		sfx.play()
+
 		_toggle_dixiashi.call_deferred(body as StaticBody2D)
 
 
@@ -384,9 +415,15 @@ func _input(event: InputEvent) -> void:
 			_set_zone_active($ZoneA, false)
 			_set_zone_active($ZoneB, true)
 			_apply_modou_flag()
+			# 切换到 ZoneB（未来）→ 隐藏魔豆跟随精灵
+			_set_modou_visible(false)
+			get_node("/root/MusicManager").crossfade(BGM_ZONE_B)
 		else:
 			_set_zone_active($ZoneB, false)
 			_set_zone_active($ZoneA, true)
+			# 切换回 ZoneA（现在）→ 恢复魔豆跟随精灵
+			_set_modou_visible(true)
+			get_node("/root/MusicManager").crossfade(BGM_ZONE_A)
 
 
 ## 设置区域的激活状态（可见性 + 物理碰撞）
@@ -448,12 +485,32 @@ func _apply_modou_flag() -> void:
 ## =============================================================================
 
 ## Jack 对话：对话结束后 Jack 消失（不可重复交互）
+## 第2行"犬吠，像是在回应"显示时和对话结束时各播放一次狗叫
 func _on_jack_interacted() -> void:
+	# 创建临时音效播放器
+	var bark_player := AudioStreamPlayer2D.new()
+	bark_player.stream = preload("res://level1asset/第一关/狗叫.wav")
+	add_child(bark_player)
+
+	# 监听每行对话显示：第2行（index 1）时播放狗叫
+	var _on_line: Callable = func(index: int):
+		if index == 1:
+			bark_player.play()
+
+	DialogueManager.line_shown.connect(_on_line)
+
 	DialogueManager.show_dialogue(
 		dialog_lines,
 		$Player,
 		"res://scene/textboxA.tscn",
-		func(): $ZoneA/jack.visible = false
+		func():
+			# 对话结束：再播放一次狗叫，然后断开信号、移除播放器
+			bark_player.play()
+			# 等音效播完再清理
+			await get_tree().create_timer(0.5).timeout
+			DialogueManager.line_shown.disconnect(_on_line)
+			bark_player.queue_free()
+			$ZoneA/jack.visible = false
 	)
 
 

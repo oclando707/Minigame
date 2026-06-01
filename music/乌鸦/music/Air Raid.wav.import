@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ce7jq6vah7eq7"
+path="res://.godot/imported/Air Raid.wav-b68fc80b086344970853e9440d2787c1.sample"
+
+[deps]
+
+source_file="res://music/乌鸦/music/Air Raid.wav"
+dest_files=["res://.godot/imported/Air Raid.wav-b68fc80b086344970853e9440d2787c1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
