@@ -19,6 +19,7 @@ func _input(event: InputEvent) -> void:
 	if not _player_in_grass:
 		return
 	if event is InputEventKey and event.pressed and event.keycode == KEY_TAB:
+		DialogueManager.flags["level_1_unlocked"] = true
 		get_tree().change_scene_to_file("res://scene/level_1.tscn")
 
 

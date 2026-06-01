@@ -225,6 +225,7 @@ position = Vector2(3, 7)
 shape = SubResource("RectangleShape2D_jkine")
 
 [node name="FHint" type="Sprite2D" parent="Push_Box" unique_id=727272897]
+visible = false
 position = Vector2(0, -60)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("10_fkey")

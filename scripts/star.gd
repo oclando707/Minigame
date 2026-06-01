@@ -6,7 +6,6 @@ enum StarType { SILVER, GOLD }
 
 @export var star_type: StarType = StarType.SILVER
 
-@onready var sfx: AudioStreamPlayer2D = get_node_or_null("AudioStreamPlayer2D") as AudioStreamPlayer2D
 @onready var sprite: Sprite2D = $Sprite2D
 
 
@@ -22,9 +21,16 @@ func _on_body_entered(body: Node2D) -> void:
 	set_deferred("monitoring", false)
 	set_deferred("monitorable", false)
 
-	# 播放音效
-	if sfx and sfx.stream:
-		sfx.play()
+	# 播放对应类型的星星音效
+	var sfx := AudioStreamPlayer2D.new()
+	match star_type:
+		StarType.SILVER:
+			sfx.stream = load("res://.godot/imported/银色星星.wav-bbef5b93a2586fc8cf4200e14d937814.sample")
+		StarType.GOLD:
+			sfx.stream = load("res://.godot/imported/金色星星.wav-e562b7230d8973f389704f5ef7c01ffa.sample")
+	add_child(sfx)
+	sfx.finished.connect(sfx.queue_free)
+	sfx.play()
 
 	# 隐藏图像
 	if sprite:
@@ -38,6 +44,5 @@ func _on_body_entered(body: Node2D) -> void:
 			StarManager.gold += 1
 
 	# 等音效播完再移除
-	if sfx and sfx.stream:
-		await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5).timeout
 	queue_free()

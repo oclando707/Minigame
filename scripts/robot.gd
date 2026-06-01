@@ -142,6 +142,8 @@ func _show_choice_dialogue() -> void:
 	# 给按钮加文字标签
 	_add_btn_label(btn1, "激怒它")
 	_add_btn_label(btn2, "离开")
+	get_node("/root/MusicManager").bind_hover_sfx(btn1)
+	get_node("/root/MusicManager").bind_hover_sfx(btn2)
 
 	btn1.pressed.connect(func():
 		_choice_anger(canvas)

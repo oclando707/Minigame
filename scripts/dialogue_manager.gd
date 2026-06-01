@@ -202,10 +202,12 @@ func _show_options() -> void:
 	if btn1.pressed.is_connected(_on_view_pressed):
 		btn1.pressed.disconnect(_on_view_pressed)
 	btn1.pressed.connect(_on_view_pressed)
+	get_node("/root/MusicManager").bind_hover_sfx(btn1)
 
 	if btn2.pressed.is_connected(_on_dont_view_pressed):
 		btn2.pressed.disconnect(_on_dont_view_pressed)
 	btn2.pressed.connect(_on_dont_view_pressed)
+	get_node("/root/MusicManager").bind_hover_sfx(btn2)
 
 
 ## "查看" 按钮：隐藏对话框，显示由 _popup_scene_path 指定的弹窗
@@ -225,6 +227,7 @@ func _on_view_pressed() -> void:
 	# 连接叉号按钮：关闭弹窗并结束对话
 	var chahao := _popup_instance.get_node("chahao") as TextureButton
 	chahao.pressed.connect(_on_chahao_pressed)
+	get_node("/root/MusicManager").bind_hover_sfx(chahao)
 
 
 ## "不查看" 按钮：直接结束分支对话

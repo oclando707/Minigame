@@ -185,3 +185,4 @@ texture = ExtResource("10_fodhs")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Grass" unique_id=550270859]
 stream = ExtResource("12_kutcy")
+autoplay = true

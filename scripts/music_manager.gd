@@ -12,6 +12,8 @@ const BGM_LEVEL_0_2   := "res://.godot/imported/Homecoming.wav-51edfeba606893f8f
 const BGM_ZONE_A      := "res://.godot/imported/德米特里的植物园2.wav-7c682378035f8d37dd3a36771b04a236.sample"
 const BGM_ZONE_B      := "res://.godot/imported/缧绁.wav-3597d7d2e1e1fb5c6fd55bdbe5992fe6.sample"
 
+const UI_CLICK := "res://.godot/imported/SFX_11.mp3-db97dec1d341cfadc2dd9305336be4ef.mp3str"
+
 var _player_a: AudioStreamPlayer = null
 var _player_b: AudioStreamPlayer = null
 var _active: AudioStreamPlayer = null
@@ -92,3 +94,22 @@ func play(p_track: String) -> void:
 	var other := _player_b if _active == _player_a else _player_a
 	if other.playing:
 		other.stop()
+
+
+## 绑定按钮：鼠标悬停时播放 UI 音效
+func bind_hover_sfx(p_button: BaseButton) -> void:
+	p_button.mouse_entered.connect(_play_hover_sfx)
+
+
+## 播放 UI 悬停音效（限播 0.7 秒）
+func _play_hover_sfx() -> void:
+	var sfx := AudioStreamPlayer.new()
+	sfx.stream = load(UI_CLICK)
+	sfx.bus = &"Master"
+	add_child(sfx)
+	sfx.play()
+	get_tree().create_timer(0.7).timeout.connect(func():
+		if is_instance_valid(sfx):
+			sfx.stop()
+			sfx.queue_free()
+	)

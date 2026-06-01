@@ -5,8 +5,14 @@ extends CharacterBody2D
 const GRAVITY: float = 800.0
 const JUMP_VELOCITY: float = -632.0
 const MOVE_SPEED: float = 400.0
+const STEP_INTERVAL := 0.35    # 脚步音效间隔（秒）
 
 var can_move: bool = true
+var _step_timer: float = 0.0
+var _was_on_floor: bool = true
+
+@onready var _step_sfx: AudioStreamPlayer2D = $StepSFX
+@onready var _land_sfx: AudioStreamPlayer2D = $LandSFX
 
 
 func set_movement_enabled(enabled: bool) -> void:
@@ -31,6 +37,21 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 	move_and_slide()
+
+	# 落地检测
+	if is_on_floor() and not _was_on_floor:
+		_land_sfx.play()
+	_was_on_floor = is_on_floor()
+
+	# 行走音效
+	if is_on_floor() and abs(dir) > 0.0:
+		_step_timer += delta
+		if _step_timer >= STEP_INTERVAL:
+			_step_timer = 0.0
+			_step_sfx.play()
+	else:
+		_step_timer = 0.0
+
 	update_animation(dir)
 
 

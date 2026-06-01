@@ -303,6 +303,7 @@ func _complete_push() -> void:
 	is_pushing = false
 	push_hold_time = 0.0
 	feixu_pushed = true
+	DialogueManager.flags["level_1_2_unlocked"] = true
 
 	# 恢复玩家正常移动和动画
 	$Player.set_movement_enabled(true)
