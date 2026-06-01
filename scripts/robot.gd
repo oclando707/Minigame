@@ -1,4 +1,4 @@
-extends Area2D
+﻿extends Area2D
 ## 机器人 — 平和巡逻 / 攻击追逐 / 休眠
 ## 靠近按F → 对话二选一（激怒→攻击  /  离开→保持和平）
 
@@ -8,8 +8,9 @@ enum State { PEACEFUL, ATTACKING, DORMANT }
 @export var attack_speed: float = 200.0
 @export var patrol_left: float = -200.0
 @export var patrol_right: float = 200.0
+@export var initial_state: State = State.PEACEFUL
 
-var state: State = State.PEACEFUL
+var state: State
 var _start_x: float = 0.0
 var _patrol_dir: float = -1.0
 var _target_player: CharacterBody2D = null
@@ -22,7 +23,13 @@ var _spawn_x: float = 0.0
 
 
 func _ready() -> void:
+	# 全局机器人关闭 → 直接休眠
+	if DialogueManager.flags.get("robots_deactivated", false):
+		_set_state(State.DORMANT)
+		return
+	_set_state(initial_state)
 	_start_x = position.x
+	add_to_group("robots")
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 
