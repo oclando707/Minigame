@@ -71,6 +71,9 @@ func show_dialogue(
 	_dialog = scene.instantiate() as Control
 	_canvas.add_child(_dialog)
 
+	# 对话框滑入动效
+	UIAnim.slide_up(_dialog, 60.0)
+
 	# 普通对话：隐藏选项按钮和背景
 	if _dialog.has_node("VBoxContainer"):
 		_dialog.get_node("VBoxContainer").visible = false
@@ -129,6 +132,9 @@ func show_branching_dialogue(
 	var scene := load(textbox_scene) as PackedScene
 	_dialog = scene.instantiate() as Control
 	_canvas.add_child(_dialog)
+
+	# 对话框滑入动效
+	UIAnim.slide_up(_dialog, 60.0)
 
 	# 分支对话：先隐藏选项按钮和背景（对话中不显示）
 	if _dialog.has_node("VBoxContainer"):
@@ -209,6 +215,9 @@ func _show_options() -> void:
 	btn2.pressed.connect(_on_dont_view_pressed)
 	get_node("/root/MusicManager").bind_hover_sfx(btn2)
 
+	# 选项按钮错开弹入
+	UIAnim.stagger_reveal([btn1, btn2])
+
 
 ## "查看" 按钮：隐藏对话框，显示由 _popup_scene_path 指定的弹窗
 ## 弹窗场景由 show_branching_dialogue() 的调用方指定
@@ -223,6 +232,8 @@ func _on_view_pressed() -> void:
 	var popup_scene := load(_popup_scene_path) as PackedScene
 	_popup_instance = popup_scene.instantiate() as Control
 	_canvas.add_child(_popup_instance)
+
+	UIAnim.pop_in(_popup_instance)
 
 	# 连接叉号按钮：关闭弹窗并结束对话
 	var chahao := _popup_instance.get_node("chahao") as TextureButton

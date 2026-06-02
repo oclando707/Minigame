@@ -84,6 +84,9 @@ func _ready() -> void:
 	# 连接 feixu 的检测区域信号（ZoneB）
 	_connect_feixu_signals()
 
+	# 连接 ZoneB Terrain/level 关卡出口触发器
+	_connect_level_exit()
+
 	# 连接 niupixian 的 interacted 信号（嵌套在实例化场景内，需代码连接）
 	get_node("ZoneA/LV1-background/niupixian").interacted.connect(_on_niupixian_interacted)
 
@@ -318,6 +321,7 @@ func _complete_push() -> void:
 
 	# 播放废墟坠落音效
 	var sfx := AudioStreamPlayer2D.new()
+	sfx.bus = &"SFX"
 	sfx.stream = load("res://.godot/imported/freesound_community-stones-falling-6375.mp3-79b06d30e8ec1c91c233dfbb86a82178.mp3str")
 	add_child(sfx)
 	sfx.finished.connect(sfx.queue_free)
@@ -382,6 +386,7 @@ func _on_feixu_body_collided(body: Node) -> void:
 		# 播放撞击音效
 		var sfx := AudioStreamPlayer2D.new()
 		sfx.stream = load("res://.godot/imported/levigoodway-vine-boom-sound-410789.mp3-4dbeababaf6566c78604366589af2c61.mp3str")
+		sfx.bus = &"SFX"
 		add_child(sfx)
 		sfx.finished.connect(sfx.queue_free)
 		sfx.play()
@@ -490,6 +495,7 @@ func _on_jack_interacted() -> void:
 	# 创建临时音效播放器
 	var bark_player := AudioStreamPlayer2D.new()
 	bark_player.stream = preload("res://level1asset/第一关/狗叫.wav")
+	bark_player.bus = &"SFX"
 	add_child(bark_player)
 
 	# 监听每行对话显示：第2行（index 1）时播放狗叫
@@ -530,6 +536,31 @@ func _on_modou_interacted() -> void:
 			if player_near_earth:
 				_set_earth_prompt(true)
 	)
+
+
+## =============================================================================
+## ZoneB Terrain/level 关卡出口触发器
+## =============================================================================
+
+## 连接 ZoneB/lv_1_background_a_2/Terrain/level Area2D 的 body_entered
+func _connect_level_exit() -> void:
+	var level_area := $ZoneB/lv_1_background_a_2/Terrain/level as Area2D
+	if not level_area:
+		push_error("_connect_level_exit: Terrain/level Area2D 未找到")
+		return
+	level_area.body_entered.connect(_on_level_exit_entered)
+
+
+## 玩家触碰 Terrain/level 触发器 -> 解锁 lv_2 并切换到 level_3_1
+func _on_level_exit_entered(body: Node2D) -> void:
+	if not (body is CharacterBody2D):
+		return
+	DialogueManager.flags["level_2_unlocked"] = true
+	call_deferred("_do_level_exit")
+
+
+func _do_level_exit() -> void:
+	get_tree().change_scene_to_file("res://scene/level_3_1.tscn")
 
 
 ## niupixian 分支对话交互：对话结束后弹出 "查看" / "不查看" 选项

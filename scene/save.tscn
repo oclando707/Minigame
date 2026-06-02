@@ -9,29 +9,30 @@
 
 [node name="SavePanel" type="Control" unique_id=-1448452995]
 layout_mode = 3
-anchors_preset = 15
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
+grow_horizontal = 0
+grow_vertical = 0
 mouse_filter = 1
 script = ExtResource("1_script")
 
 [node name="CloseBtn" type="TextureButton" parent="." unique_id=1687954270]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -960.0
-offset_top = -540.0
-offset_right = 2880.0
-offset_bottom = 1620.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1920.0
+offset_top = -1080.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("6_close")
+stretch_mode = 0
 
 [node name="lv_0" type="TextureButton" parent="." unique_id=-2105675403]
 layout_mode = 1
@@ -41,12 +42,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -960.0
-offset_top = -524.0
-offset_right = 2880.0
-offset_bottom = 1636.0
+offset_top = -534.0
+offset_right = 960.0
+offset_bottom = 546.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("3_lv0")
+stretch_mode = 5
 
 [node name="lv_1" type="TextureButton" parent="." unique_id=1713730677]
 visible = false
@@ -56,13 +59,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -976.0
-offset_top = -508.0
-offset_right = 2864.0
-offset_bottom = 1652.0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("4_lv1")
+stretch_mode = 5
 
 [node name="lv_1_2" type="TextureButton" parent="." unique_id=1030516615]
 visible = false
@@ -72,34 +77,33 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -944.0
-offset_top = -524.0
-offset_right = 2896.0
-offset_bottom = 1636.0
+offset_left = -968.0
+offset_top = -540.0
+offset_right = 952.0
+offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("2_bg")
+stretch_mode = 5
 
-[node name="lv_2" type="TextureRect" parent="." unique_id=-1179902370]
+[node name="lv_2" type="TextureButton" parent="." unique_id=-1179902370]
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -960.0
-offset_top = -524.0
-offset_right = 960.0
-offset_bottom = 556.0
-grow_horizontal = 2
+offset_top = -1076.0
+offset_right = 2880.0
+offset_bottom = 1084.0
 grow_vertical = 2
-scale = Vector2(2, 2)
-texture = ExtResource("5_lv1_2")
-expand_mode = 1
-stretch_mode = 5
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_lv1_2")
+stretch_mode = 4
 
 [connection signal="pressed" from="CloseBtn" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="lv_0" to="." method="_on_lv_0_pressed"]
 [connection signal="pressed" from="lv_1" to="." method="_on_lv_1_pressed"]
 [connection signal="pressed" from="lv_1_2" to="." method="_on_lv_1_2_pressed"]
+[connection signal="pressed" from="lv_2" to="." method="_on_lv_2_pressed"]

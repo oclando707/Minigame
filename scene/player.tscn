@@ -563,7 +563,9 @@ libraries/ = SubResource("AnimationLibrary_et5mr")
 autoplay = &"walk"
 
 [node name="StepSFX" type="AudioStreamPlayer2D" parent="." unique_id=1090256613]
+bus = &"SFX"
 stream = ExtResource("97_step")
 
 [node name="LandSFX" type="AudioStreamPlayer2D" parent="." unique_id=1160048844]
+bus = &"SFX"
 stream = ExtResource("98_land")

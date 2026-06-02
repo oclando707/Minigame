@@ -28,6 +28,9 @@ size = Vector2(214, 1071.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_csci6"]
 size = Vector2(58, 1100)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7cccd"]
+size = Vector2(465.5, 147)
+
 [node name="lv_1_backgroundA2" type="Node2D" unique_id=807754963]
 script = ExtResource("1_x8o5p")
 
@@ -74,6 +77,12 @@ shape = SubResource("RectangleShape2D_ewfiv")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Terrain/border" unique_id=1254956507]
 position = Vector2(-27, 535)
 shape = SubResource("RectangleShape2D_csci6")
+
+[node name="level" type="Area2D" parent="Terrain" unique_id=1893228515]
+
+[node name="level" type="CollisionShape2D" parent="Terrain/level" unique_id=762310542]
+position = Vector2(-32, 625)
+shape = SubResource("RectangleShape2D_7cccd")
 
 [node name="prop" type="Node2D" parent="." unique_id=869857541]
 
